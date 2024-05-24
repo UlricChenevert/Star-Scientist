@@ -91,7 +91,7 @@ a:active, a:hover {
 }
 
 #game-link-section {
-    background-image: url("images/Galaxy.jpg");
+    background-image: url("../images/Galaxy.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
