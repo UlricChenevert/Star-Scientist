@@ -1,0 +1,135 @@
+:root {
+    --font-color: white;
+    --main-font: 'Proxima Nova';
+    --backup-font: 'Helvetica';
+    
+    --primary-color: #384e8d;
+    --darker-primary-color: #4662b0;
+}
+
+body {
+    background-color: #000000;
+    color: white;
+    font-family: var(--main-font), var(--backup-font);
+
+    margin: 0;
+    min-height: 100vh;
+
+   /*border: 1px solid red  Testing */
+}
+
+.title-font {
+   font-family: var(--main-font), var(--backup-font);
+   font-size: 7em;
+}
+
+.header-font {
+    font-weight: bolder;
+    font-size: 1.4em;
+    margin-bottom: 1em;
+}
+
+.content-font {
+    font-size: 1em;
+}
+
+.links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+a {
+    padding: 0.5em;
+    text-align: center;
+
+    color: white;
+    background-color: var(--primary-color);
+
+    text-decoration: none;
+}
+
+a:active, a:hover {
+    color: white;
+    background-color: var(--darker-primary-color);
+}
+
+.navigation-links a {
+    float:right;
+
+    display: block;
+    padding: 0.5em;
+}
+
+.button-link {
+    font-size: 2em;
+    border-radius: 1.5em;
+}
+
+#navigation {
+    width:100%;
+    background-color: var(--darker-primary-color);
+}
+
+.logo {
+    float: left;
+}
+
+.logo img{
+    max-height: 2em;
+}
+
+.logo span{
+    color: rgb(255, 255, 255);
+    font-weight:bolder;
+    font-family: var(--main-font), var(--backup-font);
+
+    position: relative;
+    bottom: 0.5em;
+    
+}
+
+#game-link-section {
+    background-image: url("images/Galaxy.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    
+    height: 80vh;
+
+    text-align: center;
+    padding-top: 35vh;
+    /*border: 1px solid red;*/
+}
+
+.info-section {
+    padding-top: 2em;
+    padding-bottom: 1em;
+    
+    padding-right: 3em;
+    padding-left: 3em;
+}
+
+.info-section img {
+    padding:1em;
+    float:left;
+    max-width: 10em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+
+}
+
+.info-section .text-boxes {
+    padding:1em;
+    width: 85vw;
+    margin-bottom: 2em;
+}
+
+#footer-section {
+    bottom: 0;
+
+    padding: 1em;
+    background-color: var(--darker-primary-color);
+}

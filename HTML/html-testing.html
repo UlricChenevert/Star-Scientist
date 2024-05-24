@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title> My Page </title>
+    <link rel="icon" type="images/x-icon" href="images/favicon.ico">
+    <link rel= "stylesheet", href="formatting.css">
+</head>
+
+<body>
+
+<style>
+    .box {
+        width: 100px;
+        height: 100px;
+
+    
+        animation-name: me;
+        animation-duration: 3s;
+    }
+
+    @keyframes me {
+        from {
+            background-color: aliceblue;
+            margin-left: 0vh;
+        } 50% {
+            margin-left: 50vh;
+        } to {
+            background-color: rgba(240, 248, 255, 0);
+            margin-left: 30vh;
+        }
+    }
+
+</style>
+
+<h1> Beans </h1>
+
+<p style="width:400px;">
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet.
+</p>
+
+<p> Beans and carrots </p>
+<p title="Link Paragraph"> Another block of code. 
+    <a href = "https://www.google.com"> Click Here! </a>
+</p>
+
+<p title="Photo Paragraph"> 
+    Another body of text!
+    <img src="images/logo.jpg" alt="..." style="width:600px; height:200px;" usemap="#clickable-area">
+
+    <map name="clickable-area">
+        <area shape="circle" coords="100, 100, 30" onmouseover="myFunction()"> 
+    </map>
+
+    <script>
+        function myFunction() {
+            alert("You clicked the coffee cup!");
+        }
+    </script>
+</p>
+
+<p id="test"> </p>
+
+<script>
+    document.getElementById("test").innerHTML = "Hello JavaScript!";
+</script>
+
+<form>
+    <input type="radio" name="Happy" id="One" value="one">
+    <label for="One">One</label><br>
+    
+    <input type="radio" name="Happy" id="Two" value="two">
+    <label for="Two">Two</label><br>
+    
+    <input type="radio" name="Happy" id="Three" value="three">
+    <label for="Three">Three</label><br>
+    
+</form>
+
+
+<div class="box">
+    Hello
+</div>
+
+</body>
+</html>
