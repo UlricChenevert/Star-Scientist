@@ -7,8 +7,8 @@
 function main() {
 
     let test_star = {
-        mass_kilograms: 1.8079442e30, // kg
-        radius_solar_units: 0.8591 // km
+        mass_solar_units: 0.9092, // sun masses
+        radius_solar_units: 0.8591 // sun radiuses
     };
 
     console.log(test_star);
@@ -17,11 +17,9 @@ function main() {
 }
 
 // Desc: Estimates the luminosity of a main sequence star
-// Pre:  Mass in kg
-// Post: Luminosity in watts
+// Pre:  Mass in solar units
+// Post: Luminosity in solar units
 function calculate_luminosity(mass) {
-    const SUN_MASS = 1.9885e30; // in kilograms
-    const SUN_LUMINOSITY = 3.828e26; // in watts
     
     // Throws a error if both values are known or not known
     if (!mass) alert("Incorrect function call!");
@@ -30,17 +28,21 @@ function calculate_luminosity(mass) {
     let star_luminosity = "Empty Value";
 
     // Approximated relationship
-    if (mass <= 0.43 * SUN_MASS) {
-        star_luminosity = ((mass/SUN_MASS)**2.3)*0.23*SUN_LUMINOSITY;
+    // Comparisons in solar units
 
-    } else if (mass <= 2 * SUN_MASS) {
-        star_luminosity = ((mass/SUN_MASS)**4)*SUN_LUMINOSITY;
+    //console.log(`Estimate ${mass**3.5}`) // General equation
 
-    } else if (mass <= 55 * SUN_MASS) {
-        star_luminosity = ((mass/SUN_MASS)**3.5)*1.4*SUN_LUMINOSITY;
+    if (mass <= 0.43) {
+        star_luminosity = 0.23*(mass**2.3);
 
-    } else if (mass > 55 * SUN_MASS) {
-        star_luminosity = ((mass/SUN_MASS)*3.2e4);
+    } else if (mass <= 2) {
+        star_luminosity = mass**4;
+
+    } else if (mass <= 55) {
+        star_luminosity = 1.4*(mass**3.5);
+
+    } else if (mass > 55) {
+        star_luminosity = 3.2e4*mass;
 
     } else {
         star_luminosity = "Outside mass specs!";
@@ -66,16 +68,10 @@ function calculate_mass(luminosity) {
 }
 
 // Desc: Estimates the life spent on the main sequence
-// Pre: Mass in kg and luminosity in watts
+// Pre: Mass in solar units and luminosity in solar units
 // Post: Lifetime in years
 function calculate_lifetime(mass, luminosity) {
-    const SUN_MASS = 1.9885e30; // in kilograms
-    const SUN_LUMINOSITY = 3.828e26; // in watts
     const SUN_LIFESPAN = 1e10; // in years
-
-    // Convert into solar units
-    mass = mass/SUN_MASS;
-    luminosity = luminosity/SUN_LUMINOSITY;
 
     let star_lifetime = SUN_LIFESPAN*(mass/luminosity);
 
@@ -83,16 +79,12 @@ function calculate_lifetime(mass, luminosity) {
 }
 
 // Desc: Estimates the temperature with the Stefan-Boltzmann Law
-// Pre: luminosity in watts and radius in km
+// Pre: luminosity in solar units and radius in solar units
 // Post: Temperature in Kevin
 function calculate_temperature(luminosity, radius) {
     const SUN_TEMPERATURE = 5.772e3; // in kevin
-    const SUN_LUMINOSITY = 3.828e26; // in watts
 
-    console.log(luminosity/SUN_LUMINOSITY);
-    console.log(radius);
-
-    let star_temperature = SUN_TEMPERATURE*((luminosity)/(radius**2*SUN_LUMINOSITY))**(0.25); //(luminosity/)^(1/4);
+    let star_temperature = SUN_TEMPERATURE*(luminosity/(radius**2))**(1/4); //(luminosity/)^(1/4);
     return star_temperature;
 }
 
@@ -144,12 +136,14 @@ function determine_color(spectral_classification) {
 }
 
 // Desc: Takes the mass and radius of the star and estimates the basic info about the star
-// Pre: Object with mass_kilograms and radius_solar_units keys
+// Pre: Object with mass_solar_units and radius_solar_units keys
 // Post: Returns a object 
 function basic_info(input_star) {
     const SUN_RADIUS = 6.963e5; // in km
+    
+    const SUN_LUMINOSITY = 3.828e26; // in watts
 
-    if (input_star.mass_kilograms == undefined || input_star.radius_solar_units == undefined) alert("Missing object specifications for basic info!");
+    if (input_star.mass_solar_units == undefined || input_star.radius_solar_units == undefined) alert("Missing object specifications for basic info!");
 
     // Units are in Kevin
     let spectral_classification = {
@@ -162,12 +156,12 @@ function basic_info(input_star) {
         M : {low: 2.3e3, high: 3.9e3}
     };
 
-    let basic_info = {mass_kilograms: input_star.mass_kilograms, radius_solar_units: input_star.radius_solar_units};
+    let basic_info = {mass_solar_units: input_star.mass_solar_units, radius_solar_units: input_star.radius_solar_units};
 
     //Calculated values
-    basic_info.luminosity_watts = calculate_luminosity(input_star.mass_kilograms);
-    basic_info.lifetime_years = calculate_lifetime(basic_info.mass_kilograms, basic_info.luminosity_watts);
-    basic_info.temperature_kevin = calculate_temperature(basic_info.luminosity_watts, basic_info.radius_solar_units); 
+    basic_info.luminosity_solar_units = calculate_luminosity(basic_info.mass_solar_units); // This estimate really skews the rest of the data
+    basic_info.lifetime_years = calculate_lifetime(basic_info.mass_solar_units, basic_info.luminosity_solar_units);
+    basic_info.temperature_kevin = calculate_temperature(basic_info.luminosity_solar_units, basic_info.radius_solar_units); 
     basic_info.spectral_classification = determine_spectral_classification(basic_info.temperature_kevin);
     basic_info.color = determine_color(basic_info.spectral_classification);
     
