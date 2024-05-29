@@ -92,7 +92,7 @@ nav {
 }
 
 .contact-card:hover {
-    margin-top: 20% ;
+    background-color: darkcyan;
 }
 
 .contact-card img {
