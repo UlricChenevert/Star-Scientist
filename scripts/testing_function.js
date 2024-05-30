@@ -4,11 +4,11 @@ function function_test() {
     function check(a_function, value) {
         console.log(typeof(a_function));
 
-        if (a_function() != value) {
+        if (a_function.value != value) {
             console.log(`${a_function.name} does not return ${value}`)
         }
         
-        console.log(`${a_function.name} returns ${value} sucessfully!`);
+        console.log(`${a_function.name} returns ${value} successfully!`);
     }
     let test_star = {spectral_type:"B"};
 

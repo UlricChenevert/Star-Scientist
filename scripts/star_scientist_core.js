@@ -11,9 +11,11 @@ function main() {
         radius_solar_units: 0.8591 // sun radiuses
     };
 
-    console.log(test_star);
+    //console.log(test_star);
 
-    console.log(basic_info(test_star));
+    //console.log(basic_info(test_star));
+
+    display_star("Yellow");
 }
 
 // Desc: Estimates the luminosity of a main sequence star
@@ -166,4 +168,35 @@ function basic_info(input_star) {
     basic_info.color = determine_color(basic_info.spectral_classification);
     
     return basic_info;
+}
+
+function draw_chromosphere (brush) {
+    brush.beginPath();
+    brush.arc(250, 250, 100, 0, 2 * Math.PI);
+    brush.fill();
+}
+
+function draw_prominence (brush) {
+
+}
+
+function draw_corona (brush) {
+    
+}
+
+function display_star(color) {
+    const star_container = document.getElementById("star");
+    const brush = star_container.getContext("2d");
+
+    let height = star_container.getAttribute("height");
+    let width = star_container.getAttribute("width");
+
+    // Colors
+    brush.strokeStyle, brush.fillStyle = color;
+    
+    draw_corona (brush);
+    draw_prominence (brush);
+    draw_chromosphere(brush);
+    
+    brush.stroke();
 }

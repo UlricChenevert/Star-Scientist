@@ -6,40 +6,58 @@
 
     <title> Star Scientist</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-    <link rel="stylesheet" href="../styles/formatting.css">
+    <link rel="stylesheet" href="../styles/game-formatting.css">
 
-    <script href="../scripts/myscript.js" ></script>
+    <script src="../scripts/star_scientist_core.js" ></script>
 </head>
 
-<body> 
-    <nav id="navigation">
+<body onload="main()"> 
+    <div><nav id="navigation">
         <!-- Logo -->
         <span class="logo">
             <img src="../images/sun.png" alt="Logo">
-            <span style="height: 100%;">Star Scientist</span>
+            <span>Star Scientist</span>
         </span>
 
         <ul class="links">
             <!-- Contact Link -->
-            <li class="navigation-links"><a href="contact-page.html">Contact</a></li>
+            <a href="contact-page.html">Contact</a>
 
             <!-- Game Link -->
-            <li class="navigation-links"><a href="game-page.html">Game</a></li>
+            <a href="game-page.html">Game</a>
 
              <!-- Home Link -->
-            <li class="navigation-links"><a href="main-page.html">Home</a></li>
+            <a href="main-page.html">Home</a>
 
         </span>
+    </nav></div>
 
-    </nav>
+    <div id="info-bar"> 
+        <div><form>
+            <label for="mass-input"> Mass </label>
+            <input type="text" id="mass-input" class="styled-input">
+            <input type="submit" value="&#8634" class="styled-submit">
 
-    <div>
+            <label for="radius-input"> Radius </label>
+            <input type="text" id="radius-input" class="styled-input">
+            <input type="submit" value="&#8634" class="styled-submit">
+        </form></div>
         <br>
-        this is the game page!
+        <div>
+            <div id="mass-display">a</div>
+            <div id="radius-display">b</div>
+            <div id="luminosity-display">c</div>
+            <div id="age-display">d</div>
+            <div id="temperature-display">e</div>
+            <div id="spectral-classification-display">f</div>
+            <div id="timeline-display">g</div>
+        </div>
+    
     </div>
 
-    <div>
-        <button onclick="notify()"> Click </button>
+    <div id="star-visual">
+        <canvas id="star" width="500" height="500"></canvas>
     </div>
+    
 </body>
 </html>
