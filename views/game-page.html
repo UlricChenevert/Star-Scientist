@@ -34,29 +34,24 @@
 
     <div id="info-bar"> 
         <div><form>
-            <label for="mass-input"> Mass </label>
-            <input type="text" id="mass-input" class="styled-input">
-            <input type="submit" value="&#8634" class="styled-submit">
+            <div><label for="mass-input"> Mass </label>
+            <input type="text" id="mass-input" class="styled-input" value="1">
+            <button type="button" class="styled-submit" onclick="main()">&#8634</button></div>
 
-            <label for="radius-input"> Radius </label>
-            <input type="text" id="radius-input" class="styled-input">
-            <input type="submit" value="&#8634" class="styled-submit">
+            <div><label for="radius-input"> Radius </label>
+            <input type="text" id="radius-input" class="styled-input"  value="1">
+            <button type="button" class="styled-submit" onclick="main()">&#8634</button></div>
         </form></div>
         <br>
-        <div>
-            <div id="mass-display">a</div>
-            <div id="radius-display">b</div>
-            <div id="luminosity-display">c</div>
-            <div id="age-display">d</div>
-            <div id="temperature-display">e</div>
-            <div id="spectral-classification-display">f</div>
-            <div id="timeline-display">g</div>
-        </div>
+        <div id="metrics">Output error</div>
     
     </div>
 
     <div id="star-visual">
-        <canvas id="star" width="500" height="500"></canvas>
+        <canvas id="atmosphere-layer" width="500" height="500"></canvas>
+        <canvas id="chromosphere-layer" width="500" height="500"></canvas>
+        <canvas id="background-layer" width="500" height="500"></canvas>
+
     </div>
     
 </body>

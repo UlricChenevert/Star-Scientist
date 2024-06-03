@@ -61,6 +61,7 @@ nav {
 
 #info-bar {
     position: absolute;
+    z-index: 4;
 
      /*flex-direction: column;
     justify-content: space-between;*/
@@ -92,4 +93,19 @@ nav {
     height: 100vh;
 }
 
-#star {}
+#chromosphere-layer {
+    position: absolute;
+    z-index: 3;
+}
+
+#atmosphere-layer {
+    position: absolute;
+    z-index: 2;
+}
+
+#background-layer {
+    position: absolute;
+    z-index: 1;
+}
+
+#metrics {}
