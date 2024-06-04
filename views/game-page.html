@@ -33,17 +33,48 @@
     </nav></div>
 
     <div id="info-bar"> 
-        <div><form>
-            <div><label for="mass-input"> Mass </label>
-            <input type="text" id="mass-input" class="styled-input" value="1">
-            <button type="button" class="styled-submit" onclick="main();">&#8634</button></div>
+        <div id="options">
+            <h4><b>Options</b></h4>
+            <form>
+            <div class="input-container">
+                <div><label for="templates-input"> Templates: </label></div>
+                <select id="templates-input" name="Templates" class="styled-input">
+                    <option value="Custom">Custom</option>
+                    <option value="Sun">Sun</option>
+                    <option value="BI 253">BI 253</option>
+                    <option value="Phi Orionis">Phi Orionis</option>
+                    <option value="Epsilon Eridani">Epsilon Eridani</option>
+                    <option value="Alpha Coronae Borealis">Alpha Coronae Borealis</option>
+                    <option value="Eta Arietis">Eta Arietis</option>
+                    <option value="Epsilon Eridani">Epsilon Eridani</option>
+                    <option value="70 Ophiuchi">70 Ophiuchi</option>
+                    <option value="Lacaille 8760">Lacaille 8760</option>
+                    <option value="VB 10">VB 10</option>
+    
+                </select>
+            </div>
 
-            <div><label for="radius-input"> Radius </label>
-            <input type="text" id="radius-input" class="styled-input"  value="1">
-            <button type="button" class="styled-submit" onclick="main()">&#8634</button></div>
+            <div class="input-container">
+                <div><label for="mass-input"> Mass: </label></div>
+                <input type="text" id="mass-input" class="styled-input" value="1" max="99"></div>
+
+            <div class="input-container">
+                <div><label for="radius-input"> Radius: </label></div>
+                <input type="text" id="radius-input" class="styled-input"  value="1"max="99">
+            </div>
+
+            <div class="button-container">
+                <button type="button" class="styled-submit" onclick="main()">Submit</button>
+            </div>
+
+            
         </form></div>
         <br>
-        <div id="metrics">Scripting not supported!</div>
+        <div id="styled-metrics">
+            <h4 ><div><b>Metrics</b></h4>
+            <div id="metrics">Scripting not supported!</div>
+        </div>
+    </div>
     
     </div>
 

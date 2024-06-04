@@ -9,24 +9,31 @@ export class UI {
     }
     display_handler (type) { // Publish
         let push = {
-            star_info: (object) => {
-                document.getElementById("metrics").innerHTML = `
-                    <div>Mass: ${object.mass_solar_units} M<sub>&#9737</sub></div>
-                    <div>Radius: ${object.radius_solar_units} R<sub>&#9737</sub></div>
-                    <div>Luminosity: ${object.luminosity_solar_units} L<sub>&#9737</sub></span></div>
-                    <div>Lifetime: ${object.lifetime_years} yr</div>
-                    <div>Temperature: ${object.temperature_kevin} K</div>
-                    <div>Spectral Classification: ${object.spectral_classification}</div>`;},
+            star_info: (star) => {
+                
+                let output_string = ''
+
+                for (let i in star) {
+                    if (typeof star[i] != "object") continue; // For color and spectral classification
+
+                    output_string += `<div>${star[i].type}: ${star[i].value} ${star[i].unit}<sub>${star[i].symbol}</sub></div>`;
+                }
+                // For non-measurement class values
+                output_string += `<div>Spectral Classification: ${star['spectral_classification']}</div>`;
+
+                document.getElementById("metrics").innerHTML = output_string;
+            },
+            star_graphic: (star)  => {
+                let radius = star.radius.value * 20;
+                let color_palette = create_color_palette(star.color);
+                
+                this.update_layer(1, 'chromosphere')(radius, color_palette); // Draws the "main body" of the sun
+                this.update_layer(2, 'corona')(radius, color_palette); // Draws the "atmosphere" of the sun
+                
+            },
         };
 
-        return push[type]();
-    }
-
-    display_star(star_info) {
-        let radius = star_info.radius_solar_units * 20;
-        let color_palette = create_color_palette(star_info.color);
-        
-        this.update_layer()
+        return push[type];
     }
 
     update_layer (layer_index, type) {
@@ -45,6 +52,52 @@ export class UI {
                 star_container.setAttribute("width", parseInt(window.getComputedStyle(this.star_visual).getPropertyValue('width')) ); // Have to access the css width format
                 star_container.setAttribute("height", parseInt(window.getComputedStyle(this.star_visual).getPropertyValue('height')) ); // Have to access the css height format
             },
+            chromosphere: (radius, color_palette) => {
+                const center_x = star_container.width/2;
+                const center_y = star_container.height/2;
+                
+                let base_color = separate(color_palette.base);
+
+                const noise_amplitude = 30;
+                
+                for (let x = 0; x < star_container.width; x++) {
+                    for (let y = 0; y < star_container.height; y++) {
+
+                        let distance = Math.sqrt((center_x-x)**2 + (center_y-y)**2);
+                        let circle_ize = Math.sqrt(radius**2-distance**2);
+
+                        let weight_normalized = normalize(circle_ize, radius, 0, false); 
+
+                        let red = (base_color[0] - noise(noise_amplitude))*weight_normalized;
+                        red = (red > 255)? 255 : red;
+
+                        let green = (base_color[1] - noise(noise_amplitude))*weight_normalized;
+                        green = (green > 255)? 255 : green;
+
+                        let blue = (base_color[2] - noise(noise_amplitude))*weight_normalized;
+                        blue = (blue > 255)? 255 : blue;
+
+                        brush.fillStyle = `rgba(${red}, ${green}, ${blue}, ${weight_normalized})`;
+
+                        if (((x-center_x)**2 + (y-center_y)**2) <= radius**2) {brush.fillRect(x, y, 1, 1);}
+                    }
+                }
+
+                brush.stroke();                                         
+
+            },
+            corona: (radius, color_palette) => {
+                const length = radius*2;
+
+                const gradient = brush.createRadialGradient(star_container.width/2, star_container.height/2, radius, star_container.width/2, star_container.height/2, radius+length);
+                gradient.addColorStop(0, color_palette.darker);
+                gradient.addColorStop(0.5, 'rgb(0, 0, 0, 0.3)');
+                gradient.addColorStop(1, 'rgb(0, 0, 0, 0)');
+                
+                brush.fillStyle = gradient;
+                brush.fillRect(0, 0, star_container.width, star_container.height);
+            }
+
 
 
         };
@@ -57,10 +110,6 @@ export class UI {
         for (let index in this.layers) {
             this.update_layer(index, type)();
         }
-    }
-    
-    build_html (parent_container, object) { // Create recursive html builder
-        
     }
 }
 
@@ -81,18 +130,6 @@ export function display_star(star_info) {
     
     brush.stroke();
 }
-
-export function display_star_info(star_info) {
-    document.getElementById("metrics").innerHTML = `
-        <div>Mass: ${star_info.mass_solar_units} M<sub>&#9737</sub></div>
-        <div>Radius: ${star_info.radius_solar_units} R<sub>&#9737</sub></div>
-        <div>Luminosity: ${star_info.luminosity_solar_units} L<sub>&#9737</sub></span></div>
-        <div>Lifetime: ${star_info.lifetime_years} yr</div>
-        <div>Temperature: ${star_info.temperature_kevin} K</div>
-        <div>Spectral Classification: ${star_info.spectral_classification}</div>
-    `;
-}
-
 
 // Desc: Slaps on a opacity to a rgb string
 // Pre: rgb string
@@ -128,37 +165,10 @@ function create_color_palette(color) {
     };
 }
 
-// Draws the "main body" of the sun
-function draw_chromosphere (brush, height, width, radius, color_palette) {
-    const shiny_size = radius*0.25;
-
-    // Creating the gradient
-    const gradient = brush.createRadialGradient(width/2, height/2, shiny_size, width/2, height/2, radius);
-    gradient.addColorStop(0, color_palette.lighter);
-    gradient.addColorStop(0.7, color_palette.light);
-    gradient.addColorStop(0.9, color_palette.base);
-    gradient.addColorStop(1, add_opacity(color_palette.base, 0.0));
-
-    // Applying the gradient
-    brush.fillStyle = gradient;
-    brush.fillRect(0, 0, width, height);
+function noise (amplitude = 1) {
+    return Math.ceil(Math.random() * amplitude);
 }
 
-// Draws the "fares" of the sun
-function draw_prominence (brush, height, width, radius) {
-
-}
-
-// Draws the "atmosphere" of the sun
-function draw_corona (brush, height, width, radius, color_palette) {
-    const length = radius*2;
-
-    const gradient = brush.createRadialGradient(width/2, height/2, radius, width/2, height/2, radius+length);
-    gradient.addColorStop(0, color_palette.darker);
-    gradient.addColorStop(0.5, 'rgb(0, 0, 0, 0.3)');
-    gradient.addColorStop(1, 'rgb(0, 0, 0, 0)');
-    
-    brush.fillStyle = gradient;
-    brush.fillRect(0, 0, width, height);
-
+function normalize(value, max, min, inverted = false) {
+    return (!inverted)? (value - min) / (max - min) : 1 - (value - min) / (max - min);
 }
