@@ -83,20 +83,7 @@ function round_data(data, significant_figures) {
             return data;
         }, 
         "number": () => {
-            // Ex 1: 1223.446557
-            // Ex 2: 1.446557
-
-            // Ex 1: 1223.446557 => size of 4
-            // Ex 2: 1.446557 => size of 1
-            // Gets the length of the integer digits
-            var data_size = Math.round(data).toString().length;
-
-            // Ex 1: 1220
-            // Ex 2: 1.45
-            // Rounds to that integer digit - significant_figures
-            var data_rounded = Math.round(data/10**(data_size-significant_figures))*10**(data_size-significant_figures);
-            
-            return data_rounded;
+            return data.toPrecision(significant_figures);
         }, // Recursive break
         "string": () => {return data;}, // Recursive break
         "undefined": () => {return data;}, // Recursive break

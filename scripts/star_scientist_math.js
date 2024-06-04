@@ -104,13 +104,13 @@ export function determine_color(spectral_classification) {
     if (!spectral_classification) alert("Incorrect determine_color call!");
 
     let star_colors = {
-        O : "rgb(146, 181, 255)",
-        B : "rgb(162, 192, 255)",
-        A : "rgb(162, 192, 255)",
-        F : "rgb(249, 245, 255)",
-        G : "rgb(255, 237, 227)",
-        K : "rgb(255, 218, 181)",
-        M : "rgb(255, 181, 108)"
+        O : "rgb(155, 176, 255)",
+        B : "rgb(170, 191, 255)",
+        A : "rgb(202, 215, 255)",
+        F : "rgb(248, 247, 255)",
+        G : "rgb(255, 244, 234)",
+        K : "rgb(255, 210, 161)",
+        M : "rgb(255, 204, 111)"
     };
 
     return star_colors[spectral_classification];

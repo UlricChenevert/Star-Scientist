@@ -20,7 +20,7 @@ function main () {
             let distance = Math.sqrt((center_x-x)**2 + (center_y-y)**2);
             let circle_ize = Math.sqrt(radius**2-distance**2);
 
-            let weight_normalized = normalize(circle_ize, radius, 0, false); 
+            let weight_normalized = normalize(circle_ize, radius, 100, false); 
 
             let red = (base_color[0] + noise(noise_amplitude))*weight_normalized;
             let green = (base_color[1] + noise(noise_amplitude))*weight_normalized;

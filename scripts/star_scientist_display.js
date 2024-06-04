@@ -96,6 +96,41 @@ export class UI {
                 
                 brush.fillStyle = gradient;
                 brush.fillRect(0, 0, star_container.width, star_container.height);
+                /*const start_radius = radius*1.0;
+                const atmosphere_radius = radius*2;
+
+
+                const center_x = star_container.width/2;
+                const center_y = star_container.height/2;
+                
+                let base_color = separate(color_palette.darker);
+
+                const noise_amplitude = 10;
+                
+                for (let x = 0; x < star_container.width; x++) {
+                    for (let y = 0; y < star_container.height; y++) {
+
+                        let distance = Math.sqrt((center_x-x)**2 + (center_y-y)**2);
+
+                        let weight_normalized = normalize(distance, atmosphere_radius, 0, true); 
+
+                        let red = (base_color[0] - noise(noise_amplitude))*weight_normalized;
+                        red = (red > 255)? 255 : red;
+
+                        let green = (base_color[1] - noise(noise_amplitude))*weight_normalized;
+                        green = (green > 255)? 255 : green;
+
+                        let blue = (base_color[2] - noise(noise_amplitude))*weight_normalized;
+                        blue = (blue > 255)? 255 : blue;
+
+                        brush.fillStyle = `rgba(${red}, ${green}, ${blue}, ${weight_normalized})`;
+
+                        if (((x-center_x)**2 + (y-center_y)**2) >= start_radius**2) {brush.fillRect(x, y, 1, 1);}
+                    }
+                }
+
+                brush.stroke(); */
+
             }
 
 
@@ -111,24 +146,6 @@ export class UI {
             this.update_layer(index, type)();
         }
     }
-}
-
-export function display_star(star_info) {
-    const star_container = document.getElementById("chromosphere-layer"); // FIX ME <--- Separate layers
-    const brush = star_container.getContext("2d");
-
-    let height = star_container.getAttribute("height");
-    let width = star_container.getAttribute("width");
-    let radius = star_info.radius_solar_units * 20;
-    let color_palette = create_color_palette(star_info.color);
-
-    brush.beginPath();
-
-    draw_corona (brush, height, width, radius, color_palette); // Layer 2
-    draw_prominence (brush, height, width, radius); // Layer 2
-    draw_chromosphere(brush, height, width, radius, color_palette); // Layer 1
-    
-    brush.stroke();
 }
 
 // Desc: Slaps on a opacity to a rgb string
