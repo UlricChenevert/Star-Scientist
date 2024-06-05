@@ -1,4 +1,4 @@
-export class UI {
+class UI {
     info_bar: HTMLElement;
     star_visual: HTMLElement;
     layers: HTMLElement[];
@@ -31,9 +31,10 @@ export class UI {
                 let radius = star.radius.value * 20;
                 let color_palette = create_color_palette(star.color);
                 
+                this.update_all_layers('clear');
+
                 this.update_layer(1, 'chromosphere')(radius, color_palette); // Draws the "main body" of the sun
                 this.update_layer(2, 'corona')(radius, color_palette); // Draws the "atmosphere" of the sun
-                
             },
         };
 
@@ -47,7 +48,7 @@ export class UI {
     
         let type_handler = {
             clear: () => {
-                brush.fillStyle = "black";
+                brush.fillStyle = 'rgba(0,0,0,0)';
                 brush.fillRect(0, 0, star_container.width, star_container.height); 
                 brush.stroke();
                 return;},
@@ -62,10 +63,11 @@ export class UI {
                 
                 let base_color = separate(color_palette.base);
 
-                const noise_amplitude = 30;
+                const noise_amplitude = Math.sqrt(radius);
                 
                 for (let x = 0; x < star_container.width; x++) {
                     for (let y = 0; y < star_container.height; y++) {
+                        if (((x-center_x)**2 + (y-center_y)**2) > radius**2) continue;
 
                         let distance = Math.sqrt((center_x-x)**2 + (center_y-y)**2);
                         let circle_ize = Math.sqrt(radius**2-distance**2);
@@ -83,7 +85,7 @@ export class UI {
 
                         brush.fillStyle = `rgba(${red}, ${green}, ${blue}, ${weight_normalized})`;
 
-                        if (((x-center_x)**2 + (y-center_y)**2) <= radius**2) {brush.fillRect(x, y, 1, 1);}
+                        brush.fillRect(x, y, 1, 1);
                     }
                 }
 
@@ -91,29 +93,20 @@ export class UI {
 
             },
             corona: (radius, color_palette) => {
-                const length = radius*2;
-
-                const gradient = brush.createRadialGradient(star_container.width/2, star_container.height/2, radius, star_container.width/2, star_container.height/2, radius+length);
-                gradient.addColorStop(0, color_palette.darker);
-                gradient.addColorStop(0.5, 'rgb(0, 0, 0, 0.3)');
-                gradient.addColorStop(1, 'rgb(0, 0, 0, 0)');
                 
-                brush.fillStyle = gradient;
-                brush.fillRect(0, 0, star_container.width, star_container.height);
-                /*const start_radius = radius*1.0;
                 const atmosphere_radius = radius*2;
-
 
                 const center_x = star_container.width/2;
                 const center_y = star_container.height/2;
                 
                 let base_color = separate(color_palette.darker);
 
-                const noise_amplitude = 10;
+                const noise_amplitude = atmosphere_radius*0.1;
                 
                 for (let x = 0; x < star_container.width; x++) {
                     for (let y = 0; y < star_container.height; y++) {
-
+                        if (((x-center_x)**2 + (y-center_y)**2) > atmosphere_radius**2) continue; 
+                    
                         let distance = Math.sqrt((center_x-x)**2 + (center_y-y)**2);
 
                         let weight_normalized = normalize(distance, atmosphere_radius, 0, true); 
@@ -129,20 +122,18 @@ export class UI {
 
                         brush.fillStyle = `rgba(${red}, ${green}, ${blue}, ${weight_normalized})`;
 
-                        if (((x-center_x)**2 + (y-center_y)**2) >= start_radius**2) {brush.fillRect(x, y, 1, 1);}
+                        brush.fillRect(x, y, 1, 1);
                     }
                 }
 
-                brush.stroke(); */
-
+                brush.stroke();
             }
-
-
-
         };
     
         return type_handler[type];
     }
+
+    
 
     update_all_layers (type) {
         
@@ -193,3 +184,5 @@ function noise (amplitude = 1) {
 function normalize(value, max, min, inverted = false) {
     return (!inverted)? (value - min) / (max - min) : 1 - (value - min) / (max - min);
 }
+
+export default UI;

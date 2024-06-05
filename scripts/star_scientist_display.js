@@ -1,4 +1,4 @@
-export class UI {
+class UI {
     constructor() {
         this.info_bar = document.getElementById('info-bar');
         this.star_visual = document.getElementById('star-visual');
@@ -21,6 +21,7 @@ export class UI {
             star_graphic: (star) => {
                 let radius = star.radius.value * 20;
                 let color_palette = create_color_palette(star.color);
+                this.update_all_layers('clear');
                 this.update_layer(1, 'chromosphere')(radius, color_palette); // Draws the "main body" of the sun
                 this.update_layer(2, 'corona')(radius, color_palette); // Draws the "atmosphere" of the sun
             },
@@ -33,7 +34,7 @@ export class UI {
         brush.beginPath();
         let type_handler = {
             clear: () => {
-                brush.fillStyle = "black";
+                brush.fillStyle = 'rgba(0,0,0,0)';
                 brush.fillRect(0, 0, star_container.width, star_container.height);
                 brush.stroke();
                 return;
@@ -46,9 +47,11 @@ export class UI {
                 const center_x = star_container.width / 2;
                 const center_y = star_container.height / 2;
                 let base_color = separate(color_palette.base);
-                const noise_amplitude = 30;
+                const noise_amplitude = Math.sqrt(radius);
                 for (let x = 0; x < star_container.width; x++) {
                     for (let y = 0; y < star_container.height; y++) {
+                        if ((Math.pow((x - center_x), 2) + Math.pow((y - center_y), 2)) > Math.pow(radius, 2))
+                            continue;
                         let distance = Math.sqrt(Math.pow((center_x - x), 2) + Math.pow((center_y - y), 2));
                         let circle_ize = Math.sqrt(Math.pow(radius, 2) - Math.pow(distance, 2));
                         let weight_normalized = normalize(circle_ize, radius, 0, false);
@@ -59,55 +62,34 @@ export class UI {
                         let blue = (base_color[2] - noise(noise_amplitude)) * weight_normalized;
                         blue = (blue > 255) ? 255 : blue;
                         brush.fillStyle = `rgba(${red}, ${green}, ${blue}, ${weight_normalized})`;
-                        if ((Math.pow((x - center_x), 2) + Math.pow((y - center_y), 2)) <= Math.pow(radius, 2)) {
-                            brush.fillRect(x, y, 1, 1);
-                        }
+                        brush.fillRect(x, y, 1, 1);
                     }
                 }
                 brush.stroke();
             },
             corona: (radius, color_palette) => {
-                const length = radius * 2;
-                const gradient = brush.createRadialGradient(star_container.width / 2, star_container.height / 2, radius, star_container.width / 2, star_container.height / 2, radius + length);
-                gradient.addColorStop(0, color_palette.darker);
-                gradient.addColorStop(0.5, 'rgb(0, 0, 0, 0.3)');
-                gradient.addColorStop(1, 'rgb(0, 0, 0, 0)');
-                brush.fillStyle = gradient;
-                brush.fillRect(0, 0, star_container.width, star_container.height);
-                /*const start_radius = radius*1.0;
-                const atmosphere_radius = radius*2;
-
-
-                const center_x = star_container.width/2;
-                const center_y = star_container.height/2;
-                
+                const atmosphere_radius = radius * 2;
+                const center_x = star_container.width / 2;
+                const center_y = star_container.height / 2;
                 let base_color = separate(color_palette.darker);
-
-                const noise_amplitude = 10;
-                
+                const noise_amplitude = atmosphere_radius * 0.1;
                 for (let x = 0; x < star_container.width; x++) {
                     for (let y = 0; y < star_container.height; y++) {
-
-                        let distance = Math.sqrt((center_x-x)**2 + (center_y-y)**2);
-
+                        if ((Math.pow((x - center_x), 2) + Math.pow((y - center_y), 2)) > Math.pow(atmosphere_radius, 2))
+                            continue;
+                        let distance = Math.sqrt(Math.pow((center_x - x), 2) + Math.pow((center_y - y), 2));
                         let weight_normalized = normalize(distance, atmosphere_radius, 0, true);
-
-                        let red = (base_color[0] - noise(noise_amplitude))*weight_normalized;
-                        red = (red > 255)? 255 : red;
-
-                        let green = (base_color[1] - noise(noise_amplitude))*weight_normalized;
-                        green = (green > 255)? 255 : green;
-
-                        let blue = (base_color[2] - noise(noise_amplitude))*weight_normalized;
-                        blue = (blue > 255)? 255 : blue;
-
+                        let red = (base_color[0] - noise(noise_amplitude)) * weight_normalized;
+                        red = (red > 255) ? 255 : red;
+                        let green = (base_color[1] - noise(noise_amplitude)) * weight_normalized;
+                        green = (green > 255) ? 255 : green;
+                        let blue = (base_color[2] - noise(noise_amplitude)) * weight_normalized;
+                        blue = (blue > 255) ? 255 : blue;
                         brush.fillStyle = `rgba(${red}, ${green}, ${blue}, ${weight_normalized})`;
-
-                        if (((x-center_x)**2 + (y-center_y)**2) >= start_radius**2) {brush.fillRect(x, y, 1, 1);}
+                        brush.fillRect(x, y, 1, 1);
                     }
                 }
-
-                brush.stroke(); */
+                brush.stroke();
             }
         };
         return type_handler[type];
@@ -152,3 +134,4 @@ function noise(amplitude = 1) {
 function normalize(value, max, min, inverted = false) {
     return (!inverted) ? (value - min) / (max - min) : 1 - (value - min) / (max - min);
 }
+export default UI;

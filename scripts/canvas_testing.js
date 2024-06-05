@@ -4,24 +4,27 @@ function main() {
     let width = canvas.width;
     let height = canvas.height;
     const radius = 200;
-    const center_x = 250;
-    const center_y = 250;
-    let base_color = [30, 100, 200];
-    const noise_amplitude = 20;
+    const center_x = width / 2;
+    const center_y = height / 2;
+    let base_color = [150, 144, 160];
+    const noise_amplitude = radius * 0.1;
     for (let x = 0; x < width; x++) {
         for (let y = 0; y < height; y++) {
+            if ((Math.pow((x - center_x), 2) + Math.pow((y - center_y), 2)) > Math.pow(radius, 2))
+                continue;
             let distance = Math.sqrt(Math.pow((center_x - x), 2) + Math.pow((center_y - y), 2));
-            let circle_ize = Math.sqrt(Math.pow(radius, 2) - Math.pow(distance, 2));
-            let weight_normalized = normalize(circle_ize, radius, 100, false);
-            let red = (base_color[0] + noise(noise_amplitude)) * weight_normalized;
-            let green = (base_color[1] + noise(noise_amplitude)) * weight_normalized;
-            let blue = (base_color[2] + noise(noise_amplitude)) * weight_normalized;
-            brush.fillStyle = `rgb(${red}, ${green}, ${blue})`;
-            if ((Math.pow((x - center_x), 2) + Math.pow((y - center_y), 2)) <= Math.pow(radius, 2)) {
-                brush.fillRect(x, y, 1, 1);
-            }
+            let weight_normalized = normalize(distance, radius, 0, true);
+            let red = (base_color[0] - noise(noise_amplitude)) * weight_normalized;
+            red = (red > 255) ? 255 : red;
+            let green = (base_color[1] - noise(noise_amplitude)) * weight_normalized;
+            green = (green > 255) ? 255 : green;
+            let blue = (base_color[2] - noise(noise_amplitude)) * weight_normalized;
+            blue = (blue > 255) ? 255 : blue;
+            brush.fillStyle = `rgba(${red}, ${green}, ${blue}, ${weight_normalized})`;
+            brush.fillRect(x, y, 1, 1);
         }
     }
+    brush.stroke();
     brush.stroke();
 }
 function noise(amplitude = 1) {

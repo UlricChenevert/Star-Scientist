@@ -138,15 +138,19 @@ nav {
     justify-content: center;
 }
 
-.button-container button {
+.button-container input {
     border: 0;
+
+    margin-top: 0.50em;
+    margin-bottom: 0.50em;
+    
     padding-top: 0.25em;
     padding-bottom: 0.25em;
     padding-right: 1em;
     padding-left: 1em;
 }
 
-.button-container button:hover {
+.button-container input:hover {
     background-color: var(--primary-color);
     color: white;
 }

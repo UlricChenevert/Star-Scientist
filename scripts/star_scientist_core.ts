@@ -3,43 +3,26 @@
 //=========================================================================//
 
 "use strict";
-import {UI} from './star_scientist_display.js';
+import UI from './star_scientist_display.js';
 import {calculate_luminosity, calculate_lifetime, calculate_temperature, determine_spectral_classification, determine_color} from './star_scientist_math.js';
 
-function main() {
-    let star = {
-            'Custom': new Star(get_input("mass-input"), get_input("radius-input")),
-            'Sun': new Star(1, 1),
-            'BI 253': new Star(97.6, 13.9),
-            'Phi Orionis': new Star(15.5, 6.3),
-            'Epsilon Eridani': new Star(0.82, 0.735),
-            'Alpha Coronae Borealis': new Star(2.58, 2.89),
-            'Eta Arietis': new Star(1.21, 0.98),
-            '70 Ophiuchi': new Star(0.90, 0.91),
-            'Lacaille 8760': new Star(0.60, 0.51),
-            'VB 10': new Star(0.0881, 0.1183),
-    }[get_input('templates-input')];
+type Unit = "M" | "R" | "" | "L" | 'yr' | 'K';
+type bool = true | false;
 
-    if (get_input('templates-input') != 'Custom') {
-        document.getElementById('mass-input').setAttribute('disabled', 'true');
-        document.getElementById('radius-input').setAttribute('disabled', 'true');
-    } else {
-        document.getElementById('mass-input').removeAttribute('disabled');
-        document.getElementById('radius-input').removeAttribute('disabled');
-    }
-    
+function page_update(ui : UI) {
+    let mass = get_input('mass-input');
+    let radius = get_input('radius-input');
+    let template = get_input('templates-input');
 
+    let star = template_to_star (template.value, [parseFloat(mass.value), parseFloat(radius.value)]);
     round_data(star, 3);
-
-    // Display
-    let ui = new UI();
+    
+    sync_input({container: mass, value: star.mass.value}, {container: radius, value: star.radius.value});
+    lock_input(template.value != 'Custom', [mass, radius]);
+    
     ui.display_handler('star_info')(star.toObject());
     ui.display_handler('star_graphic')(star.toObject());
-
 }
-
-
-type Unit = "M" | "R" | "" | "L" | 'yr' | 'K';
 
 class Measurement {
     value: number;
@@ -81,7 +64,48 @@ class Star {
 
 // Desc: Gets input from input forms and returns the value
 function get_input(container_id) {
-    return (<HTMLInputElement> document.getElementById(container_id)).value;
+    return (<HTMLInputElement> document.getElementById(container_id));
+}
+
+function set_input(container : HTMLInputElement, value: any) {
+    container.setAttribute('value', value);
+}
+
+function sync_input(...args) {
+    for (let arg of args) {
+        set_input(arg.container, arg.value);
+    }
+}
+
+// Desc: creates new star objects based on template or inputs
+function template_to_star (template_input : string, measurement_inputs : Array<number>) {
+    let star = {
+        'Custom': new Star(measurement_inputs[0], measurement_inputs[1]),
+        'Sun': new Star(1, 1),
+        'BI 253': new Star(97.6, 13.9),
+        'Phi Orionis': new Star(15.5, 6.3),
+        'Epsilon Eridani': new Star(0.82, 0.735),
+        'Alpha Coronae Borealis': new Star(2.58, 2.89),
+        'Eta Arietis': new Star(1.21, 0.98),
+        '70 Ophiuchi': new Star(0.90, 0.91),
+        'Lacaille 8760': new Star(0.60, 0.51),
+        'VB 10': new Star(0.0881, 0.1183),
+    }[template_input];
+
+    return star;
+}
+
+// Locks input when the user uses a template
+function lock_input (lock_condition : bool, inputs_to_lock : Array<HTMLInputElement>) {
+    if (lock_condition) {
+        for (let index in inputs_to_lock) {
+            inputs_to_lock[index].setAttribute('disabled', 'true');
+        }
+    } else {
+        for (let index in inputs_to_lock) {
+            inputs_to_lock[index].removeAttribute('disabled');
+        }
+    }
 }
 
 // Desc: Takes a object and rounds it to significant_figures-th digit
@@ -108,5 +132,14 @@ function round_data(data, significant_figures : number) {
     return round_handler[(typeof data)]();
 }
 
-export default main();
-window.main = main; // Special little tool I will save for later
+
+window.onload = (e) => {
+    let el = document.getElementById("options");
+    let ui = new UI();
+    page_update(ui);
+
+    el.addEventListener('input', () => {
+        page_update(ui);
+    });
+}
+

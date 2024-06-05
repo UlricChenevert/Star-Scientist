@@ -11,7 +11,7 @@
     <script type="module" src="../scripts/star_scientist_core.js"></script>
 </head>
 
-<body onload="main();"> 
+<body> 
     <div><nav id="navigation">
         <!-- Logo -->
         <span class="logo">
@@ -35,7 +35,7 @@
     <div id="info-bar"> 
         <div id="options">
             <h4><b>Options</b></h4>
-            <form>
+            <form id="options-form">
             <div class="input-container">
                 <div><label for="templates-input"> Templates: </label></div>
                 <select id="templates-input" name="Templates" class="styled-input">
@@ -63,10 +63,9 @@
                 <input type="text" id="radius-input" class="styled-input"  value="1"max="99">
             </div>
 
-            <div class="button-container">
-                <button type="button" class="styled-submit" onclick="main()">Submit</button>
-            </div>
-
+            <!--<div class="button-container">
+                <input type="submit" class="styled-submit" value="Calculate">
+            </div>-->
             
         </form></div>
         <br>
@@ -84,6 +83,6 @@
         <canvas id="background-layer" width="500" height="500"></canvas>
 
     </div>
-    
+
 </body>
 </html>
