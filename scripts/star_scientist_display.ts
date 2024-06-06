@@ -133,8 +133,6 @@ class UI {
         return type_handler[type];
     }
 
-    
-
     update_all_layers (type) {
         
         for (let index in this.layers) {
