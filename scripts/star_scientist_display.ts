@@ -141,6 +141,10 @@ class UI {
     }
 }
 
+function draw (func) {
+    return func;
+}
+
 // Desc: Slaps on a opacity to a rgb string
 // Pre: rgb string
 // Post: rgba string with alterable opacity
