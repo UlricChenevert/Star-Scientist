@@ -64,8 +64,12 @@ class UI {
             circle(radius, base_color, radius*0.1, true, 'linear');
         }
 
-        function circle (radius, rgb_color, noise_amplitude, inverted_gradient, type, center_x = Math.ceil(star_container.width/2), center_y = Math.ceil(star_container.height/2)) {
-            
+        function circle (radius, rgb_color, noise_amplitude, inverted_gradient, type, ) {
+            const center_x = Math.floor(star_container.width/2);
+            const center_y = Math.floor(star_container.height/2);
+
+            let a = new Date();
+
             // Creating a blank image object
             const circle_image = brush.createImageData(star_container.width, star_container.height);
             const data = circle_image.data;
@@ -74,10 +78,10 @@ class UI {
             const diameter = radius*2;
 
             let base_color = separate(rgb_color);
-            let a = new Date();
+            
             // It uses row_index so it does not have to check over the entire screen, only the 'y rows' that the circle can be in
             for (let row_index = 0; row_index < diameter; row_index++) {
-                const y = center_y - radius + row_index; // converts the rows to the y coordinates it needs
+                const y = Math.ceil(center_y - radius + row_index); // converts the rows to the y coordinates it needs
                 
                 // Only loops over the x-values it needs to modify (min to max)
                 const edge_x_to_center_x_distance = Math.floor(Math.sqrt(radius**2 - (radius-row_index)**2));
@@ -91,7 +95,7 @@ class UI {
 
                     const intensity = weight(distance_from_center, radius, inverted_gradient)[type](); // Fix me
 
-                    const base_position = y * (star_container.width * 4) + x * 4
+                    const base_position = y * (star_container.width * bit_amount) + x * bit_amount
                     
                     data[base_position] = modify_color(base_color[0], intensity, noise_amplitude); // Modifies red
                     data[base_position + 1] = modify_color(base_color[1], intensity, noise_amplitude); // Modifies green
@@ -100,14 +104,14 @@ class UI {
                 } 
                 
             }
+            
             brush.putImageData(circle_image, 0, 0);
 
             let b = new Date();
             let c = b.getTime() - a.getTime();
             console.log(`Rendering the circle took ${c} milliseconds`);
 
-
-            brush.putImageData(circle_image, 0, 0);
+            console.log(center_x ,center_y)
             
         }
 

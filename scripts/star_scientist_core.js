@@ -43,11 +43,17 @@ function get_input(container_id) {
 }
 function set_input(container, value) {
     container.setAttribute('value', value);
+    console.log(document.cookie);
 }
 function sync_input(...args) {
     for (let arg of args) {
         set_input(arg.container, arg.value);
     }
+}
+function sync_cookies(container_ids) {
+    for (let index = 0; index < container_ids.length; index++)
+        if (get_cookie(container_ids[index]))
+            document.getElementById(container_ids[index]).value = get_cookie(container_ids[index]);
 }
 // Desc: creates new star objects based on template or inputs
 function template_to_star(template_input, measurement_inputs) {
@@ -100,10 +106,22 @@ function round_data(data, significant_figures) {
     };
     return round_handler[(typeof data)]();
 }
+function set_cookie(key, value, age = 86400) {
+    document.cookie = `${key}=${value}; max-age=${age}`;
+}
+function get_cookie(key, only_value = true) {
+    const key_length = key.length;
+    const cookie_jar = document.cookie;
+    const base_index = cookie_jar.indexOf(' ' + key);
+    const end_index = cookie_jar.indexOf('; ', base_index);
+    const values = cookie_jar.slice(base_index + key_length + 2, end_index);
+    return only_value ? values.split(' ')[0] : values;
+}
 window.onload = (e) => {
     let el = document.getElementById("options");
     let ui = new UI();
     page_update(ui);
+    //sync_cookies(['mass-input', 'radius-input', 'templates-input'])
     el.addEventListener('input', () => {
         page_update(ui);
     });
