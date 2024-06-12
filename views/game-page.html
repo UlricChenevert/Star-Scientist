@@ -6,20 +6,25 @@
 
     <title> Star Scientist</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-    <link rel="stylesheet" href="../styles/game-formatting.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,300;0,400;0,500;0,700;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
 
-    <script type="module" src="../scripts/star_scientist_core.js"></script>
+    <link rel="stylesheet" type='text/css' href="../styles/formatting.css">
+
+    <script type="module" src="../scripts/core.js"></script>
 </head>
 
 <body> 
-    <div><nav id="navigation">
+    <nav id="navigation">
         <!-- Logo -->
-        <span class="logo">
+        <span id="logo">
             <img src="../images/sun.png" alt="Logo">
-            <span>Star Scientist</span>
+            <span id="logo-text">Star Scientist</span>
         </span>
 
-        <ul class="links">
+        <ul id="links">
             <!-- Contact Link -->
             <a href="contact-page.html">Contact</a>
 
@@ -28,9 +33,8 @@
 
              <!-- Home Link -->
             <a href="main-page.html">Home</a>
-
         </span>
-    </nav></div>
+    </nav>
 
     <div id="info-bar"> 
         <div id="options">
@@ -56,22 +60,23 @@
 
             <div class="input-container">
                 <div><label for="mass-input"> Mass: </label></div>
-                <input type="text" id="mass-input" class="styled-input" value="2.58" max="99"></div>
+                <input type="text" id="mass-input" class="styled-input" value="1" max="99"></div>
 
             <div class="input-container">
                 <div><label for="radius-input"> Radius: </label></div>
-                <input type="text" id="radius-input" class="styled-input"  value="2.89"max="99">
+                <input type="text" id="radius-input" class="styled-input"  value="1"max="99">
             </div>
-
-            <!--<div class="button-container">
-                <input type="submit" class="styled-submit" value="Calculate">
-            </div>-->
             
         </form></div>
         <br>
-        <div id="styled-metrics">
+        <div class="styled-metrics">
             <h4 ><div><b>Metrics</b></h4>
             <div id="metrics">Scripting not supported!</div>
+        </div>
+        <br>
+        <div class="styled-metrics">
+            <h4 ><div><b>Estimated Timeline</b></h4>
+            <div id="timeline"></div>
         </div>
     </div>
     

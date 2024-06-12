@@ -1,3 +1,8 @@
+//=========================================================================//
+//                        Star Scientist Display                           //
+//=========================================================================//
+import { json_data } from '../data/math_constants.js';
+export const math_constants = JSON.parse(json_data);
 class UI {
     constructor() {
         this.info_bar = document.getElementById('info-bar');
@@ -10,15 +15,27 @@ class UI {
     display_handler(type) {
         let push = {
             star_info: (star) => {
-                let output_string = '';
-                for (let i in star) {
-                    if (typeof star[i] != "object")
-                        continue; // For color and spectral classification
-                    output_string += `<div>${star[i].type}: ${star[i].value} ${star[i].unit}<sub>${star[i].symbol}</sub></div>`;
+                // Options
+                {
+                    let output_string = '';
+                    for (let i in star) {
+                        if (typeof star[i] != "object")
+                            continue; // For color and spectral classification
+                        output_string += `<div>${star[i].type}: ${star[i].value} ${star[i].unit}<sub>${star[i].symbol}</sub></div>`;
+                    }
+                    // For non-measurement class values
+                    output_string += `<div>Spectral Classification: ${star['spectral_classification']}</div>`;
+                    document.getElementById("metrics").innerHTML = output_string;
                 }
-                // For non-measurement class values
-                output_string += `<div>Spectral Classification: ${star['spectral_classification']}</div>`;
-                document.getElementById("metrics").innerHTML = output_string;
+                // Timeline
+                {
+                    let output_string = '';
+                    const star_timeline = math_constants.stars[star['spectral_classification']].timeline;
+                    for (let segments of star_timeline) {
+                        output_string += `<div>${segments.type}: ${segments.desc}</div>`;
+                    }
+                    document.getElementById("timeline").innerHTML = output_string;
+                }
             },
             star_graphic: (star) => {
                 let radius = star.radius.value * 20;
@@ -80,7 +97,6 @@ class UI {
             let b = new Date();
             let c = b.getTime() - a.getTime();
             console.log(`Rendering the circle took ${c} milliseconds`);
-            console.log(center_x, center_y);
         }
         return {
             clear: clear,

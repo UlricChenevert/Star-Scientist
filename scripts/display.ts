@@ -1,3 +1,10 @@
+//=========================================================================//
+//                        Star Scientist Display                           //
+//=========================================================================//
+
+import { json_data } from '../data/math_constants.js';
+export const math_constants = JSON.parse(json_data);
+
 class UI {
     info_bar: HTMLElement;
     star_visual: HTMLElement;
@@ -15,6 +22,8 @@ class UI {
         let push = {
             star_info: (star) => {
                 
+                // Options
+                {
                 let output_string = ''
 
                 for (let i in star) {
@@ -26,6 +35,20 @@ class UI {
                 output_string += `<div>Spectral Classification: ${star['spectral_classification']}</div>`;
 
                 document.getElementById("metrics").innerHTML = output_string;
+                }
+
+                // Timeline
+                {
+                let output_string = ''
+
+                const star_timeline = math_constants.stars[star['spectral_classification']].timeline;
+
+                for (let segments of star_timeline) {
+                    output_string += `<div>${segments.type}: ${segments.desc}</div>`;
+                }
+
+                document.getElementById("timeline").innerHTML = output_string;
+                }
             },
             star_graphic: (star)  => {
                 let radius = star.radius.value * 20;
@@ -110,9 +133,6 @@ class UI {
             let b = new Date();
             let c = b.getTime() - a.getTime();
             console.log(`Rendering the circle took ${c} milliseconds`);
-
-            console.log(center_x ,center_y)
-            
         }
 
         return {
@@ -181,7 +201,6 @@ function create_color_palette(color) {
         lighter: `rgb(${Math.round(separated_color[0]*1.5)}, ${Math.round(separated_color[1]*1.5)}, ${Math.round(separated_color[2]*1.5)})`,
     };
 }
-
 
 function noise (amplitude = 1) {
     return Math.ceil(Math.random() * amplitude);
