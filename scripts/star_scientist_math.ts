@@ -4,7 +4,7 @@
 export function calculate_luminosity(mass) {
     
     // Throws a error if both values are known or not known
-    if (!mass) alert("Incorrect calculate_luminosity call!");
+    if (!mass) throw new Error("Incorrect calculate_luminosity call!");
 
     // Solving for luminosity
     let star_luminosity = -1;
@@ -27,8 +27,7 @@ export function calculate_luminosity(mass) {
         star_luminosity = 3.2e4*mass;
 
     } else {
-        alert("calculate_luminosity outside of mass specs!");
-        star_luminosity = -1;
+        throw new Error("calculate_luminosity outside of mass specs!");
     }
     
     return star_luminosity;
@@ -39,7 +38,7 @@ export function calculate_luminosity(mass) {
 // Post: Lifetime in years
 export function calculate_lifetime(mass, luminosity) {
     // Throws a error if both values are known or not known
-    if (!mass || !luminosity) alert("Incorrect calculate_lifetime call!");
+    if (!mass || !luminosity) throw new Error("Incorrect calculate_lifetime call!");
 
     const SUN_LIFESPAN = 1e10; // in years
 
@@ -62,7 +61,7 @@ export function calculate_temperature(luminosity, radius) {
 // Pre: Temperature in Kevin
 // Post: A spectral classification (O, B, A, F, G, K, M)
 export function determine_spectral_classification(temperature_kevin) {
-    if (!temperature_kevin) alert("Incorrect determine_spectral_classification call!");
+    if (!temperature_kevin) throw new Error("Incorrect determine_spectral_classification call!");
 
     const TEMPERATURE_LOWER_BOUND_OF_O_TYPE_STAR = 3.3e4;
     const TEMPERATURE_LOWER_BOUND_OF_B_TYPE_STAR = 9.7e3;
@@ -102,7 +101,7 @@ export function determine_spectral_classification(temperature_kevin) {
 // Pre: O, B, A, F, G, K, M
 // Post: A hexadecimal color
 export function determine_color(spectral_classification) {
-    if (!spectral_classification) alert("Incorrect determine_color call!");
+    if (!spectral_classification) throw new Error("Incorrect determine_color call!");
 
     let star_colors = {
         O : "rgb(155, 176, 255)",

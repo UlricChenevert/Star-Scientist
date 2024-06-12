@@ -3,7 +3,9 @@ class UI {
         this.info_bar = document.getElementById('info-bar');
         this.star_visual = document.getElementById('star-visual');
         this.layers = [document.getElementById('background-layer'), document.getElementById('chromosphere-layer'), document.getElementById('atmosphere-layer')];
-        this.update_all_layers('resize');
+        for (let layer_index in this.layers) {
+            this.update_canvas(layer_index).resize();
+        }
     }
     display_handler(type) {
         let push = {
@@ -21,83 +23,71 @@ class UI {
             star_graphic: (star) => {
                 let radius = star.radius.value * 20;
                 let color_palette = create_color_palette(star.color);
-                this.update_all_layers('clear');
-                this.update_layer(1, 'chromosphere')(radius, color_palette); // Draws the "main body" of the sun
-                this.update_layer(2, 'corona')(radius, color_palette); // Draws the "atmosphere" of the sun
+                for (let layer_index in this.layers) {
+                    this.update_canvas(layer_index).clear();
+                }
+                this.update_canvas(1).chromosphere(radius, color_palette.base); // Draws the "main body" of the sun
+                this.update_canvas(2).corona(radius * 2, color_palette.darker); // Draws the "atmosphere" of the sun
             },
         };
         return push[type];
     }
-    update_layer(layer_index, type) {
+    update_canvas(layer_index) {
         let star_container = this.layers[layer_index];
         const brush = star_container.getContext("2d");
         brush.beginPath();
-        let type_handler = {
-            clear: () => {
-                brush.fillStyle = 'rgba(0,0,0,0)';
-                brush.fillRect(0, 0, star_container.width, star_container.height);
-                brush.stroke();
-                return;
-            },
-            resize: () => {
-                star_container.setAttribute("width", window.getComputedStyle(this.star_visual).width); // Have to access the css width format
-                star_container.setAttribute("height", window.getComputedStyle(this.star_visual).height); // Have to access the css height format
-            },
-            chromosphere: (radius, color_palette) => {
-                const center_x = star_container.width / 2;
-                const center_y = star_container.height / 2;
-                let base_color = separate(color_palette.base);
-                const noise_amplitude = Math.sqrt(radius);
-                for (let x = 0; x < star_container.width; x++) {
-                    for (let y = 0; y < star_container.height; y++) {
-                        if ((Math.pow((x - center_x), 2) + Math.pow((y - center_y), 2)) > Math.pow(radius, 2))
-                            continue;
-                        let distance = Math.sqrt(Math.pow((center_x - x), 2) + Math.pow((center_y - y), 2));
-                        let circle_ize = Math.sqrt(Math.pow(radius, 2) - Math.pow(distance, 2));
-                        let weight_normalized = normalize(circle_ize, radius, 0, false);
-                        let red = (base_color[0] - noise(noise_amplitude)) * weight_normalized;
-                        red = (red > 255) ? 255 : red;
-                        let green = (base_color[1] - noise(noise_amplitude)) * weight_normalized;
-                        green = (green > 255) ? 255 : green;
-                        let blue = (base_color[2] - noise(noise_amplitude)) * weight_normalized;
-                        blue = (blue > 255) ? 255 : blue;
-                        brush.fillStyle = `rgba(${red}, ${green}, ${blue}, ${weight_normalized})`;
-                        brush.fillRect(x, y, 1, 1);
-                    }
-                }
-                brush.stroke();
-            },
-            corona: (radius, color_palette) => {
-                const atmosphere_radius = radius * 2;
-                const center_x = star_container.width / 2;
-                const center_y = star_container.height / 2;
-                let base_color = separate(color_palette.darker);
-                const noise_amplitude = atmosphere_radius * 0.1;
-                for (let x = 0; x < star_container.width; x++) {
-                    for (let y = 0; y < star_container.height; y++) {
-                        if ((Math.pow((x - center_x), 2) + Math.pow((y - center_y), 2)) > Math.pow(atmosphere_radius, 2))
-                            continue;
-                        let distance = Math.sqrt(Math.pow((center_x - x), 2) + Math.pow((center_y - y), 2));
-                        let weight_normalized = normalize(distance, atmosphere_radius, 0, true);
-                        let red = (base_color[0] - noise(noise_amplitude)) * weight_normalized;
-                        red = (red > 255) ? 255 : red;
-                        let green = (base_color[1] - noise(noise_amplitude)) * weight_normalized;
-                        green = (green > 255) ? 255 : green;
-                        let blue = (base_color[2] - noise(noise_amplitude)) * weight_normalized;
-                        blue = (blue > 255) ? 255 : blue;
-                        brush.fillStyle = `rgba(${red}, ${green}, ${blue}, ${weight_normalized})`;
-                        brush.fillRect(x, y, 1, 1);
-                    }
-                }
-                brush.stroke();
-            }
-        };
-        return type_handler[type];
-    }
-    update_all_layers(type) {
-        for (let index in this.layers) {
-            this.update_layer(index, type)();
+        function clear() {
+            brush.clearRect(0, 0, star_container.width, star_container.height);
         }
+        const resize = () => {
+            star_container.width = parseInt(window.getComputedStyle(this.star_visual).width); // Have to access the css width format
+            star_container.height = parseInt(window.getComputedStyle(this.star_visual).height); // Have to access the css height format
+        };
+        function chromosphere(radius, base_color) {
+            circle(radius, base_color, Math.sqrt(radius), false, 'circler');
+        }
+        function corona(radius, base_color) {
+            circle(radius, base_color, radius * 0.1, true, 'linear');
+        }
+        function circle(radius, rgb_color, noise_amplitude, inverted_gradient, type) {
+            const center_x = Math.floor(star_container.width / 2);
+            const center_y = Math.floor(star_container.height / 2);
+            let a = new Date();
+            // Creating a blank image object
+            const circle_image = brush.createImageData(star_container.width, star_container.height);
+            const data = circle_image.data;
+            const bit_amount = 4;
+            const diameter = radius * 2;
+            let base_color = separate(rgb_color);
+            // It uses row_index so it does not have to check over the entire screen, only the 'y rows' that the circle can be in
+            for (let row_index = 0; row_index < diameter; row_index++) {
+                const y = Math.ceil(center_y - radius + row_index); // converts the rows to the y coordinates it needs
+                // Only loops over the x-values it needs to modify (min to max)
+                const edge_x_to_center_x_distance = Math.floor(Math.sqrt(Math.pow(radius, 2) - Math.pow((radius - row_index), 2)));
+                const min_x = center_x - edge_x_to_center_x_distance;
+                const max_x = center_x + edge_x_to_center_x_distance;
+                for (let x = min_x; x < max_x; x++) {
+                    const distance_from_center = Math.hypot((center_x - x), (center_y - y));
+                    const intensity = weight(distance_from_center, radius, inverted_gradient)[type](); // Fix me
+                    const base_position = y * (star_container.width * bit_amount) + x * bit_amount;
+                    data[base_position] = modify_color(base_color[0], intensity, noise_amplitude); // Modifies red
+                    data[base_position + 1] = modify_color(base_color[1], intensity, noise_amplitude); // Modifies green
+                    data[base_position + 2] = modify_color(base_color[2], intensity, noise_amplitude); // Modifies blue
+                    data[base_position + 3] = 255 * intensity; // Modifies opacity
+                }
+            }
+            brush.putImageData(circle_image, 0, 0);
+            let b = new Date();
+            let c = b.getTime() - a.getTime();
+            console.log(`Rendering the circle took ${c} milliseconds`);
+            console.log(center_x, center_y);
+        }
+        return {
+            clear: clear,
+            resize: resize,
+            chromosphere: chromosphere,
+            corona: corona,
+        };
     }
 }
 // Desc: Slaps on a opacity to a rgb string
@@ -114,6 +104,26 @@ function separate(color) {
     // Spilt string
     let rgb = color_simplified.split(',');
     return rgb;
+}
+function weight(distance, radius, inverted) {
+    function linear() {
+        return normalize(distance, radius, 0, inverted);
+    }
+    function circler() {
+        return normalize(Math.sqrt(Math.pow(radius, 2) - Math.pow(distance, 2)), radius, 0, inverted);
+    }
+    return {
+        linear: linear,
+        circler: circler,
+    };
+}
+// Keeps color within bounds
+function bound_color(color, limit = 255) {
+    return (color > limit) ? limit : color;
+}
+// Why: All colors use this 'equation'
+function modify_color(color, weight, noise_amplitude) {
+    return bound_color((color - noise(noise_amplitude)) * weight);
 }
 // Desc: returns an object with darker/lighter color variants
 // Pre: hexadecimal color

@@ -4,7 +4,7 @@
 export function calculate_luminosity(mass) {
     // Throws a error if both values are known or not known
     if (!mass)
-        alert("Incorrect calculate_luminosity call!");
+        throw new Error("Incorrect calculate_luminosity call!");
     // Solving for luminosity
     let star_luminosity = -1;
     // Approximated relationship
@@ -23,8 +23,7 @@ export function calculate_luminosity(mass) {
         star_luminosity = 3.2e4 * mass;
     }
     else {
-        alert("calculate_luminosity outside of mass specs!");
-        star_luminosity = -1;
+        throw new Error("calculate_luminosity outside of mass specs!");
     }
     return star_luminosity;
 }
@@ -34,7 +33,7 @@ export function calculate_luminosity(mass) {
 export function calculate_lifetime(mass, luminosity) {
     // Throws a error if both values are known or not known
     if (!mass || !luminosity)
-        alert("Incorrect calculate_lifetime call!");
+        throw new Error("Incorrect calculate_lifetime call!");
     const SUN_LIFESPAN = 1e10; // in years
     let star_lifetime = SUN_LIFESPAN * (mass / luminosity);
     return star_lifetime;
@@ -52,7 +51,7 @@ export function calculate_temperature(luminosity, radius) {
 // Post: A spectral classification (O, B, A, F, G, K, M)
 export function determine_spectral_classification(temperature_kevin) {
     if (!temperature_kevin)
-        alert("Incorrect determine_spectral_classification call!");
+        throw new Error("Incorrect determine_spectral_classification call!");
     const TEMPERATURE_LOWER_BOUND_OF_O_TYPE_STAR = 3.3e4;
     const TEMPERATURE_LOWER_BOUND_OF_B_TYPE_STAR = 9.7e3;
     const TEMPERATURE_LOWER_BOUND_OF_A_TYPE_STAR = 7.2e3;
@@ -90,7 +89,7 @@ export function determine_spectral_classification(temperature_kevin) {
 // Post: A hexadecimal color
 export function determine_color(spectral_classification) {
     if (!spectral_classification)
-        alert("Incorrect determine_color call!");
+        throw new Error("Incorrect determine_color call!");
     let star_colors = {
         O: "rgb(155, 176, 255)",
         B: "rgb(170, 191, 255)",
