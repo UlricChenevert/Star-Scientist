@@ -34,16 +34,6 @@ function caching_decorator (func) {
     }
 }
 
-//function multiply(x, y) {return x*y;}
-
-//const decorated_multiply = caching_decorator(multiply);
-
-// console.log(decorated_multiply(5, 6));
-// console.log(decorated_multiply(5, 6));
-// console.log(decorated_multiply(1241, 2137));
-// console.log(decorated_multiply(5765, 125));
-// console.log(decorated_multiply(5, 6));
-
 function set_cookie(key, value, age=86400) {
     document.cookie = `${key}=${value}; max-age=${age}`;
 }
@@ -61,11 +51,12 @@ function get_cookie (key : string, only_value=true) {
     return only_value? values.split(' ')[0] : values;
 }
 
-set_cookie('john', '');
-set_cookie('yen', '');
-set_cookie('z', '');
-set_cookie('aa', '');
+// This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
+let obj = {
+    first_name: "Willy"
+};
 
-console.log(document.cookie);
+declare var ko: any; // Declares to TS that I know this isn't defined
 
-console.log(get_cookie('asdasfafgagegewasfasfd'));
+// Activates knockout.js
+ko.applyBindings(obj);

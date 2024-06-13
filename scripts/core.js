@@ -2,11 +2,14 @@
 //                         Star Scientist Core                             //
 //=========================================================================//
 import UI from './display.js';
-import { json_data } from '../data/star_templates.js';
 import { calculate_luminosity, calculate_lifetime, calculate_temperature, determine_spectral_classification, determine_color } from './math.js';
 import { round_data } from './utility.js';
 import { get_input, template_to_star, sync_input, lock_input, sync_local_storage_to_container, sync_container_to_local_storage } from './input_manipulation.js';
-export const data_layer = JSON.parse(json_data);
+export { random_gradient_vector_grid, get_noise } from './noise.js';
+import { math_json } from '../data/math_constants.js';
+export const math_constants = JSON.parse(math_json);
+import { star_json } from '../data/star_templates.js';
+export const data_layer = JSON.parse(star_json);
 window.onload = (e) => {
     let el = document.getElementById("options");
     let ui = new UI();

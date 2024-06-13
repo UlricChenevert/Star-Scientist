@@ -2,8 +2,7 @@
 //                        Star Scientist Display                           //
 //=========================================================================//
 
-import { json_data } from '../data/math_constants.js';
-export const math_constants = JSON.parse(json_data);
+import { random_gradient_vector_grid, get_noise, math_constants } from './core.js'
 
 class UI {
     info_bar: HTMLElement;

@@ -1,4 +1,4 @@
-export const json_data = JSON.stringify(
+export const star_json = JSON.stringify(
 {
     "star-templates" : [
         {"name": "Custom", "mass" : 1, "radius" : 1},

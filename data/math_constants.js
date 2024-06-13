@@ -1,4 +1,4 @@
-export const json_data = JSON.stringify(
+export const math_json = JSON.stringify(
 {
     "stars" : {
         "O" : {

@@ -1,8 +1,7 @@
 //=========================================================================//
 //                        Star Scientist Display                           //
 //=========================================================================//
-import { json_data } from '../data/math_constants.js';
-export const math_constants = JSON.parse(json_data);
+import { math_constants } from './core.js';
 class UI {
     constructor() {
         this.info_bar = document.getElementById('info-bar');

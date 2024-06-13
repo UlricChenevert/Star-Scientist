@@ -13,7 +13,7 @@ function main() {
         const data = circle_image.data;
         const bit_amount = 4;
         const diameter = radius * 2;
-        let base_color = [200, 150, 90];
+        let base_color = [200, 150, 130];
         // It uses row_index so it does not have to check over the entire screen, only the 'y rows' that the circle can be in
         for (let row_index = 0; row_index < diameter; row_index++) {
             const y = Math.ceil(center_y - radius + row_index); // converts the rows to the y coordinates it needs
@@ -24,10 +24,13 @@ function main() {
             for (let x = min_x; x < max_x; x++) {
                 const distance_from_center = Math.hypot((center_x - x), (center_y - y));
                 const base_position = y * (canvas.width * bit_amount) + x * bit_amount;
-                data[base_position] = get_noise(x, y); // Modifies red
-                data[base_position + 1] = get_noise(x, y); // Modifies green
-                data[base_position + 2] = get_noise(x, y); // Modifies blue
+                const color = 100;
+                const intensity = normalize(get_noise(x, y, radius), 1, -1);
+                data[base_position] = base_color[0] * intensity; // Modifies red
+                data[base_position + 1] = base_color[1] * intensity; // Modifies green
+                data[base_position + 2] = base_color[2] * intensity; // Modifies blue
                 data[base_position + 3] = 255; // Modifies opacity
+                //console.log(intensity)
             }
         }
         brush.putImageData(circle_image, 0, 0);
@@ -44,8 +47,7 @@ function main() {
     function fade(x) {
         return 6 * Math.pow(x, 5) - 15 * Math.pow(x, 4) + 10 * Math.pow(x, 3);
     }
-    const resolution = canvas.width;
-    const node = 4;
+    const node = 16;
     const grid = [];
     const random_gradient_vector_grid = generate_gradient_grid();
     function random_unit_vector() {
@@ -56,22 +58,40 @@ function main() {
         for (let i = 0; i < node; i++) {
             const row = [];
             for (let j = 0; j < node; j++) {
-                row.push(random_unit_vector());
+                const node_data = random_unit_vector();
+                row.push(node_data);
             }
             grid.push(row);
         }
         return grid;
     }
-    function get_noise(x, y) {
-        const node_width = resolution / node;
-        const x_relative = x / node_width;
-        const y_relative = y / node_width;
-        const x0 = Math.floor(x % node + 1);
-        const y0 = Math.floor(y % node + 1);
-        const bottom_left = { gradient: random_gradient_vector_grid[x0][y0], distance: { x: x_relative - x0, y: y_relative - y0 } };
-        const bottom_right = { gradient: random_gradient_vector_grid[x0 + 1][y0], distance: { x: x_relative - (x0 + 1), y: y_relative - y0 } };
-        const top_left = { gradient: random_gradient_vector_grid[x0][y0 + 1], distance: { x: x_relative - x0, y: y_relative - (y0 + 1) } };
-        const top_right = { gradient: random_gradient_vector_grid[x0 + 1][y0 + 1], distance: { x: x_relative - (x0 + 1), y: y_relative - (y0 + 1) } };
+    function normalize(value, max, min, inverted = false) {
+        return (!inverted) ? (value - min) / (max - min) : 1 - (value - min) / (max - min);
+    }
+    function get_noise(x, y, radius) {
+        const position = { top: canvas.width / 2 - radius, left: canvas.height / 2 - radius };
+        const resolution = 2 * radius + 10; // Minimum fix to keep x, y points inside array bound
+        const node_width = Math.ceil(resolution / node);
+        const x_relative = (x - position.left) / node_width;
+        const y_relative = (y - position.top) / node_width;
+        const x0 = Math.floor(x_relative);
+        const y0 = Math.floor(y_relative);
+        const bottom_left = {
+            gradient: random_gradient_vector_grid[x0][y0],
+            distance: { x: x_relative - x0, y: y_relative - y0 }
+        };
+        const bottom_right = {
+            gradient: random_gradient_vector_grid[x0 + 1][y0],
+            distance: { x: x_relative - (x0 + 1), y: y_relative - y0 }
+        };
+        const top_left = {
+            gradient: random_gradient_vector_grid[x0][y0 + 1],
+            distance: { x: x_relative - x0, y: y_relative - (y0 + 1) }
+        };
+        const top_right = {
+            gradient: random_gradient_vector_grid[x0 + 1][y0 + 1],
+            distance: { x: x_relative - (x0 + 1), y: y_relative - (y0 + 1) }
+        };
         bottom_left["dot_product"] = dot_product(bottom_left.gradient.x, bottom_left.gradient.y, bottom_left.distance.x, bottom_left.distance.y);
         bottom_right["dot_product"] = dot_product(bottom_right.gradient.x, bottom_right.gradient.y, bottom_right.distance.x, bottom_right.distance.y);
         top_left["dot_product"] = dot_product(top_left.gradient.x, top_left.gradient.y, top_left.distance.x, top_left.distance.y);
