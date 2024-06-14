@@ -10,59 +10,23 @@ class UI {
     layers: HTMLElement[];
 
     constructor () { // Initial call
-        this.info_bar = document.getElementById('info-bar');
         this.star_visual = document.getElementById('star-visual');
         this.layers = [document.getElementById('background-layer'), document.getElementById('chromosphere-layer'), document.getElementById('atmosphere-layer')];
         
         for (let layer_index in this.layers) { this.update_canvas(layer_index).resize(); }
 
     }
-    display_handler (type) { // Publish
-        let push = {
-            star_info: (star) => {
-                
-                // Options
-                {
-                let output_string = ''
+    display (star) { // Publish
+        let radius = star.radius.value * 20;
+        let color_palette = create_color_palette(star.color);
+        
+        for (let layer_index in this.layers) { this.update_canvas(layer_index).clear(); }
 
-                for (let i in star) {
-                    if (typeof star[i] != "object") continue; // For color and spectral classification
-
-                    output_string += `<div>${star[i].type}: ${star[i].value} ${star[i].unit}<sub>${star[i].symbol}</sub></div>`;
-                }
-                // For non-measurement class values
-                output_string += `<div>Spectral Classification: ${star['spectral_classification']}</div>`;
-
-                document.getElementById("metrics").innerHTML = output_string;
-                }
-
-                // Timeline
-                {
-                let output_string = ''
-
-                const star_timeline = math_constants.stars[star['spectral_classification']].timeline;
-
-                for (let segments of star_timeline) {
-                    output_string += `<div>${segments.type}: ${segments.desc}</div>`;
-                }
-
-                document.getElementById("timeline").innerHTML = output_string;
-                }
-            },
-            star_graphic: (star)  => {
-                let radius = star.radius.value * 20;
-                let color_palette = create_color_palette(star.color);
-                
-                for (let layer_index in this.layers) { this.update_canvas(layer_index).clear(); }
-
-                this.update_canvas(1).chromosphere(radius, color_palette.base); // Draws the "main body" of the sun
-                this.update_canvas(2).corona(radius*2, color_palette.darker); // Draws the "atmosphere" of the sun
-            },
-        };
-
-        return push[type];
+        this.update_canvas(1).chromosphere(radius, color_palette.base); // Draws the "main body" of the sun
+        this.update_canvas(2).corona(radius*2, color_palette.darker); // Draws the "atmosphere" of the sun
     }
 
+    // Presents for modifying the canvas
     update_canvas (layer_index) {
         let star_container = <HTMLCanvasElement>this.layers[layer_index];
         const brush = star_container.getContext("2d");
@@ -171,7 +135,8 @@ function weight (distance, radius, inverted) {
 
     return {
         linear:linear,
-        circler:circler,};
+        circler:circler,
+    };
 }
 
 // Keeps color within bounds

@@ -1,20 +1,10 @@
-import { data_layer, Star, bool } from './core.js';
+import { template_constants, Star } from './core.js';
+
+type bool = true | false;
 
 // Desc: Gets input from input forms and returns the value
 export function get_input(container_id) {
     return <HTMLInputElement>document.getElementById(container_id);
-}
-
-function set_input(container: HTMLInputElement, value: any) {
-    if (container.getAttribute('disabled')) container.removeAttribute('disabled');
-
-    container.value = value;
-}
-
-export function sync_input(...args) {
-    for (let arg of args) {
-        set_input(arg.container, arg.value);
-    }
 }
 
 export function sync_local_storage_to_container(...container_ids) {
@@ -35,9 +25,10 @@ export function sync_container_to_local_storage(...container_ids) {
 }
 
 // Desc: creates new star objects based on template or inputs
-export function template_to_star(star_name: string, measurement_inputs: Array<number>) {
-    const star_template_raw = data_layer["star-templates"];
-
+export function template_to_star(star_name: string) {
+    const star_template_raw = template_constants["star-templates"];
+    
+    // Creates a template based on the template constants json file
     let templates = {};
 
     for (let index in star_template_raw) {
@@ -45,17 +36,4 @@ export function template_to_star(star_name: string, measurement_inputs: Array<nu
     }
 
     return templates[star_name];
-}
-
-// Locks input when the user uses a template
-export function lock_input(lock_condition: bool, inputs_to_lock: Array<HTMLInputElement>) {
-    if (lock_condition) {
-        for (let index in inputs_to_lock) {
-            inputs_to_lock[index].setAttribute('disabled', 'true');
-        }
-    } else {
-        for (let index in inputs_to_lock) {
-            inputs_to_lock[index].removeAttribute('disabled');
-        }
-    }
 }

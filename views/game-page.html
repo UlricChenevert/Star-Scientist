@@ -44,41 +44,40 @@
             <form id="options-form">
             <div class="input-container">
                 <div><label for="templates-input"> Templates: </label></div>
-                <select id="templates-input" name="Templates" class="styled-input">
-                    <option value="Custom">Custom</option>
-                    <option value="Sun">Sun</option>
-                    <option value="BI 253">BI 253</option>
-                    <option value="Phi Orionis">Phi Orionis</option>
-                    <option value="Epsilon Eridani">Epsilon Eridani</option>
-                    <option value="Alpha Coronae Borealis">Alpha Coronae Borealis</option>
-                    <option value="Eta Arietis">Eta Arietis</option>
-                    <option value="Epsilon Eridani">Epsilon Eridani</option>
-                    <option value="70 Ophiuchi">70 Ophiuchi</option>
-                    <option value="Lacaille 8760">Lacaille 8760</option>
-                    <option value="VB 10">VB 10</option>
-    
-                </select>
+                <select id="templates-input" data-bind="options: $root.templates, value: template, optionsText: 'name'" class="styled-input"></select>
             </div>
 
             <div class="input-container">
                 <div><label for="mass-input"> Mass: </label></div>
-                <input type="text" id="mass-input" class="styled-input" value="1" max="99"></div>
+                <input type="text" data-bind="textInput: mass, disable: isTemplated" id="mass-input" max="99">
+            </div>
 
             <div class="input-container">
                 <div><label for="radius-input"> Radius: </label></div>
-                <input type="text" id="radius-input" class="styled-input"  value="1"max="99">
+                <input type="text" data-bind="textInput: radius, disable: isTemplated" id="radius-input" max="99">
             </div>
+
+            <div><span data-bind="text: message, visible: showError()"></span></div>
             
         </form></div>
         <br>
         <div class="styled-metrics">
             <h4 ><div><b>Metrics</b></h4>
-            <div id="metrics">Scripting not supported!</div>
+            <div id="metrics">
+                <div>Mass: <span data-bind="text: mass"></span> M<sub>&#9737</sub></div>
+                <div>Radius: <span data-bind="text: radius"></span> R<sub>&#9737</sub></div>
+                <div>Luminosity: <span data-bind="text: luminosity"></span> L<sub>&#9737</sub></div>
+                <div>Lifetime: <span data-bind="text: lifetime"></span><sub></sub> yr</div>
+                <div>Temperature: <span data-bind="text: temperature"></span> K</div>
+                <div>Spectral Classification: <span data-bind="text: spectral_classification"></span></div>
+            </div>
         </div>
         <br>
         <div class="styled-metrics">
             <h4 ><div><b>Estimated Timeline</b></h4>
-            <div id="timeline"></div>
+            <div data-bind="foreach: timeline">
+                <div><span data-bind="text: type"></span>: <span data-bind="text: desc"></span></div>
+            </div>
         </div>
     </div>
     

@@ -40,5 +40,6 @@ function get_cookie(key, only_value = true) {
 let obj = {
     first_name: "Willy"
 };
+//declare var ko: any; // Declares to TS that I know this isn't defined
 // Activates knockout.js
 ko.applyBindings(obj);
