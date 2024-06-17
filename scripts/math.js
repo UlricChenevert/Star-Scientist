@@ -1,7 +1,7 @@
 //=========================================================================//
 //                         Star Scientist Math                             //
 //=========================================================================//
-import { math_constants } from './core.js';
+import { math_constants } from './dependencies.js';
 // Desc: Estimates the luminosity of a main sequence star
 // Pre:  Mass in solar units
 // Post: Luminosity in solar units

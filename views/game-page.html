@@ -83,10 +83,10 @@
     
     </div>
 
-    <div id="star-visual">
-        <canvas id="atmosphere-layer" width="500" height="500"></canvas>
-        <canvas id="chromosphere-layer" width="500" height="500"></canvas>
-        <canvas id="background-layer" width="500" height="500"></canvas>
+    <div id="star-visual" data-bind="storeWidthHeight: canvas">
+        <canvas data-bind="storeElement: atmosphere", width=500, height=500, id="atmosphere-layer"></canvas>
+        <canvas data-bind="storeElement: surface", width=500, height=500, id="chromosphere-layer"></canvas>
+        <canvas data-bind="storeElement: background", width=500, height=500, id="background-layer"></canvas>
 
     </div>
 

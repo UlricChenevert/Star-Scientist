@@ -1,4 +1,4 @@
-import { template_constants, Star } from './core.js';
+import { template_constants, Stars } from './dependencies.js';
 // Desc: Gets input from input forms and returns the value
 export function get_input(container_id) {
     return document.getElementById(container_id);
@@ -24,7 +24,7 @@ export function template_to_star(star_name) {
     // Creates a template based on the template constants json file
     let templates = {};
     for (let index in star_template_raw) {
-        templates[star_template_raw[index]['name']] = new Star(parseFloat(star_template_raw[index]['mass']), parseFloat(star_template_raw[index]['radius']));
+        templates[star_template_raw[index]['name']] = new Stars.Star(parseFloat(star_template_raw[index]['mass']), parseFloat(star_template_raw[index]['radius']));
     }
     return templates[star_name];
 }
