@@ -5,7 +5,7 @@
 import { AstronomyMath } from './dependencies.js'
 
 
-type Unit = "M" | "R" | "" | "L" | 'yr' | 'K';
+type Unit = "M" | "R" | "L" | 'yr' | 'K' | "";
 
 class Measurement {
     value: number;

@@ -22,7 +22,9 @@
 
 <body>
     <div id="box">
-        <p>First name: <strong data-bind="text: first_name">todo</strong></p>
+        <div data-bind="foreach: templates">
+            <div><span data-bind="text: name"></span> <span data-bind="text: mass"></span> <span data-bind="text: radius"></div></span>
+        </div>
     </div>
 
     

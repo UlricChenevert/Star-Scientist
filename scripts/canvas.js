@@ -1,5 +1,16 @@
 import { Noise, Utility } from './dependencies.js';
 // Presents for modifying the canvas
+export function render(star, body, atmosphere, background) {
+    const radius = star.radius.value * 20;
+    const amount = 5000;
+    const color_palette = Utility.create_color_palette(star.color);
+    update_canvas(body).clear();
+    update_canvas(body).chromosphere(radius, color_palette.base);
+    update_canvas(atmosphere).clear();
+    update_canvas(atmosphere).corona(radius * 2, color_palette.darker);
+    update_canvas(background).clear();
+    update_canvas(background).background(amount);
+}
 export function update_canvas(element) {
     const brush = element.getContext("2d");
     brush.beginPath();
@@ -12,16 +23,16 @@ export function update_canvas(element) {
         const center_x = Math.floor(width / 2);
         const center_y = Math.floor(height / 2);
         const bit_amount = 4;
-        const noise_amplitude = 10; // Larger the value the less intense it gets
+        const noise_amplitude = 3; // Larger the value the less intense it gets
         let color = Utility.separate(base_color);
         circle({ x: center_x, y: center_y }, radius, (image_array, x, y) => {
             const distance_from_center = Math.hypot((center_x - x), (center_y - y));
             const base_position = y * (element.width * bit_amount) + x * bit_amount;
             const noise = Utility.normalize(Noise.get_noise(x, y, radius, width, height), noise_amplitude, 0, true);
             const intensity = weight(distance_from_center, radius)['circler']();
-            image_array[base_position] = color[0] * noise - Noise.random_noise(20); // Modifies red
-            image_array[base_position + 1] = color[1] * noise - Noise.random_noise(20); // Modifies green
-            image_array[base_position + 2] = color[2] * noise - Noise.random_noise(20); // Modifies blue
+            image_array[base_position] = color[0] * noise - Noise.random_noise(10); // Modifies red
+            image_array[base_position + 1] = color[1] * noise - Noise.random_noise(10); // Modifies green
+            image_array[base_position + 2] = color[2] * noise - Noise.random_noise(10); // Modifies blue
             image_array[base_position + 3] = 255 * intensity; // Modifies opacity
         });
     }
@@ -78,7 +89,6 @@ export function update_canvas(element) {
             data[base_position + 2] = 255; // Math.random()*255;
             data[base_position + 3] = Math.random() * 255;
         }
-        console.log("?");
         brush.putImageData(stars_images, 0, 0);
     };
     return {

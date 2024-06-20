@@ -8,7 +8,7 @@
 
         "**/*?.js": {"when": "$(basename).tsx"},
 
-        "**/*.d.ts": {"when": "$(basename).ts"},
+        //"**/*.d.ts": {"when": "$(basename).ts"},
 
         "**/*.js.map": true,
 

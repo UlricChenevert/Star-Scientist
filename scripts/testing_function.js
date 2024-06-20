@@ -36,10 +36,15 @@ function get_cookie(key, only_value = true) {
     const values = cookie_jar.slice(base_index + key_length + 2, end_index);
     return only_value ? values.split(' ')[0] : values;
 }
-// This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
-let obj = {
-    first_name: "Willy"
-};
+const base_url = 'http://127.0.0.1:5500/';
+function view_model() {
+    this.templates = ko.observableArray([]);
+    fetch(`${base_url}/data/templates.json`)
+        .then(response => response.json())
+        .then(result => { this.templates(result.templates); console.log(this.templates()); });
+    console.log(this.templates());
+}
+// This is a simple *view model* - JavaScript that defines the data and behavior of your UI
 //declare var ko: any; // Declares to TS that I know this isn't defined
 // Activates knockout.js
-ko.applyBindings(obj);
+ko.applyBindings(new view_model());

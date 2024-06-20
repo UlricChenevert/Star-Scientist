@@ -2,84 +2,70 @@
 //                         Star Scientist Core                             //
 //=========================================================================//
 
-import {Stars, CanvasHandler, math_constants, template_constants, Utility, InputHelpers} from "./dependencies.js";
+import {Stars, CanvasHandler, constants, Utility, InputHelpers} from "./dependencies.js";
+//import * as ko from "./knockout.js"
 declare var ko: any; // Declares to TS that I know this isn't defined
 
 window.onload = (e) => {
     let local_view_model = new view_model();
 
-    ko.bindingHandlers.storeElement = {
-        init: function(element, valueAccessor) {
-            valueAccessor()(element);
+    ko.bindingHandlers.drawStar = {
+        init: function (element) {
+            // Get element width and height
+            const width = getComputedStyle(element).width; 
+            const height = getComputedStyle(element).height;
+            
+            // Create child canvases with width and height set to the same as parent element
+            element.insertAdjacentHTML("afterbegin", [
+                `<canvas id='atmosphere-layer' width='${width}' height='${height}'></canvas>`,
+                `<canvas id='chromosphere-layer' width='${width}' height='${height}'></canvas>`,
+                `<canvas id='background-layer' width='${width}' height='${height}'></canvas>`,
+            ].join(""));
+        },
+        update: function (element) {
+            // get children and pass it to the renderer
+            CanvasHandler.render(local_view_model.star(), element.childNodes[0], element.childNodes[1], element.childNodes[2])
         }
-    };
-
-    ko.bindingHandlers.storeWidthHeight = {
-        init: function(element) { 
-            local_view_model.canvas = {width: getComputedStyle(element).width, height: getComputedStyle(element).height};
-        }
-    };
+    }
     
     local_view_model.spectral_classification.subscribe((new_value)=> {
-        local_view_model.timeline(math_constants.stars[new_value].timeline);
-    });
-
-    local_view_model.star.subscribe(()=>{
-        local_view_model.surface.valueHasMutated();
-        local_view_model.atmosphere.valueHasMutated();
-        local_view_model.background.valueHasMutated();
-    })
-    
-    local_view_model.surface.subscribe((element) => {
-        // Resizes
-        element.width = parseFloat(local_view_model.canvas.width);
-        element.height = parseFloat(local_view_model.canvas.height);
-
-        let radius = local_view_model.star().radius.value * 20;
-        let color_palette = Utility.create_color_palette(local_view_model.star().color);
-    
-        CanvasHandler.update_canvas(element).clear();
-        CanvasHandler.update_canvas(element).chromosphere(radius, color_palette.base);
-    });
-
-    local_view_model.atmosphere.subscribe((element) => {
-        // Resizes
-        element.width = parseFloat(local_view_model.canvas.width);
-        element.height = parseFloat(local_view_model.canvas.height);
-
-        let radius = local_view_model.star().radius.value * 20*2;
-        let color_palette = Utility.create_color_palette(local_view_model.star().color);
-    
-        CanvasHandler.update_canvas(element).clear();
-        CanvasHandler.update_canvas(element).corona(radius, color_palette.base);
-    });
-
-    local_view_model.background.subscribe((element) => {
-        // Resizes
-        element.width = parseFloat(local_view_model.canvas.width);
-        element.height = parseFloat(local_view_model.canvas.height);
-
-        let amount = 5000;
-    
-        CanvasHandler.update_canvas(element).clear();
-        CanvasHandler.update_canvas(element).background(amount);
+        local_view_model.timeline(constants.stars[new_value].timeline);
     });
 
     local_view_model.template.subscribe(()=>{
+        console.log(local_view_model.template().mass, local_view_model.template().radius)
         local_view_model.mass(local_view_model.template().mass);
         local_view_model.radius(local_view_model.template().radius);
     });
+
+    local_view_model.star.subscribe(()=>{
+        local_view_model.save();
+    })
+
+    local_view_model.template.subscribe(()=>{console.log("template")})
+
+    local_view_model.mass.subscribe(()=>{console.log("mass")})
+
+    local_view_model.radius.subscribe(()=>{console.log("Radius")})
     
     ko.applyBindings(local_view_model);
+}
 
-    //sync_local_storage_to_container('templates-input', 'mass-input', 'radius-input');
+function sync_latest_input() {
+    const old_input = JSON.parse(localStorage.getItem("input"));
+
+    if (old_input) {
+        constants.templates.unshift(old_input);
+    }
 }
 
 function view_model () {
+    sync_latest_input();
     // Inputs
-    this.templates = template_constants["star-templates"];
+    this.templates = ko.observableArray(constants.templates);
 
-    this.template = ko.observable(this.templates[0]);
+    this.template = ko.observable(constants.templates[0]);
+
     this.isTemplated = ko.computed(() => {return this.template().name != "Custom";});
 
     this.mass = ko.observable(this.template().mass);
@@ -87,25 +73,34 @@ function view_model () {
 
     // Star data
     this.star = ko.computed(()=>{
+        console.log(`New star created ${this.template().name} ${this.mass()} ${this.radius()}`);
+
         const a_star = (this.isTemplated())? InputHelpers.template_to_star(this.template().name) : new Stars.Star(this.mass(), this.radius());
         return Utility.round_data(a_star, 3);
-    });
-
-    //Stars.display(this.star().toObject()) // Initial call
+    }).extend({ rateLimit: 100 });
 
     this.luminosity = ko.computed(()=>{return this.star().luminosity.value});
     this.lifetime = ko.pureComputed(()=>{return this.star().lifetime.value});
     this.temperature = ko.pureComputed(()=>{return this.star().temperature.value});
     this.spectral_classification = ko.computed(()=>{return this.star().spectral_classification});
-    this.timeline = ko.observableArray(math_constants.stars[this.spectral_classification()].timeline);
+    this.timeline = ko.observableArray(constants.stars[this.spectral_classification()].timeline);
 
     // Canvas
-    this.canvas = {};
-    this.atmosphere = ko.observable();
-    this.surface = ko.observable();
-    this.background = ko.observable();
+    this.display = ko.observable();
 
     // Error
     this.showError = ko.observable(false);
     this.message = ko.observable("Error!")
+
+    
+    this.save = () => {
+        localStorage.setItem("input", JSON.stringify({"name": this.template().name, "mass" : this.mass(), "radius" : this.radius()}))
+    }
+
+    console.log("============================= Initial View Model Set ===========================================")
 }
+
+    
+
+
+

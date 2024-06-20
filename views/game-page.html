@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" type='text/css' href="../styles/formatting.css">
 
-    <script src="../scripts/knockout-3.5.1.js" ></script>
+    <script src="../scripts/knockout.js" ></script>
 
     <script type="module" src="../scripts/core.js"></script>
 </head>
@@ -83,12 +83,7 @@
     
     </div>
 
-    <div id="star-visual" data-bind="storeWidthHeight: canvas">
-        <canvas data-bind="storeElement: atmosphere", width=500, height=500, id="atmosphere-layer"></canvas>
-        <canvas data-bind="storeElement: surface", width=500, height=500, id="chromosphere-layer"></canvas>
-        <canvas data-bind="storeElement: background", width=500, height=500, id="background-layer"></canvas>
-
-    </div>
+    <div id="star-visual" data-bind="drawStar: display"></div>
 
 </body>
 </html>

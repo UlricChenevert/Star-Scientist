@@ -2,12 +2,12 @@
 //                         Star Scientist Math                             //
 //=========================================================================//
 
-import {math_constants} from './dependencies.js'
+import {constants} from './dependencies.js'
 
 // Desc: Estimates the luminosity of a main sequence star
 // Pre:  Mass in solar units
 // Post: Luminosity in solar units
-export function calculate_luminosity(mass) {
+export function calculate_luminosity(mass : number) : number {
     
     // Throws a error if both values are known or not known
     if (!mass) throw new Error("Incorrect calculate_luminosity call!");
@@ -42,11 +42,11 @@ export function calculate_luminosity(mass) {
 // Desc: Estimates the life spent on the main sequence
 // Pre: Mass in solar units and luminosity in solar units
 // Post: Lifetime in years
-export function calculate_lifetime(mass, luminosity) {
+export function calculate_lifetime(mass : number, luminosity : number) : number {
     // Throws a error if both values are known or not known
     if (!mass || !luminosity) throw new Error("Incorrect calculate_lifetime call!");
 
-    let star_lifetime = math_constants.sun.lifespan.value*(mass/luminosity);
+    let star_lifetime = constants.sun.lifespan.value*(mass/luminosity);
 
     return star_lifetime;
 }
@@ -54,37 +54,37 @@ export function calculate_lifetime(mass, luminosity) {
 // Desc: Estimates the temperature with the Stefan-Boltzmann Law
 // Pre: luminosity in solar units and radius in solar units
 // Post: Temperature in Kevin
-export function calculate_temperature(luminosity, radius) {
+export function calculate_temperature(luminosity : number, radius : number) : number {
 
-    let star_temperature = math_constants.sun.temperature.value*(luminosity/(radius**2))**(1/4); //(luminosity/)^(1/4);
+    let star_temperature = constants.sun.temperature.value*(luminosity/(radius**2))**(1/4); //(luminosity/)^(1/4);
     return star_temperature;
 }
 
 // Desc: Determines spectral classification based on temperature
 // Pre: Temperature in Kevin
 // Post: A spectral classification (O, B, A, F, G, K, M)
-export function determine_spectral_classification(temperature_kevin) {
+export function determine_spectral_classification(temperature_kevin : number) : string {
     if (!temperature_kevin) throw new Error("Incorrect determine_spectral_classification call!");
 
-    if (temperature_kevin > math_constants.stars.O.temperature.low) {
+    if (temperature_kevin > constants.stars.O.temperature.low) {
         return "O";
 
-    } else if (temperature_kevin >= math_constants.stars.B.temperature.low) {
+    } else if (temperature_kevin >= constants.stars.B.temperature.low) {
         return "B";
 
-    } else if (temperature_kevin >= math_constants.stars.A.temperature.low) {
+    } else if (temperature_kevin >= constants.stars.A.temperature.low) {
         return "A";
 
-    } else if (temperature_kevin >= math_constants.stars.F.temperature.low) {
+    } else if (temperature_kevin >= constants.stars.F.temperature.low) {
         return "F";
 
-    } else if (temperature_kevin >= math_constants.stars.G.temperature.low) {
+    } else if (temperature_kevin >= constants.stars.G.temperature.low) {
         return "G";
 
-    } else if (temperature_kevin >= math_constants.stars.K.temperature.low) {
+    } else if (temperature_kevin >= constants.stars.K.temperature.low) {
         return "K";
 
-    } else if (temperature_kevin < math_constants.stars.M.temperature.high) {
+    } else if (temperature_kevin < constants.stars.M.temperature.high) {
         return "M";
     
     } else {
@@ -95,8 +95,8 @@ export function determine_spectral_classification(temperature_kevin) {
 // Desc: Determines color based on spectral type
 // Pre: O, B, A, F, G, K, M
 // Post: A hexadecimal color
-export function determine_color(spectral_classification) {
+export function determine_color(spectral_classification : string) : string {
     if (!spectral_classification) throw new Error("Incorrect determine_color call!");
 
-    return math_constants.stars[spectral_classification].color;
+    return constants.stars[spectral_classification].color;
 }
