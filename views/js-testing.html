@@ -7,21 +7,26 @@
     <title> Star Scientist</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
     <link rel="stylesheet" href="../styles/formatting.css">
+    
+    <script src="../scripts/knockout-3.5.1.js" ></script>
+    <script type="module" src="../scripts/testing_function.js"></script>
 
-    <script src="../scripts/testing_function.js" ></script>
 </head>
 
 <style>
     #box {
-        width: 10em; 
         padding: 2em; 
         background-color: blue;
     }
 </style>
 
 <body>
-    <div id="box" onload="main.function_test()">
-        Hey! I am a textbox and I am ready for some javascript!
+    <div id="box">
+        <div data-bind="foreach: templates">
+            <div><span data-bind="text: name"></span> <span data-bind="text: mass"></span> <span data-bind="text: radius"></div></span>
+        </div>
     </div>
+
+    
 </body>
 </html>

@@ -1,7 +1,13 @@
+//=========================================================================//
+//                         Star Scientist Math                             //
+//=========================================================================//
+
+import {constants} from './dependencies.js'
+
 // Desc: Estimates the luminosity of a main sequence star
 // Pre:  Mass in solar units
 // Post: Luminosity in solar units
-export function calculate_luminosity(mass) {
+export function calculate_luminosity(mass : number) : number {
     
     // Throws a error if both values are known or not known
     if (!mass) throw new Error("Incorrect calculate_luminosity call!");
@@ -36,13 +42,11 @@ export function calculate_luminosity(mass) {
 // Desc: Estimates the life spent on the main sequence
 // Pre: Mass in solar units and luminosity in solar units
 // Post: Lifetime in years
-export function calculate_lifetime(mass, luminosity) {
+export function calculate_lifetime(mass : number, luminosity : number) : number {
     // Throws a error if both values are known or not known
     if (!mass || !luminosity) throw new Error("Incorrect calculate_lifetime call!");
 
-    const SUN_LIFESPAN = 1e10; // in years
-
-    let star_lifetime = SUN_LIFESPAN*(mass/luminosity);
+    let star_lifetime = constants.sun.lifespan.value*(mass/luminosity);
 
     return star_lifetime;
 }
@@ -50,46 +54,37 @@ export function calculate_lifetime(mass, luminosity) {
 // Desc: Estimates the temperature with the Stefan-Boltzmann Law
 // Pre: luminosity in solar units and radius in solar units
 // Post: Temperature in Kevin
-export function calculate_temperature(luminosity, radius) {
-    const SUN_TEMPERATURE = 5.772e3; // in kevin
+export function calculate_temperature(luminosity : number, radius : number) : number {
 
-    let star_temperature = SUN_TEMPERATURE*(luminosity/(radius**2))**(1/4); //(luminosity/)^(1/4);
+    let star_temperature = constants.sun.temperature.value*(luminosity/(radius**2))**(1/4); //(luminosity/)^(1/4);
     return star_temperature;
 }
 
 // Desc: Determines spectral classification based on temperature
 // Pre: Temperature in Kevin
 // Post: A spectral classification (O, B, A, F, G, K, M)
-export function determine_spectral_classification(temperature_kevin) {
+export function determine_spectral_classification(temperature_kevin : number) : string {
     if (!temperature_kevin) throw new Error("Incorrect determine_spectral_classification call!");
 
-    const TEMPERATURE_LOWER_BOUND_OF_O_TYPE_STAR = 3.3e4;
-    const TEMPERATURE_LOWER_BOUND_OF_B_TYPE_STAR = 9.7e3;
-    const TEMPERATURE_LOWER_BOUND_OF_A_TYPE_STAR = 7.2e3;
-    const TEMPERATURE_LOWER_BOUND_OF_F_TYPE_STAR = 5.7e3;
-    const TEMPERATURE_LOWER_BOUND_OF_G_TYPE_STAR = 4.9e3;
-    const TEMPERATURE_LOWER_BOUND_OF_K_TYPE_STAR = 3.4e3;
-    const TEMPERATURE_UPPER_BOUND_OF_M_TYPE_STAR = TEMPERATURE_LOWER_BOUND_OF_K_TYPE_STAR;
-
-    if (temperature_kevin > TEMPERATURE_LOWER_BOUND_OF_O_TYPE_STAR) {
+    if (temperature_kevin > constants.stars.O.temperature.low) {
         return "O";
 
-    } else if (temperature_kevin >= TEMPERATURE_LOWER_BOUND_OF_B_TYPE_STAR) {
+    } else if (temperature_kevin >= constants.stars.B.temperature.low) {
         return "B";
 
-    } else if (temperature_kevin >= TEMPERATURE_LOWER_BOUND_OF_A_TYPE_STAR) {
+    } else if (temperature_kevin >= constants.stars.A.temperature.low) {
         return "A";
 
-    } else if (temperature_kevin >= TEMPERATURE_LOWER_BOUND_OF_F_TYPE_STAR) {
+    } else if (temperature_kevin >= constants.stars.F.temperature.low) {
         return "F";
 
-    } else if (temperature_kevin >= TEMPERATURE_LOWER_BOUND_OF_G_TYPE_STAR) {
+    } else if (temperature_kevin >= constants.stars.G.temperature.low) {
         return "G";
 
-    } else if (temperature_kevin >= TEMPERATURE_LOWER_BOUND_OF_K_TYPE_STAR) {
+    } else if (temperature_kevin >= constants.stars.K.temperature.low) {
         return "K";
 
-    } else if (temperature_kevin < TEMPERATURE_UPPER_BOUND_OF_M_TYPE_STAR) {
+    } else if (temperature_kevin < constants.stars.M.temperature.high) {
         return "M";
     
     } else {
@@ -100,18 +95,8 @@ export function determine_spectral_classification(temperature_kevin) {
 // Desc: Determines color based on spectral type
 // Pre: O, B, A, F, G, K, M
 // Post: A hexadecimal color
-export function determine_color(spectral_classification) {
+export function determine_color(spectral_classification : string) : string {
     if (!spectral_classification) throw new Error("Incorrect determine_color call!");
 
-    let star_colors = {
-        O : "rgb(155, 176, 255)",
-        B : "rgb(170, 191, 255)",
-        A : "rgb(202, 215, 255)",
-        F : "rgb(248, 247, 255)",
-        G : "rgb(255, 244, 234)",
-        K : "rgb(255, 210, 161)",
-        M : "rgb(255, 204, 111)"
-    };
-
-    return star_colors[spectral_classification];
+    return constants.stars[spectral_classification].color;
 }

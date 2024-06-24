@@ -34,16 +34,6 @@ function caching_decorator (func) {
     }
 }
 
-//function multiply(x, y) {return x*y;}
-
-//const decorated_multiply = caching_decorator(multiply);
-
-// console.log(decorated_multiply(5, 6));
-// console.log(decorated_multiply(5, 6));
-// console.log(decorated_multiply(1241, 2137));
-// console.log(decorated_multiply(5765, 125));
-// console.log(decorated_multiply(5, 6));
-
 function set_cookie(key, value, age=86400) {
     document.cookie = `${key}=${value}; max-age=${age}`;
 }
@@ -61,11 +51,21 @@ function get_cookie (key : string, only_value=true) {
     return only_value? values.split(' ')[0] : values;
 }
 
-set_cookie('john', '');
-set_cookie('yen', '');
-set_cookie('z', '');
-set_cookie('aa', '');
+const base_url = 'http://127.0.0.1:5500/'
 
-console.log(document.cookie);
+function view_model () {
+    this.templates = ko.observableArray([]);
 
-console.log(get_cookie('asdasfafgagegewasfasfd'));
+    fetch(`${base_url}/data/templates.json`)
+        .then(response => response.json())
+        .then(result => {this.templates(result.templates); console.log(this.templates())});
+
+    console.log(this.templates());
+}
+
+// This is a simple *view model* - JavaScript that defines the data and behavior of your UI
+
+//declare var ko: any; // Declares to TS that I know this isn't defined
+
+// Activates knockout.js
+ko.applyBindings(new view_model());

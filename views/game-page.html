@@ -6,20 +6,27 @@
 
     <title> Star Scientist</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-    <link rel="stylesheet" href="../styles/game-formatting.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,300;0,400;0,500;0,700;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
 
-    <script type="module" src="../scripts/star_scientist_core.js"></script>
+    <link rel="stylesheet" type='text/css' href="../styles/formatting.css">
+
+    <script src="../scripts/knockout.js" ></script>
+
+    <script type="module" src="../scripts/core.js"></script>
 </head>
 
 <body> 
-    <div><nav id="navigation">
+    <nav id="navigation">
         <!-- Logo -->
-        <span class="logo">
+        <span id="logo">
             <img src="../images/sun.png" alt="Logo">
-            <span>Star Scientist</span>
+            <span id="logo-text">Star Scientist</span>
         </span>
 
-        <ul class="links">
+        <ul id="links">
             <!-- Contact Link -->
             <a href="contact-page.html">Contact</a>
 
@@ -28,9 +35,8 @@
 
              <!-- Home Link -->
             <a href="main-page.html">Home</a>
-
         </span>
-    </nav></div>
+    </nav>
 
     <div id="info-bar"> 
         <div id="options">
@@ -38,51 +44,46 @@
             <form id="options-form">
             <div class="input-container">
                 <div><label for="templates-input"> Templates: </label></div>
-                <select id="templates-input" name="Templates" class="styled-input">
-                    <option value="Custom">Custom</option>
-                    <option value="Sun">Sun</option>
-                    <option value="BI 253">BI 253</option>
-                    <option value="Phi Orionis">Phi Orionis</option>
-                    <option value="Epsilon Eridani">Epsilon Eridani</option>
-                    <option value="Alpha Coronae Borealis">Alpha Coronae Borealis</option>
-                    <option value="Eta Arietis">Eta Arietis</option>
-                    <option value="Epsilon Eridani">Epsilon Eridani</option>
-                    <option value="70 Ophiuchi">70 Ophiuchi</option>
-                    <option value="Lacaille 8760">Lacaille 8760</option>
-                    <option value="VB 10">VB 10</option>
-    
-                </select>
+                <select id="templates-input" data-bind="options: $root.templates, value: template, optionsText: 'name'" class="styled-input"></select>
             </div>
 
             <div class="input-container">
                 <div><label for="mass-input"> Mass: </label></div>
-                <input type="text" id="mass-input" class="styled-input" value="2.58" max="99"></div>
+                <input type="text" data-bind="textInput: mass, disable: isTemplated" id="mass-input" max="99">
+            </div>
 
             <div class="input-container">
                 <div><label for="radius-input"> Radius: </label></div>
-                <input type="text" id="radius-input" class="styled-input"  value="2.89"max="99">
+                <input type="text" data-bind="textInput: radius, disable: isTemplated" id="radius-input" max="99">
             </div>
 
-            <!--<div class="button-container">
-                <input type="submit" class="styled-submit" value="Calculate">
-            </div>-->
+            <div><span data-bind="text: message, visible: showError()"></span></div>
             
         </form></div>
         <br>
-        <div id="styled-metrics">
+        <div class="styled-metrics">
             <h4 ><div><b>Metrics</b></h4>
-            <div id="metrics">Scripting not supported!</div>
+            <div id="metrics">
+                <div>Mass: <span data-bind="text: mass"></span> M<sub>&#9737</sub></div>
+                <div>Radius: <span data-bind="text: radius"></span> R<sub>&#9737</sub></div>
+                <div>Luminosity: <span data-bind="text: luminosity"></span> L<sub>&#9737</sub></div>
+                <div>Lifetime: <span data-bind="text: lifetime"></span><sub></sub> yr</div>
+                <div>Temperature: <span data-bind="text: temperature"></span> K</div>
+                <div>Spectral Classification: <span data-bind="text: spectral_classification"></span></div>
+            </div>
+        </div>
+        <br>
+        <div class="styled-metrics">
+            <h4 ><div><b>Estimated Timeline</b></h4>
+            <div data-bind="foreach: timeline">
+                <div><span data-bind="text: type"></span>: <span data-bind="text: desc"></span></div>
+            </div>
         </div>
     </div>
     
     </div>
 
-    <div id="star-visual">
-        <canvas id="atmosphere-layer" width="500" height="500"></canvas>
-        <canvas id="chromosphere-layer" width="500" height="500"></canvas>
-        <canvas id="background-layer" width="500" height="500"></canvas>
-
-    </div>
+    <div id="star-visual" data-bind="drawStar: display"></div>
 
 </body>
 </html>

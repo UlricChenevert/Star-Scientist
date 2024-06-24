@@ -4,9 +4,11 @@
  
         "**/*.js": {"when": "$(basename).ts"},
 
+        "**/*.css": {"when": "$(basename).less"},
+
         "**/*?.js": {"when": "$(basename).tsx"},
 
-        "**/*.d.ts": {"when": "$(basename).ts"},
+        //"**/*.d.ts": {"when": "$(basename).ts"},
 
         "**/*.js.map": true,
 
