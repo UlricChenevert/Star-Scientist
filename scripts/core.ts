@@ -3,14 +3,12 @@
 //=========================================================================//
 
 import {Stars, CanvasHandler, constants, Utility, InputHelpers} from "./dependencies.js";
-//import * as ko from "./knockout.js"
-declare var ko: any; // Declares to TS that I know this isn't defined
 
 window.onload = (e) => {
     let local_view_model = new view_model();
 
     ko.bindingHandlers.drawStar = {
-        init: function (element) {
+        init: function (element : HTMLDivElement) {
             // Get element width and height
             const width = getComputedStyle(element).width; 
             const height = getComputedStyle(element).height;
@@ -22,18 +20,18 @@ window.onload = (e) => {
                 `<canvas id='background-layer' width='${width}' height='${height}'></canvas>`,
             ].join(""));
         },
-        update: function (element) {
+        update: function (element : HTMLDivElement) {
             // get children and pass it to the renderer
-            CanvasHandler.render(local_view_model.star(), element.childNodes[0], element.childNodes[1], element.childNodes[2])
+            CanvasHandler.render(local_view_model.star(), <HTMLCanvasElement>element.childNodes[0], <HTMLCanvasElement>element.childNodes[1], <HTMLCanvasElement>element.childNodes[2])
         }
     }
     
-    local_view_model.spectral_classification.subscribe((new_value)=> {
+    local_view_model.spectral_classification.subscribe((new_value : spectral_types)=> {
         local_view_model.timeline(constants.stars[new_value].timeline);
     });
 
     local_view_model.template.subscribe(()=>{
-        console.log(local_view_model.template().mass, local_view_model.template().radius)
+        //console.log(local_view_model.template().mass, local_view_model.template().radius)
         local_view_model.mass(local_view_model.template().mass);
         local_view_model.radius(local_view_model.template().radius);
     });
@@ -51,16 +49,8 @@ window.onload = (e) => {
     ko.applyBindings(local_view_model);
 }
 
-function sync_latest_input() {
-    const old_input = JSON.parse(localStorage.getItem("input"));
-
-    if (old_input) {
-        constants.templates.unshift(old_input);
-    }
-}
-
-function view_model () {
-    sync_latest_input();
+function view_model (this: main_view_model) {
+    InputHelpers.sync_latest_input();
     // Inputs
     this.templates = ko.observableArray(constants.templates);
 
@@ -83,7 +73,7 @@ function view_model () {
     this.lifetime = ko.pureComputed(()=>{return this.star().lifetime.value});
     this.temperature = ko.pureComputed(()=>{return this.star().temperature.value});
     this.spectral_classification = ko.computed(()=>{return this.star().spectral_classification});
-    this.timeline = ko.observableArray(constants.stars[this.spectral_classification()].timeline);
+    this.timeline = ko.observableArray(constants.stars[<spectral_types>this.spectral_classification()].timeline);
 
     // Canvas
     this.display = ko.observable();

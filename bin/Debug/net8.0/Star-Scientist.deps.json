@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Star-Scientist/1.0.0": {
+        "runtime": {
+          "Star-Scientist.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Star-Scientist/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

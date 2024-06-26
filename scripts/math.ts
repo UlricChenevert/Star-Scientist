@@ -7,7 +7,7 @@ import {constants} from './dependencies.js'
 // Desc: Estimates the luminosity of a main sequence star
 // Pre:  Mass in solar units
 // Post: Luminosity in solar units
-export function calculate_luminosity(mass : number) : number {
+export function calculate_luminosity(mass : number) : number{
     
     // Throws a error if both values are known or not known
     if (!mass) throw new Error("Incorrect calculate_luminosity call!");
@@ -98,5 +98,5 @@ export function determine_spectral_classification(temperature_kevin : number) : 
 export function determine_color(spectral_classification : string) : string {
     if (!spectral_classification) throw new Error("Incorrect determine_color call!");
 
-    return constants.stars[spectral_classification].color;
+    return constants.stars[<spectral_types>spectral_classification].color;
 }

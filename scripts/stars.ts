@@ -4,16 +4,13 @@
 
 import { AstronomyMath } from './dependencies.js'
 
-
-type Unit = "M" | "R" | "L" | 'yr' | 'K' | "";
-
 class Measurement {
     value: number;
     type: string;
     unit: string;
     symbol: string;
 
-    constructor (value, type, unit: Unit='', symbol='') {
+    constructor (value : number, type : string, unit: Units='', symbol='') {
         this.value = value;
         this.type = type;
         this.unit = unit;
@@ -30,7 +27,7 @@ export class Star {
     spectral_classification: string;
     color: string;
 
-    constructor(mass_solar_units, radius_solar_units) {
+    constructor(mass_solar_units : number, radius_solar_units : number) {
         if (!mass_solar_units || !radius_solar_units) throw new Error("Incorrect parameter call on star constructor!");
 
         this.mass = new Measurement(mass_solar_units, 'Mass', 'M', '&#9737'); 

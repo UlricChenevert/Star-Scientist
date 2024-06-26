@@ -1,9 +1,7 @@
 import { Noise, Utility, Stars } from './dependencies.js';
 
-// Presents for modifying the canvas
+export function render(star: Stars.Star, body : HTMLCanvasElement, atmosphere : HTMLCanvasElement, background : HTMLCanvasElement) : void {
 
-export function render (star: Stars.Star, body : HTMLCanvasElement, atmosphere : HTMLCanvasElement, background : HTMLCanvasElement) {
-    
     const radius = star.radius.value * 20;
     const amount = 5000;
     const color_palette = Utility.create_color_palette(star.color);
@@ -18,15 +16,15 @@ export function render (star: Stars.Star, body : HTMLCanvasElement, atmosphere :
     update_canvas(background).background(amount);
 }
 
-export function update_canvas(element: HTMLCanvasElement) {
-    const brush = element.getContext("2d");
+export function update_canvas(element: HTMLCanvasElement) : valid_canvas_option {
+    const brush = Utility.empty_value_checker("canvas's getContext", element.getContext("2d"));
     brush.beginPath();
 
     function clear() {
         brush.clearRect(0, 0, element.width, element.height);
     }
 
-    function chromosphere(radius, base_color) {
+    function chromosphere(radius : number, base_color : string) {
         const width = element.width;
         const height = element.height;
 
@@ -38,21 +36,21 @@ export function update_canvas(element: HTMLCanvasElement) {
 
         let color = Utility.separate(base_color);
 
-        circle({ x: center_x, y: center_y }, radius, (image_array, x, y) => {
+        circle({ x: center_x, y: center_y }, radius, (image_array : Uint8ClampedArray, x : number, y : number) => {
             const distance_from_center = Math.hypot((center_x - x), (center_y - y));
             const base_position = y * (element.width * bit_amount) + x * bit_amount;
 
             const noise = Utility.normalize(Noise.get_noise(x, y, radius, width, height), noise_amplitude, 0, true);
             const intensity = weight(distance_from_center, radius)['circler']();
 
-            image_array[base_position] = color[0] * noise - Noise.random_noise(10); // Modifies red
-            image_array[base_position + 1] = color[1] * noise - Noise.random_noise(10); // Modifies green
-            image_array[base_position + 2] = color[2] * noise - Noise.random_noise(10); // Modifies blue
+            image_array[base_position] = color[0] * noise; // Modifies red
+            image_array[base_position + 1] = color[1] * noise; // Modifies green
+            image_array[base_position + 2] = color[2] * noise; // Modifies blue
             image_array[base_position + 3] = 255 * intensity; // Modifies opacity
         });
     }
 
-    const corona = (radius, base_color) => {
+    const corona = (radius : number, base_color : string) => {
         const bit_amount = 4;
         const noise_amplitude = radius * 0.1;
         const center_x = Math.floor(element.width / 2);
@@ -60,7 +58,7 @@ export function update_canvas(element: HTMLCanvasElement) {
 
         let color = Utility.separate(base_color);
 
-        circle({ x: center_x, y: center_y }, radius, (image_array, x, y) => {
+        circle({ x: center_x, y: center_y }, radius, (image_array : Uint8ClampedArray, x : number, y : number) => {
             const distance_from_center = Math.hypot((center_x - x), (center_y - y));
             const base_position = y * (element.width * bit_amount) + x * bit_amount;
 
@@ -73,7 +71,7 @@ export function update_canvas(element: HTMLCanvasElement) {
         });
     };
 
-    function circle(center, radius, modification_function) {
+    function circle(center : position, radius : number, modification_function : shape_handler) {
         const center_x = center.x;
         const center_y = center.y;
 
@@ -109,7 +107,7 @@ export function update_canvas(element: HTMLCanvasElement) {
         console.log(`Rendering the circle took ${c} milliseconds`);
     }
 
-    const background = (amount) => {
+    const background = (amount : number) => {
         const stars_images = brush.createImageData(element.width, element.height);
         const data = stars_images.data;
         const bit_amount = 4;
@@ -136,17 +134,15 @@ export function update_canvas(element: HTMLCanvasElement) {
         background: background,
     };
 }
-function weight(distance, radius, inverted = false) {
-    function linear() {
-        return Utility.normalize(distance, 0, radius, inverted);
-    }
 
-    function circler() {
-        return Utility.normalize(Math.sqrt(radius ** 2 - distance ** 2), radius, 0, inverted);
-    }
-
+function weight(distance : number, radius : number, inverted = false) : {linear: ()=> number, circler: ()=> number} {
     return {
-        linear: linear,
-        circler: circler,
+        linear: () => {
+            return Utility.normalize(distance, 0, radius, inverted);
+        },
+        circler: () => {
+            
+            return Utility.normalize(Math.sqrt(radius ** 2 - distance ** 2), radius, 0, inverted);
+        },
     };
 }

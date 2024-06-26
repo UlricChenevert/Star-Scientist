@@ -1,5 +1,4 @@
 import { Noise, Utility } from './dependencies.js';
-// Presents for modifying the canvas
 export function render(star, body, atmosphere, background) {
     const radius = star.radius.value * 20;
     const amount = 5000;
@@ -12,7 +11,7 @@ export function render(star, body, atmosphere, background) {
     update_canvas(background).background(amount);
 }
 export function update_canvas(element) {
-    const brush = element.getContext("2d");
+    const brush = Utility.empty_value_checker("canvas's getContext", element.getContext("2d"));
     brush.beginPath();
     function clear() {
         brush.clearRect(0, 0, element.width, element.height);
@@ -30,9 +29,9 @@ export function update_canvas(element) {
             const base_position = y * (element.width * bit_amount) + x * bit_amount;
             const noise = Utility.normalize(Noise.get_noise(x, y, radius, width, height), noise_amplitude, 0, true);
             const intensity = weight(distance_from_center, radius)['circler']();
-            image_array[base_position] = color[0] * noise - Noise.random_noise(10); // Modifies red
-            image_array[base_position + 1] = color[1] * noise - Noise.random_noise(10); // Modifies green
-            image_array[base_position + 2] = color[2] * noise - Noise.random_noise(10); // Modifies blue
+            image_array[base_position] = color[0] * noise; // Modifies red
+            image_array[base_position + 1] = color[1] * noise; // Modifies green
+            image_array[base_position + 2] = color[2] * noise; // Modifies blue
             image_array[base_position + 3] = 255 * intensity; // Modifies opacity
         });
     }
@@ -99,14 +98,12 @@ export function update_canvas(element) {
     };
 }
 function weight(distance, radius, inverted = false) {
-    function linear() {
-        return Utility.normalize(distance, 0, radius, inverted);
-    }
-    function circler() {
-        return Utility.normalize(Math.sqrt(Math.pow(radius, 2) - Math.pow(distance, 2)), radius, 0, inverted);
-    }
     return {
-        linear: linear,
-        circler: circler,
+        linear: () => {
+            return Utility.normalize(distance, 0, radius, inverted);
+        },
+        circler: () => {
+            return Utility.normalize(Math.sqrt(Math.pow(radius, 2) - Math.pow(distance, 2)), radius, 0, inverted);
+        },
     };
 }

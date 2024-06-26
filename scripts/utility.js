@@ -2,23 +2,22 @@
 // Pre: an object data with objects, strings, and numbers and an int significant_figures
 // Post: All integer data is rounded
 export function round_data(data, significant_figures) {
-    let round_handler = {
-        "object": () => {
+    switch (typeof data) {
+        case "object":
             // Recursive step
             for (var key in data) {
                 if (!data.hasOwnProperty(key))
                     console.log(`Error! Round handler has unexpected key! ${key}`);
-                data[key] = round_data(data[key], significant_figures);
+                data[key] = (round_data(data[key], significant_figures));
             }
             return data;
-        },
-        "number": () => {
+        case "number":
             return data.toPrecision(significant_figures);
-        }, // Recursive break
-        "string": () => { return data; }, // Recursive break
-        "undefined": () => { return data; }, // Recursive break
-    };
-    return round_handler[(typeof data)]();
+        case "string":
+            return data;
+        case "undefined":
+            return data;
+    }
 }
 export function normalize(value, max, min, inverted = false) {
     return (!inverted) ? (value - min) / (max - min) : 1 - (value - min) / (max - min);
@@ -42,14 +41,19 @@ export function add_opacity(color, amount) {
 // Converts separates colors into a list
 export function separate(color) {
     // Remove everything before and after parenthesis
-    let color_simplified = color.substring(color.indexOf('(') + 1, color.indexOf(')'));
+    const color_simplified = color.substring(color.indexOf('(') + 1, color.indexOf(')'));
     // Spilt string
-    let rgb = color_simplified.split(',');
-    return rgb;
+    const rgb_string = color_simplified.split(',');
+    let rgb_number = [];
+    // Convert string to number
+    for (color of rgb_string) {
+        rgb_number.push(parseInt(color));
+    }
+    return rgb_number;
 }
 // Keeps color within bounds
-export function bound_color(color, limit = 255) {
-    return (color > limit) ? limit : color;
+export function bound_color(color_amount, limit = 255) {
+    return (color_amount > limit) ? limit : color_amount;
 }
 // Desc: returns an object with darker/lighter color variants
 // Pre: hexadecimal color
@@ -63,4 +67,11 @@ export function create_color_palette(color) {
         light: `rgb(${Math.round(separated_color[0] * 1.1)}, ${Math.round(separated_color[1] * 1.1)}, ${Math.round(separated_color[2] * 1.1)})`,
         lighter: `rgb(${Math.round(separated_color[0] * 1.5)}, ${Math.round(separated_color[1] * 1.5)}, ${Math.round(separated_color[2] * 1.5)})`,
     };
+}
+// Wrap a function return value with a error check
+export function empty_value_checker(process_name, return_value) {
+    if (return_value === undefined || return_value === null) {
+        throw new Error(`${process_name} returned value ${return_value}`);
+    }
+    return return_value;
 }

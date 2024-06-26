@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("../fonts/BarlowCondensed-Regular.ttf");
+}
+@font-face {
+  font-family: "Great Vibes";
+  src: url("../fonts/GreatVibes-Regular.ttf");
+}
 body {
   background-color: black;
   color: white;
@@ -113,6 +121,7 @@ footer {
   padding: 0.5em;
   border-radius: 0.5em;
   background-color: #5470bb;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
 #info-bar #options h4 {
   margin: 0.25em;
@@ -133,6 +142,7 @@ footer {
   padding: 0.5em;
   border-radius: 0.5em;
   background-color: #5470bb;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
 #info-bar .styled-metrics h4 {
   margin: 0.25em;

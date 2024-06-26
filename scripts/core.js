@@ -2,6 +2,8 @@
 //                         Star Scientist Core                             //
 //=========================================================================//
 import { Stars, CanvasHandler, constants, Utility, InputHelpers } from "./dependencies.js";
+//import * as ko from './knockout.js';
+//declare type ko = any;
 window.onload = (e) => {
     let local_view_model = new view_model();
     ko.bindingHandlers.drawStar = {
@@ -25,7 +27,7 @@ window.onload = (e) => {
         local_view_model.timeline(constants.stars[new_value].timeline);
     });
     local_view_model.template.subscribe(() => {
-        console.log(local_view_model.template().mass, local_view_model.template().radius);
+        //console.log(local_view_model.template().mass, local_view_model.template().radius)
         local_view_model.mass(local_view_model.template().mass);
         local_view_model.radius(local_view_model.template().radius);
     });
@@ -37,14 +39,8 @@ window.onload = (e) => {
     local_view_model.radius.subscribe(() => { console.log("Radius"); });
     ko.applyBindings(local_view_model);
 };
-function sync_latest_input() {
-    const old_input = JSON.parse(localStorage.getItem("input"));
-    if (old_input) {
-        constants.templates.unshift(old_input);
-    }
-}
 function view_model() {
-    sync_latest_input();
+    InputHelpers.sync_latest_input();
     // Inputs
     this.templates = ko.observableArray(constants.templates);
     this.template = ko.observable(constants.templates[0]);

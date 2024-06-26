@@ -5,7 +5,7 @@ const node = 128;
 
 const random_gradient_vector_grid = generate_gradient_grid();
 
-export function get_noise (x, y, radius, width,  height) {
+export function get_noise (x : number, y : number, radius : number, width : number,  height : number) : number {
     if (!x || !y || !radius || !width || !height) throw new Error("incorrect get_noise function call!");
 
      // Active area is bigger than the circle to handle array bounds
@@ -25,19 +25,19 @@ export function get_noise (x, y, radius, width,  height) {
 
     if (!random_gradient_vector_grid[x0] || !random_gradient_vector_grid[x0][y0]) throw Error(`Perlin Noise cell is out of range! Tried to access ${x0} then ${y0} of ${random_gradient_vector_grid}`);
 
-    const bottom_left = {
+    const bottom_left : cell_data = {
         gradient: random_gradient_vector_grid[x0][y0],
         distance: {x: x_relative - x0, y: y_relative - y0}
     };
-    const bottom_right = {
+    const bottom_right : cell_data = {
         gradient: random_gradient_vector_grid[x0 + 1][y0],
         distance: {x: x_relative - (x0 + 1), y: y_relative - y0}
     };
-    const top_left = {
+    const top_left : cell_data = {
         gradient: random_gradient_vector_grid[x0][y0 + 1],
         distance: {x: x_relative - x0, y: y_relative - (y0 + 1)}
     };
-    const top_right = {
+    const top_right : cell_data = {
         gradient: random_gradient_vector_grid[x0 + 1][y0 + 1],
         distance: {x: x_relative - (x0 + 1), y: y_relative - (y0 + 1)}
     };
@@ -80,16 +80,16 @@ export function random_noise (amplitude = 1) {
     return Math.ceil(Math.random() * amplitude);
 }
 
-function generate_gradient_grid () {
+function generate_gradient_grid () : vector[][] {
     function random_unit_vector(){
         const theta = Math.random() * 2 * Math.PI;
         return {x: Math.cos(theta), y: Math.sin(theta)};
     }
 
-    const grid  = [];
+    const grid:vector[][]  = [];
 
     for (let i=0; i < node; i++) {
-        const row = [];
+        const row:vector[] = [];
         
         for (let j = 0; j < node; j++) {
             row.push(random_unit_vector());
