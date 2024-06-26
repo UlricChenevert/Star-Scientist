@@ -10,5 +10,5 @@ import * as Utility_1 from './utility.js';
 export { Utility_1 as Utility };
 import * as Noise_1 from './noise.js';
 export { Noise_1 as Noise };
-export { constants } from '../data/constants.js';
+export { constants } from '../../data/constants.js';
 export const base_url = "http://127.0.0.1:5500/";

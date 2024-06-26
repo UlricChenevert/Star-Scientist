@@ -7,7 +7,6 @@ function main () {
     canvas.width = 800;
     canvas.height = 800;
 
-    const img = new Image();
 
     function circle (radius = 100) {
         const center_x = Math.floor(canvas.width/2);
