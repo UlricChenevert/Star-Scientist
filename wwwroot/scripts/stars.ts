@@ -2,7 +2,7 @@
 //                        Star Scientist Display                           //
 //=========================================================================//
 
-import { AstronomyMath } from '../../scripts/frontend/dependencies.js'
+import { AstronomyMath } from './dependencies.js'
 
 class Measurement {
     value: number;

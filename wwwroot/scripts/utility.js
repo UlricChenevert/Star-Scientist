@@ -34,6 +34,9 @@ export function interpolate(a, b, x) {
 export function fade(x) {
     return 6 * Math.pow(x, 5) - 15 * Math.pow(x, 4) + 10 * Math.pow(x, 3);
 }
+export function blend(color_a, color_b) {
+    return Math.round((color_a + color_b) / 2);
+}
 // Desc: Slaps on a opacity to a rgb string
 // Pre: rgb string
 // Post: rgba string with alterable opacity

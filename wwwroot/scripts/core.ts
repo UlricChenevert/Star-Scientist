@@ -2,7 +2,7 @@
 //                         Star Scientist Core                             //
 //=========================================================================//
 
-import {Stars, CanvasHandler, constants, Utility, InputHelpers} from "../../scripts/frontend/dependencies.js";
+import {Stars, CanvasHandler, constants, Utility, InputHelpers} from "./dependencies.js";
 
 window.onload = (e) => {
     
@@ -16,8 +16,8 @@ window.onload = (e) => {
             
             // Create child canvases with width and height set to the same as parent element
             element.insertAdjacentHTML("afterbegin", [
-                `<canvas id='atmosphere-layer' width='${width}' height='${height}'></canvas>`,
                 `<canvas id='chromosphere-layer' width='${width}' height='${height}'></canvas>`,
+                `<canvas id='atmosphere-layer' width='${width}' height='${height}'></canvas>`,
                 `<canvas id='background-layer' width='${width}' height='${height}'></canvas>`,
             ].join(""));
         },

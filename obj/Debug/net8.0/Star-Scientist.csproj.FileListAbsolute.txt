@@ -32,3 +32,4 @@ C:\Users\william.chenevert\OneDrive - KnowledgeLake\Documents\Summer Internship\
 C:\Users\william.chenevert\OneDrive - KnowledgeLake\Documents\Summer Internship\Star-Scientist\obj\Debug\net8.0\Star-Sci.3355ACF7.Up2Date
 C:\Users\william.chenevert\OneDrive - KnowledgeLake\Documents\Summer Internship\Star-Scientist\bin\Debug\net8.0\data\templates.json
 C:\Users\william.chenevert\OneDrive - KnowledgeLake\Documents\Summer Internship\Star-Scientist\bin\Debug\net8.0\data\star_constants.json
+C:\Users\william.chenevert\OneDrive - KnowledgeLake\Documents\Summer Internship\Star-Scientist\bin\Debug\net8.0\Star-Scientist.staticwebassets.runtime.json

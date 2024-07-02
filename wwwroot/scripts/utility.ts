@@ -43,6 +43,10 @@ export function fade (x : number) : number {
     return 6*x**5 - 15*x**4 + 10 * x**3;
 }
 
+export function blend (color_a : number, color_b : number) : number{
+    return Math.round((color_a + color_b) / 2)
+}
+
 // Desc: Slaps on a opacity to a rgb string
 // Pre: rgb string
 // Post: rgba string with alterable opacity

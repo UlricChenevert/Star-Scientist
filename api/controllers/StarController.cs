@@ -1,14 +1,19 @@
 ﻿using Star_Scientist.data.contracts;
 using Star_Scientist.data.entities;
 using Star_Scientist.api;
+using Microsoft.AspNetCore.Mvc;
 
-namespace Star_Scientist.scripts.controllers;
+namespace Star_Scientist.api.controllers;
 
-public static class StarEndpoints
+[ApiController]
+[Route("Star")]
+public class StarController : ControllerBase
 {
-    public static WebApplication StarController(this WebApplication app) 
+    [Route("templates")]
+    [HttpGet]
+    public ActionResult<List<StarTemplateContract>> Get()
     {
-        List<StarTemplateContract> templates = [
+        List<StarTemplateContract> template = [
             new ("Sun", 1, 1),
             new ("BI 253", 97.6, 13.9 ),
             new ("Phi Orionis", 15.5, 6.3),
@@ -19,22 +24,25 @@ public static class StarEndpoints
             new ("Lacaille 8760", 0.60, 0.51),
             new ("VB 10", 0.0881, 0.1183)
         ];
-        
-        app.MapGet("/templates", () => templates);
 
-
-        app.MapGet("/metrics", (double Mass, double Radius) => 
-        {
-            GetStarMetricsContract requestedStar = new (Mass, Radius);
-            StarMetrics starMetrics = GenerateStarInfoAsync.CalculateMetrics(requestedStar);
-            return starMetrics;
-        });
-
-        app.MapGet("/timeline", (char spectralClassification) =>  {
-            List<Timeline> timeline = GenerateStarInfoAsync.DetermineTimeline(spectralClassification);
-            return timeline;
-        });
-
-        return app;
+        return template;
     }
+
+    [Route("metrics")]
+    [HttpGet]
+    public ActionResult<StarMetrics> Get(double Mass, double Radius)
+    {
+        GetStarMetricsContract requestedStar = new (Mass, Radius);
+        StarMetrics starMetrics = GenerateStarInfoAsync.CalculateMetrics(requestedStar);
+        return starMetrics;
+    }
+
+    [Route("timeline")]
+    [HttpGet]
+    public ActionResult<List<Timeline>> Get(char spectralClassification)
+    {
+        List<Timeline> timeline = GenerateStarInfoAsync.DetermineTimeline(spectralClassification);
+        return timeline;
+    }
+
 }

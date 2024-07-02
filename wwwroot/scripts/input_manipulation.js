@@ -1,4 +1,4 @@
-import { constants, Stars, Utility } from './dependencies.js';
+import { constants, Stars } from './dependencies.js';
 // Desc: creates new star objects based on template or inputs
 export function template_to_star(star_name) {
     const star_template_raw = constants.templates;
@@ -10,8 +10,7 @@ export function template_to_star(star_name) {
     return template_build[star_name];
 }
 export function sync_latest_input() {
-    const old_input = JSON.parse(Utility.empty_value_checker("Getting item local storage", localStorage.getItem("input")));
-    if (old_input) {
-        constants.templates.unshift(old_input);
+    if (localStorage.getItem("input") !== null) {
+        constants.templates.unshift(JSON.parse(localStorage.getItem("input")));
     }
 }
