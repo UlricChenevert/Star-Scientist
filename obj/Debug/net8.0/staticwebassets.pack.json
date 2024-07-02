@@ -85,10 +85,6 @@
       "PackagePath": "staticwebassets\\index.html"
     },
     {
-      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\libraries\\index.d.ts",
-      "PackagePath": "staticwebassets\\libraries\\index.d.ts"
-    },
-    {
       "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\libraries\\knockout.js",
       "PackagePath": "staticwebassets\\libraries\\knockout.js"
     },
@@ -97,96 +93,52 @@
       "PackagePath": "staticwebassets\\libraries\\perlin.js"
     },
     {
-      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\canvas.js",
-      "PackagePath": "staticwebassets\\scripts\\canvas.js"
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\Star-Scientist.code-workspace",
+      "PackagePath": "staticwebassets\\scripts\\Star-Scientist.code-workspace"
     },
     {
-      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\canvas.ts",
-      "PackagePath": "staticwebassets\\scripts\\canvas.ts"
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\canvas.js",
+      "PackagePath": "staticwebassets\\scripts\\canvas.js"
     },
     {
       "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\constants.js",
       "PackagePath": "staticwebassets\\scripts\\constants.js"
     },
     {
-      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\constants.ts",
-      "PackagePath": "staticwebassets\\scripts\\constants.ts"
-    },
-    {
       "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\core.js",
       "PackagePath": "staticwebassets\\scripts\\core.js"
-    },
-    {
-      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\core.ts",
-      "PackagePath": "staticwebassets\\scripts\\core.ts"
     },
     {
       "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\dependencies.js",
       "PackagePath": "staticwebassets\\scripts\\dependencies.js"
     },
     {
-      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\dependencies.ts",
-      "PackagePath": "staticwebassets\\scripts\\dependencies.ts"
-    },
-    {
-      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\global.d.ts",
-      "PackagePath": "staticwebassets\\scripts\\global.d.ts"
-    },
-    {
       "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\input_manipulation.js",
       "PackagePath": "staticwebassets\\scripts\\input_manipulation.js"
-    },
-    {
-      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\input_manipulation.ts",
-      "PackagePath": "staticwebassets\\scripts\\input_manipulation.ts"
     },
     {
       "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\mapStarController.js",
       "PackagePath": "staticwebassets\\scripts\\mapStarController.js"
     },
     {
-      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\mapStarController.ts",
-      "PackagePath": "staticwebassets\\scripts\\mapStarController.ts"
-    },
-    {
       "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\math.js",
       "PackagePath": "staticwebassets\\scripts\\math.js"
-    },
-    {
-      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\math.ts",
-      "PackagePath": "staticwebassets\\scripts\\math.ts"
     },
     {
       "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\noise.js",
       "PackagePath": "staticwebassets\\scripts\\noise.js"
     },
     {
-      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\noise.ts",
-      "PackagePath": "staticwebassets\\scripts\\noise.ts"
-    },
-    {
       "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\stars.js",
       "PackagePath": "staticwebassets\\scripts\\stars.js"
-    },
-    {
-      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\stars.ts",
-      "PackagePath": "staticwebassets\\scripts\\stars.ts"
     },
     {
       "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\utility.js",
       "PackagePath": "staticwebassets\\scripts\\utility.js"
     },
     {
-      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\utility.ts",
-      "PackagePath": "staticwebassets\\scripts\\utility.ts"
-    },
-    {
       "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\styles\\formatting.css",
       "PackagePath": "staticwebassets\\styles\\formatting.css"
-    },
-    {
-      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\styles\\formatting.less",
-      "PackagePath": "staticwebassets\\styles\\formatting.less"
     },
     {
       "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\views\\contact-page.html",

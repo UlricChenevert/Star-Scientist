@@ -18,6 +18,9 @@
 
         "*/node_modules/**":true,
 
-    }
+    },
+    //"appService.preDeployTask": "publish-release",
+    "appService.deploySubpath": "bin\\Release\\net8.0\\publish",
+    "appService.defaultWebAppToDeploy": "/subscriptions/08c0baa1-bd9a-4dd7-a483-2c34c9503699/resourceGroups/starscientist_group/providers/Microsoft.Web/sites/starscientist"
 
 }

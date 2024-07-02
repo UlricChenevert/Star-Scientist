@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "knockout-secure-binding": "^0.5.5"
+  }
+}

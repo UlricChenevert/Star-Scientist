@@ -1,0 +1,181 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\fonts\\BarlowCondensed-Black.ttf",
+      "PackagePath": "staticwebassets\\fonts\\BarlowCondensed-Black.ttf"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\fonts\\BarlowCondensed-BlackItalic.ttf",
+      "PackagePath": "staticwebassets\\fonts\\BarlowCondensed-BlackItalic.ttf"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\fonts\\BarlowCondensed-Bold.ttf",
+      "PackagePath": "staticwebassets\\fonts\\BarlowCondensed-Bold.ttf"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\fonts\\BarlowCondensed-BoldItalic.ttf",
+      "PackagePath": "staticwebassets\\fonts\\BarlowCondensed-BoldItalic.ttf"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\fonts\\BarlowCondensed-Light.ttf",
+      "PackagePath": "staticwebassets\\fonts\\BarlowCondensed-Light.ttf"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\fonts\\BarlowCondensed-LightItalic.ttf",
+      "PackagePath": "staticwebassets\\fonts\\BarlowCondensed-LightItalic.ttf"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\fonts\\BarlowCondensed-Medium.ttf",
+      "PackagePath": "staticwebassets\\fonts\\BarlowCondensed-Medium.ttf"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\fonts\\BarlowCondensed-MediumItalic.ttf",
+      "PackagePath": "staticwebassets\\fonts\\BarlowCondensed-MediumItalic.ttf"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\fonts\\BarlowCondensed-Regular.ttf",
+      "PackagePath": "staticwebassets\\fonts\\BarlowCondensed-Regular.ttf"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\fonts\\BarlowCondensed-SemiBold.ttf",
+      "PackagePath": "staticwebassets\\fonts\\BarlowCondensed-SemiBold.ttf"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\fonts\\BarlowCondensed-SemiBoldItalic.ttf",
+      "PackagePath": "staticwebassets\\fonts\\BarlowCondensed-SemiBoldItalic.ttf"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\fonts\\BarlowCondensed-Thin.ttf",
+      "PackagePath": "staticwebassets\\fonts\\BarlowCondensed-Thin.ttf"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\fonts\\BarlowCondensed-ThinItalic.ttf",
+      "PackagePath": "staticwebassets\\fonts\\BarlowCondensed-ThinItalic.ttf"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\fonts\\GreatVibes-Regular.ttf",
+      "PackagePath": "staticwebassets\\fonts\\GreatVibes-Regular.ttf"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\images\\Blue Star.jpg",
+      "PackagePath": "staticwebassets\\images\\Blue Star.jpg"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\images\\Brown Dwarf.jpg",
+      "PackagePath": "staticwebassets\\images\\Brown Dwarf.jpg"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\images\\Galaxy.jpg",
+      "PackagePath": "staticwebassets\\images\\Galaxy.jpg"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\images\\favicon.ico",
+      "PackagePath": "staticwebassets\\images\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\images\\guy.jpg",
+      "PackagePath": "staticwebassets\\images\\guy.jpg"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\images\\sun.png",
+      "PackagePath": "staticwebassets\\images\\sun.png"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\libraries\\knockout.js",
+      "PackagePath": "staticwebassets\\libraries\\knockout.js"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\libraries\\perlin.js",
+      "PackagePath": "staticwebassets\\libraries\\perlin.js"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\Star-Scientist.code-workspace",
+      "PackagePath": "staticwebassets\\scripts\\Star-Scientist.code-workspace"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\canvas.js",
+      "PackagePath": "staticwebassets\\scripts\\canvas.js"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\constants.js",
+      "PackagePath": "staticwebassets\\scripts\\constants.js"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\core.js",
+      "PackagePath": "staticwebassets\\scripts\\core.js"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\dependencies.js",
+      "PackagePath": "staticwebassets\\scripts\\dependencies.js"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\input_manipulation.js",
+      "PackagePath": "staticwebassets\\scripts\\input_manipulation.js"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\mapStarController.js",
+      "PackagePath": "staticwebassets\\scripts\\mapStarController.js"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\math.js",
+      "PackagePath": "staticwebassets\\scripts\\math.js"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\noise.js",
+      "PackagePath": "staticwebassets\\scripts\\noise.js"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\stars.js",
+      "PackagePath": "staticwebassets\\scripts\\stars.js"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\utility.js",
+      "PackagePath": "staticwebassets\\scripts\\utility.js"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\styles\\formatting.css",
+      "PackagePath": "staticwebassets\\styles\\formatting.css"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\views\\contact-page.html",
+      "PackagePath": "staticwebassets\\views\\contact-page.html"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\views\\game-page.html",
+      "PackagePath": "staticwebassets\\views\\game-page.html"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\views\\html-testing.html",
+      "PackagePath": "staticwebassets\\views\\html-testing.html"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\views\\js-testing.html",
+      "PackagePath": "staticwebassets\\views\\js-testing.html"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\views\\main-page.html",
+      "PackagePath": "staticwebassets\\views\\main-page.html"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.Star-Scientist.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.build.Star-Scientist.props",
+      "PackagePath": "build\\Star-Scientist.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Star-Scientist.props",
+      "PackagePath": "buildMultiTargeting\\Star-Scientist.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildTransitive.Star-Scientist.props",
+      "PackagePath": "buildTransitive\\Star-Scientist.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -7,8 +7,3 @@ export * as Noise from './noise.js';
 export * as Perlin from '../libraries/perlin.js' ;
 
 export { constants } from './constants.js';
-
-export const base_url = "http://127.0.0.1:5500/";
-
-
-

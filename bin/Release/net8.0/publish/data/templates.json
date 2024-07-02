@@ -1,0 +1,13 @@
+{
+    "Templates" : [
+        {"Name": "Sun", "Mass" : 1, "Radius" : 1},
+        {"Name": "BI 253", "Mass" : 97.6, "Radius" : 13.9},
+        {"Name": "Phi Orionis", "Mass" : 15.5, "Radius" : 6.3},
+        {"Name": "Epsilon Eridani", "Mass" : 0.82, "Radius" : 0.735},
+        {"Name": "Alpha Coronae Borealis", "Mass" : 2.58, "Radius" : 2.89},
+        {"Name": "Eta Arietis", "Mass" : 1.21, "Radius" : 0.98},
+        {"Name": "70 Ophiuchi", "Mass" : 0.90, "Radius" : 0.91},
+        {"Name": "Lacaille 8760", "Mass" : 0.60, "Radius" : 0.51},
+        {"Name": "VB 10", "Mass" : 0.0881, "Radius" : 0.1183}
+    ]
+}

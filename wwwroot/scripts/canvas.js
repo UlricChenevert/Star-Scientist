@@ -28,10 +28,10 @@ export function update_canvas(element) {
             const distance_from_center = Math.hypot((center_x - x), (center_y - y));
             const base_position = y * (element.width * bit_amount) + x * bit_amount;
             const intensity = weight(distance_from_center, radius)['circler']();
-            const noise = noise_amplitude * blended_noise(x, y, radius); //Utility.normalize(blended_noise(x,y), noise_amplitude, 0) ////Noise.get_smooth_noise(x, y, radius, width, height) // Utility.normalize(blended_noise(x,y), 1, 0, true);
-            image_array[base_position] = color[0] - noise_amplitude + noise; // Modifies red
-            image_array[base_position + 1] = color[1] - noise_amplitude + noise; // Modifies green
-            image_array[base_position + 2] = color[2] - noise_amplitude + noise; // Modifies blue
+            const noise = noise_amplitude * blended_noise(x, y, radius) - noise_amplitude; //Utility.normalize(blended_noise(x,y), noise_amplitude, 0) ////Noise.get_smooth_noise(x, y, radius, width, height) // Utility.normalize(blended_noise(x,y), 1, 0, true);
+            image_array[base_position] = color[0] + noise; // Modifies red
+            image_array[base_position + 1] = color[1] + noise; // Modifies green
+            image_array[base_position + 2] = color[2] + noise; // Modifies blue
             image_array[base_position + 3] = 255 * intensity; // Modifies opacity
         });
     }
@@ -109,5 +109,5 @@ function weight(distance, radius, inverted = false) {
     };
 }
 function blended_noise(x, y, radius) {
-    return (Perlin.noise.simplex2(x * 100 / radius, y * 100 / radius) * 0.7 + Perlin.noise.simplex2(x * 50 / radius, y * 50 / radius) * 0.2 + Perlin.noise.simplex2(x * 50 / radius, y * 50 / radius) * 0.1);
+    return (Perlin.noise.simplex2(x * 100 / radius, y * 100 / radius) * 0.7 + Perlin.noise.simplex2(x * 25 / radius, y * 25 / radius) * 0.2 + Perlin.noise.simplex2(x * 10 / radius, y * 10 / radius) * 0.1);
 }
