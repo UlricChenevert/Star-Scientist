@@ -5,7 +5,7 @@
     "strictNullChecks":true,
     "outDir": "wwwroot/scripts", 
   },
-  "exclude": [
-    "publish"
+  "ignore":[
+    "bin"
   ]
 }

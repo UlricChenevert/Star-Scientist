@@ -4,7 +4,7 @@
  
         "**/*.js": {"when": "$(basename).ts"},
 
-        "**/*.css": {"when": "$(basename).less"},
+        //"**/*.css": {"when": "$(basename).less"},
 
         "**/*?.js": {"when": "$(basename).tsx"},
 
