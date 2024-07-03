@@ -50,7 +50,7 @@
             <form id="options-form">
             <div class="input-container">
                 <div><label for="templates-input"> Templates: </label></div>
-                <select id="templates-input" data-bind="options: $root.templates, value: template, optionsText: 'name'" class="styled-input"></select>
+                <select id="templates-input" data-bind="options: Object.keys($root.templates), value:template" class="styled-input"></select>
             </div>
 
             <div class="input-container">

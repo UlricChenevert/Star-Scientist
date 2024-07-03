@@ -22,8 +22,6 @@ window.onload = (e) => {
             const width = getComputedStyle(element).width;
             const height = getComputedStyle(element).height;
             const children = element.children;
-            let dump_reference = local_view_model.hacky_fix();
-            dump_reference = dump_reference;
             // Check if resize is necessary
             if (width != children[0].getAttribute('width')) {
                 element.children[0].setAttribute('width', width);
@@ -35,7 +33,7 @@ window.onload = (e) => {
             }
             // get children and pass it to the renderer
             CanvasHandler.render(local_view_model.star(), children[0], children[1], children[2]);
-            console.log("Updated");
+            //console.log("Updated")
         }
     };
     ko.applyBindings(local_view_model);
@@ -46,8 +44,6 @@ window.onresize = () => {
     const width = getComputedStyle(element).width;
     const height = getComputedStyle(element).height;
     const children = element.children;
-    let dump_reference = local_view_model.hacky_fix();
-    dump_reference = dump_reference;
     // Check if resize is necessary
     if (width != children[0].getAttribute('width')) {
         element.children[0].setAttribute('width', width);
@@ -59,5 +55,5 @@ window.onresize = () => {
     }
     // get children and pass it to the renderer
     CanvasHandler.render(local_view_model.star(), children[0], children[1], children[2]);
-    console.log("Updated");
+    //console.log("Updated")
 };

@@ -14,3 +14,4 @@ import * as Perlin_1 from '../libraries/perlin.js';
 export { Perlin_1 as Perlin };
 export { view_model as ViewModel } from "./view_model.js";
 export { constants } from './constants.js';
+export { MapStarController } from "./mapStarController.js";

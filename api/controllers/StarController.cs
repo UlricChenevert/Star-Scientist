@@ -28,7 +28,7 @@ public class StarController : ControllerBase
         return template;
     }
 
-    [Route("metrics")]
+    [Route("CalculateMetrics")]
     [HttpGet]
     public ActionResult<StarMetrics> Get(double Mass, double Radius)
     {
@@ -37,7 +37,7 @@ public class StarController : ControllerBase
         return starMetrics;
     }
 
-    [Route("timeline")]
+    [Route("DetermineTimeline")]
     [HttpGet]
     public ActionResult<List<Timeline>> Get(char spectralClassification)
     {

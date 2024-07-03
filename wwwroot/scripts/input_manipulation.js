@@ -1,16 +1,16 @@
 import { constants, Stars } from './dependencies.js';
 // Desc: creates new star objects based on template or inputs
-export function template_to_star(star_name) {
-    const star_template_raw = constants.templates;
-    // Creates a template based on the template constants json file
-    let template_build = {};
-    for (let template of star_template_raw) {
-        template_build[template.name] = new Stars.Star(template.mass, template.radius);
+export function template_to_star(star_name, radius, mass) {
+    if (star_name != "Custom") {
+        return new Stars.Star(constants.templates[star_name].mass, constants.templates[star_name].radius);
     }
-    return template_build[star_name];
+    else {
+        return new Stars.Star(radius, mass);
+    }
 }
-export function sync_latest_input() {
+export function sync_latest_input(templates) {
     if (localStorage.getItem("input") !== null) {
-        constants.templates.unshift(JSON.parse(localStorage.getItem("input")));
+        templates["Saved"] = (JSON.parse(localStorage.getItem("input")));
     }
+    return templates;
 }

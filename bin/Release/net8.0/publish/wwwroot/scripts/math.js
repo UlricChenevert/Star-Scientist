@@ -87,3 +87,11 @@ export function determine_color(spectral_classification) {
         throw new Error("Incorrect determine_color call!");
     return constants.stars[spectral_classification].color;
 }
+// Desc: Determines timeline based on spectral type
+// Pre: O, B, A, F, G, K, M
+// Post: A hexadecimal color
+export function determine_timeline(spectral_classification) {
+    if (!spectral_classification)
+        throw new Error("Incorrect determine_timeline call!");
+    return constants.stars[spectral_classification].timeline;
+}

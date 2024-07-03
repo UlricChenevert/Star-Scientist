@@ -15,8 +15,6 @@ export function round_data(data, significant_figures) {
             return data.toPrecision(significant_figures);
         case "string":
             return data;
-        case "undefined":
-            return data;
     }
 }
 export function normalize(value, max, min, inverted = false) {

@@ -8,11 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 export class MapStarController {
-    CalculateSomething(mass, radius) {
+    static CalculateMetrics(context) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield fetch(`/mapStar/data?mass=${mass}&radius=${radius}`);
-            const data = yield response.json();
-            return data;
+            const response = yield fetch(`/Star/CalculateMetrics?Mass=${context.mass()}&Radius=${context.radius()}`);
+            const metrics = yield response.json();
+            context.luminosity(metrics.luminosity.toPrecision(3));
+            context.lifetime(metrics.lifetime.toPrecision(3));
+            context.temperature(metrics.temperature.toPrecision(3));
+            context.spectral_classification(metrics.spectralClassification);
         });
     }
 }

@@ -11,7 +11,7 @@ class Measurement {
     }
 }
 export class Star {
-    constructor(mass_solar_units, radius_solar_units) {
+    constructor(mass_solar_units = 1, radius_solar_units = 1) {
         if (!mass_solar_units || !radius_solar_units)
             throw new Error("Incorrect parameter call on star constructor!");
         this.mass = new Measurement(mass_solar_units, 'Mass', 'M', '&#9737');
@@ -21,6 +21,7 @@ export class Star {
         this.temperature = new Measurement(AstronomyMath.calculate_temperature(this.luminosity.value, this.radius.value), 'Temperature', 'K');
         this.spectral_classification = AstronomyMath.determine_spectral_classification(this.temperature.value);
         this.color = AstronomyMath.determine_color(this.spectral_classification);
+        this.timeline = AstronomyMath.determine_timeline(this.spectral_classification);
     }
     toObject() {
         return { mass: this.mass, radius: this.radius, luminosity: this.luminosity, lifetime: this.lifetime, temperature: this.temperature, spectral_classification: this.spectral_classification, color: this.color };
