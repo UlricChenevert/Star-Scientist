@@ -1,8 +1,27 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self'; 
+    script-src 'self' 'sha256-vvt4KWwuNr51XfE5m+hzeNEGhiOfZzG97ccfqGsPwvE=' 'unsafe-eval'; 
+    style-src 'self'; 
+    font-src 'self';
+    img-src 'self' data:;
+    connect-src 'self';
+    object-src 'none';
+    base-uri 'self';">
+
+    <title> Redirect </title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+
+    <link rel="stylesheet" type='text/css' href="../styles/formatting.css">
+
+    <meta http-equiv="refresh" content="0; URL=https://starscientist.azurewebsites.net/views/main-page.html" />
 </head>
 
 <body> 
-    If redirect doesn't work, please contact local authorities
+    <br>
+    If redirect doesn't work, please contact local authorities (Or go <a href="https://starscientist.azurewebsites.net/views/main-page.html">Home</a>)
 </body>

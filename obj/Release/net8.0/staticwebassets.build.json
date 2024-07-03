@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "T5QUS2nl7W3MMTV+rGuNuhUlye5rYaLCERuvB16Jch8=",
+  "Hash": "gvjqd5nu7l7mm9PvriR81aid4/xwzoAlP/6u0lbgHWk=",
   "Source": "Star-Scientist",
   "BasePath": "_content/Star-Scientist",
   "Mode": "Default",
@@ -661,6 +661,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\scripts\\utility.js"
+    },
+    {
+      "Identity": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\view_model.js",
+      "SourceId": "Star-Scientist",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\",
+      "BasePath": "_content/Star-Scientist",
+      "RelativePath": "scripts/view_model.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\scripts\\view_model.js"
     },
     {
       "Identity": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\styles\\formatting.css",

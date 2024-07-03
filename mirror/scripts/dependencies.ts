@@ -5,5 +5,7 @@ export * as InputHelpers from './input_manipulation.js';
 export * as Utility from './utility.js';
 export * as Noise from './noise.js';
 export * as Perlin from '../libraries/perlin.js' ;
+export { view_model as ViewModel } from "./view_model.js";
+
 
 export { constants } from './constants.js';

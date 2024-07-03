@@ -12,4 +12,5 @@ import * as Noise_1 from './noise.js';
 export { Noise_1 as Noise };
 import * as Perlin_1 from '../libraries/perlin.js';
 export { Perlin_1 as Perlin };
+export { view_model as ViewModel } from "./view_model.js";
 export { constants } from './constants.js';
