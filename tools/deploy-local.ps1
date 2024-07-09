@@ -4,7 +4,7 @@ if (-not ((Test-Path -Path ".\bin") -and (Test-Path -Path ".\tools"))) {
 
 Write-Output "Starting compilation..."
 tsc #compiles typescript to javascript
-lessc .\source\styles\formatting.less .\source\styles\formatting.css # Compiles less to css 
+lessc .\source\styles\formatting.less .\wwwroot\styles\formatting.css # Compiles less to css 
 Write-Output "Ending compilation..."
 
 Write-Output("Localhost link: http://localhost:5283/views/game-page.html")

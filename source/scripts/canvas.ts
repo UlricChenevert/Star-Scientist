@@ -1,18 +1,19 @@
-import { Noise, Utility, Stars, Perlin} from './dependencies.js';
+import { Noise, Utility, Stars, Perlin, AstronomyMath} from './dependencies.js';
 
-export function render(star: Stars.Star, body : HTMLCanvasElement, atmosphere : HTMLCanvasElement, background : HTMLCanvasElement) : void {
+export async function render(star: Stars.Star, body : HTMLCanvasElement, atmosphere : HTMLCanvasElement, background : HTMLCanvasElement) {
 
     const radius = star.radius.value * 20;
     const amount = 5000;
     const color_palette = Utility.create_color_palette(star.color);
 
     update_canvas(body).clear();
-    update_canvas(body).chromosphere(radius, color_palette.base);
-
     update_canvas(atmosphere).clear();
-    update_canvas(atmosphere).corona(radius * 2, color_palette.darker);
-
     update_canvas(background).clear();
+
+    //if (! AstronomyMath.is_main_sequence_star(star.mass.value, star.radius.value)) {return;} // "Crash"
+
+    update_canvas(body).chromosphere(radius, color_palette.base);
+    update_canvas(atmosphere).corona(radius * 2, color_palette.darker);
     update_canvas(background).background(amount);
 }
 
@@ -20,11 +21,11 @@ export function update_canvas(element: HTMLCanvasElement) : valid_canvas_option 
     const brush = Utility.empty_value_checker("canvas's getContext", element.getContext("2d"));
     brush.beginPath();
 
-    function clear() {
+    async function clear() {
         brush.clearRect(0, 0, element.width, element.height);
     }
 
-    function chromosphere(radius : number, base_color : string) {
+    async function chromosphere(radius : number, base_color : string) {
         const width = element.width;
         const height = element.height;
 
@@ -32,16 +33,19 @@ export function update_canvas(element: HTMLCanvasElement) : valid_canvas_option 
         const center_y = Math.floor(height / 2);
 
         const bit_amount = 4;
-        const noise_amplitude = 100; // Larger the value the less intense it gets
+        const noise_amplitude = 50; // Larger the value the more intense the effect
 
-        let color = Utility.separate(base_color);
+        const octaves = [new Perlin(width,height,1024), new Perlin(width,height,512), new Perlin(width,height,128), new Perlin(width,height,64), new Perlin(width,height,32)]
+
+        const color = Utility.separate(base_color);
 
         circle({ x: center_x, y: center_y }, radius, (image_array : Uint8ClampedArray, x : number, y : number) => {
             const distance_from_center = Math.hypot((center_x - x), (center_y - y));
             const base_position = y * (element.width * bit_amount) + x * bit_amount;
             
             const intensity = weight(distance_from_center, radius)['circler']();
-            const noise = noise_amplitude*blended_noise(x,y, radius) - noise_amplitude //Utility.normalize(blended_noise(x,y), noise_amplitude, 0) ////Noise.get_smooth_noise(x, y, radius, width, height) // Utility.normalize(blended_noise(x,y), 1, 0, true);
+
+            const noise = noise_amplitude*blended_noise(x%width, y%height, octaves) - noise_amplitude; //
             
             image_array[base_position] = color[0] + noise; // Modifies red
             image_array[base_position + 1] =  color[1] + noise; // Modifies green
@@ -50,7 +54,7 @@ export function update_canvas(element: HTMLCanvasElement) : valid_canvas_option 
         });
     }
 
-    const corona = (radius : number, base_color : string) => {
+    async function corona (radius : number, base_color : string) {
         const bit_amount = 4;
         const noise_amplitude = radius * 0.1;
         const center_x = Math.floor(element.width / 2);
@@ -63,7 +67,7 @@ export function update_canvas(element: HTMLCanvasElement) : valid_canvas_option 
             const base_position = y * (element.width * bit_amount) + x * bit_amount;
 
             const intensity = weight(distance_from_center, radius)['linear']();
-            const noise = Noise.random_noise(noise_amplitude)
+            const noise = Noise.random_noise(noise_amplitude);
 
             image_array[base_position] = color[0] - noise; // Modifies red
             image_array[base_position + 1] = color[1] - noise; // Modifies green
@@ -72,7 +76,7 @@ export function update_canvas(element: HTMLCanvasElement) : valid_canvas_option 
         });
     };
 
-    function circle(center : position, radius : number, modification_function : shape_handler) {
+    async function circle(center : position, radius : number, modification_function : shape_handler) {
         const center_x = center.x;
         const center_y = center.y;
 
@@ -108,7 +112,7 @@ export function update_canvas(element: HTMLCanvasElement) : valid_canvas_option 
         console.log(`Rendering the circle took ${c} milliseconds`);
     }
 
-    const background = (amount : number) => {
+    async function background (amount : number) {
         const stars_images = brush.createImageData(element.width, element.height);
         const data = stars_images.data;
         const bit_amount = 4;
@@ -148,6 +152,6 @@ function weight(distance : number, radius : number, inverted = false) : {linear:
     };
 }
 
-function blended_noise(x : number, y : number, radius: number) {
-    return (Perlin.noise.simplex2(x*100/radius, y*100/radius)*0.7 + Perlin.noise.simplex2(x*25/radius, y*25/radius)*0.2 + Perlin.noise.simplex2(x*10/radius, y*10/radius)*0.1)
+function blended_noise(x : number, y : number, octaves : Perlin[]) {
+    return octaves[0].getHeight(x,y)*2 + octaves[1].getHeight(x,y) + octaves[2].getHeight(x,y) + octaves[3].getHeight(x,y)/2 + octaves[4].getHeight(x,y)/2 //octaves[4].getHeight(x,y) //octaves[0].getHeight(x,y)*2 + octaves[1].getHeight(x,y) + octaves[2].getHeight(x,y) + octaves[3].getHeight(x,y)/2 + octaves[4].getHeight(x,y)/4; //(Perlin.noise.simplex2(x*100/radius, y*100/radius)*0.7 + Perlin.noise.simplex2(x*25/radius, y*25/radius)*0.2 + Perlin.noise.simplex2(x*10/radius, y*10/radius)*0.1)
 }

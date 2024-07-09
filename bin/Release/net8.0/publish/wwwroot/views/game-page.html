@@ -63,7 +63,7 @@
                 <input type="text" data-bind="textInput: radius, disable: isTemplated" id="radius-input" max="99">
             </div>
 
-            <div><span data-bind="text: message, visible: showError()"></span></div>
+            <div id="error-message"><span data-bind="text: message, visible: showInputError()"></span></div>
             
         </form></div>
         <br>

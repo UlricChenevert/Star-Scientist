@@ -112,8 +112,13 @@ export function determine_timeline(spectral_classification : string) : {type: st
 
 // Desc: Uses the Mass-Radius Relationship to determine if custom input is valid
 export function is_main_sequence_star(mass : number, radius: number) {
-    const low = mass**0.8;
-    const high = mass;
+
+    if (mass === undefined || mass === null || radius === undefined  || radius === null) return true;
+
+    const deviation = 2;
+    const main_sequence_radius = (mass <= 1)? mass**0.8 : mass**0.57;
+    const low = main_sequence_radius - deviation;
+    const high = main_sequence_radius + deviation;
 
     return radius >= low && radius <= high;
 }

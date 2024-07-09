@@ -1,4 +1,5 @@
 @font-color: white;
+@error-color: rgb(128, 35, 35);
 @font-size: 1.5em;
 @main-font: "Barlow Condensed";
 @flourish-font: "Great Vibes";
@@ -11,6 +12,8 @@
 
 @standard-spacing: 0.5em;
 @tiny-spacing: (@standard-spacing/2);
+
+@screen-size: 500px;
 
 @title-font-size: 7em;
 
@@ -61,6 +64,8 @@ img {
 
 nav {
     display: flex;
+    @media screen and (max-width: @screen-size) {flex-direction: column;}
+
     align-items: center;
     justify-content: space-between;
 
@@ -72,13 +77,16 @@ nav {
         #logo-text {
             position: relative;
             left: @standard-spacing;
-            bottom: ((@nav-height/2) - 0.5em);
+            
+            bottom: ((@nav-height/2) - @standard-spacing);
 
             font-weight: bolder;
         }
+            
 
         img {
             height: @nav-height;
+            @media screen and (max-width: @screen-size) {margin-top: @standard-spacing;}
         }
     }
 }
@@ -112,7 +120,7 @@ nav {
 }
 
 .info-section {
-    margin: 2vw 15vw ;
+    margin: 2vw 15vw;
     display: flex;
     
     @image-size: 20vw;
@@ -169,8 +177,18 @@ footer {
 }
 
 #info-bar {
-    position: absolute;
+    
     z-index: 4;
+    @media screen and (min-width: (@screen-size + 1)) {
+        position: absolute;
+
+        max-width: @info-size;
+    }
+    @media screen and (max-width: @screen-size) {
+        position:static;
+
+        max-width: 100%;
+    }
 
     display: flex;
     justify-content: center;
@@ -209,7 +227,7 @@ footer {
             width: 100%;
             text-align: center;
         }
-        
+
     }
 
     .styled-metrics {
@@ -253,5 +271,11 @@ footer {
         position: absolute;
         z-index: 1;
     }
+}
+
+#error-message {
+    margin-top: @tiny-spacing;
+    font-size: smaller;
+    color: @error-color;
 }
 

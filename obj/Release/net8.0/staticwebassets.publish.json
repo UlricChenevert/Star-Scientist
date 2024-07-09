@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "EYe5wYjrIe91o4MdSi5oPmBM7cNPIsvrSP0HSvbyO5k=",
+  "Hash": "ESgJ1nQePTkDrlU5kVPaVWtzp2Jksp5uuaqKpxRY1NE=",
   "Source": "Star-Scientist",
   "BasePath": "_content/Star-Scientist",
   "Mode": "Default",
@@ -435,12 +435,12 @@
       "OriginalItemSpec": "wwwroot\\libraries\\knockout.js"
     },
     {
-      "Identity": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\libraries\\perlin.js",
+      "Identity": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\libraries\\perlinJS.js",
       "SourceId": "Star-Scientist",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\",
       "BasePath": "_content/Star-Scientist",
-      "RelativePath": "libraries/perlin.js",
+      "RelativePath": "libraries/perlinJS.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -451,7 +451,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\libraries\\perlin.js"
+      "OriginalItemSpec": "wwwroot\\libraries\\perlinJS.js"
     },
     {
       "Identity": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\canvas.js",

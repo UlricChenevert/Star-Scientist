@@ -16,7 +16,7 @@ export const constants = {
         },
         B: {
             "color": "rgb(170, 191, 255)",
-            "temperature": { high: 3.3e4, low: 9.7e3 },
+            "temperature": { high: 3.3e4, low: 1e4 },
             "timeline": [
                 { type: "Formation", "desc": "A few million years" },
                 { type: "Main Sequence", "desc": "10-100 million years" },
@@ -28,7 +28,7 @@ export const constants = {
         },
         A: {
             "color": "rgb(202, 215, 255)",
-            "temperature": { high: 9.7e3, low: 7.2e3 },
+            "temperature": { high: 1e4, low: 7.3e3 },
             "timeline": [
                 { type: "Formation", "desc": "A few million years" },
                 { type: "Main Sequence", "desc": "500 million to 1 billion years" },
@@ -40,7 +40,7 @@ export const constants = {
         },
         F: {
             "color": "rgb(248, 247, 255)",
-            "temperature": { high: 7.2e3, low: 5.7e3 },
+            "temperature": { high: 7.3e3, low: 6.0e3 },
             "timeline": [
                 { type: "Formation", "desc": "A few million years" },
                 { type: "Main Sequence", "desc": "2-4 billion years" },
@@ -52,7 +52,7 @@ export const constants = {
         },
         G: {
             "color": "rgb(255, 244, 234)",
-            "temperature": { high: 5.7e3, low: 4.9e3 },
+            "temperature": { high: 6.0e3, low: 5.3e3 },
             "timeline": [
                 { type: "Formation", "desc": "A few million years" },
                 { type: "Main Sequence", "desc": "8-10 billion years" },
@@ -64,7 +64,7 @@ export const constants = {
         },
         K: {
             "color": "rgb(255, 210, 161)",
-            "temperature": { high: 4.9e3, low: 3.4e3 },
+            "temperature": { high: 5.3e3, low: 3.9e3 },
             "timeline": [
                 { type: "Formation", "desc": "A few million years" },
                 { type: "Main Sequence", "desc": "15-30 billion years" },
@@ -76,7 +76,7 @@ export const constants = {
         },
         M: {
             "color": "rgb(255, 204, 111)",
-            "temperature": { high: 3.4e3, low: -1 },
+            "temperature": { high: 3.9e3, low: -1 },
             "timeline": [
                 { type: "Formation", "desc": "Tens to hundreds of millions of years" },
                 { type: "Main Sequence", "desc": "Tens of billions to trillions of years" },
