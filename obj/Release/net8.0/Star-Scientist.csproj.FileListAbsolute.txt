@@ -33,3 +33,4 @@ C:\Users\william.chenevert\OneDrive - KnowledgeLake\Documents\Summer Internship\
 C:\Users\william.chenevert\OneDrive - KnowledgeLake\Documents\Summer Internship\Star-Scientist\obj\Release\net8.0\Star-Scientist.pdb
 C:\Users\william.chenevert\OneDrive - KnowledgeLake\Documents\Summer Internship\Star-Scientist\obj\Release\net8.0\Star-Scientist.genruntimeconfig.cache
 C:\Users\william.chenevert\OneDrive - KnowledgeLake\Documents\Summer Internship\Star-Scientist\obj\Release\net8.0\ref\Star-Scientist.dll
+C:\Users\william.chenevert\OneDrive - KnowledgeLake\Documents\Summer Internship\Star-Scientist\bin\Release\net8.0\data\image_urls.json

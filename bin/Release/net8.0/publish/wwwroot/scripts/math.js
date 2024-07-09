@@ -38,14 +38,14 @@ export function calculate_lifetime(mass, luminosity) {
     // Throws a error if both values are known or not known
     if (!mass || !luminosity)
         throw new Error("Incorrect calculate_lifetime call!");
-    let star_lifetime = constants.sun.lifespan.value * (mass / luminosity);
+    const star_lifetime = constants.sun.lifespan.value * (mass / luminosity);
     return star_lifetime;
 }
 // Desc: Estimates the temperature with the Stefan-Boltzmann Law
 // Pre: luminosity in solar units and radius in solar units
 // Post: Temperature in Kevin
 export function calculate_temperature(luminosity, radius) {
-    let star_temperature = constants.sun.temperature.value * Math.pow((luminosity / (Math.pow(radius, 2))), (1 / 4)); //(luminosity/)^(1/4);
+    const star_temperature = constants.sun.temperature.value * Math.pow((luminosity / (Math.pow(radius, 2))), (1 / 4)); //(luminosity/)^(1/4);
     return star_temperature;
 }
 // Desc: Determines spectral classification based on temperature
@@ -94,4 +94,10 @@ export function determine_timeline(spectral_classification) {
     if (!spectral_classification)
         throw new Error("Incorrect determine_timeline call!");
     return constants.stars[spectral_classification].timeline;
+}
+// Desc: Uses the Mass-Radius Relationship to determine if custom input is valid
+export function is_main_sequence_star(mass, radius) {
+    const low = Math.pow(mass, 0.8);
+    const high = mass;
+    return radius >= low && radius <= high;
 }

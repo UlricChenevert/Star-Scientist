@@ -8,6 +8,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 export class MapStarController {
+    static getTemplates(templates_observable) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield fetch(`/Star/getTemplates`);
+            const presents = yield response.json();
+            // Get copy of current observable state
+            const working_templates = templates_observable();
+            // Append copy of current state with new values from server
+            for (let key of Object.keys(presents)) {
+                working_templates[key] = presents[key];
+            }
+            // Replace templates with newly modified observable
+            templates_observable(working_templates);
+        });
+    }
     static CalculateMetrics(context) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield fetch(`/Star/CalculateMetrics?Mass=${context.mass()}&Radius=${context.radius()}`);

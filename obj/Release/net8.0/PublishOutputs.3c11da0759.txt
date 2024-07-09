@@ -1,6 +1,7 @@
 C:\Users\william.chenevert\OneDrive - KnowledgeLake\Documents\Summer Internship\Star-Scientist\bin\Release\net8.0\publish\Star-Scientist.exe
 C:\Users\william.chenevert\OneDrive - KnowledgeLake\Documents\Summer Internship\Star-Scientist\bin\Release\net8.0\publish\appsettings.Development.json
 C:\Users\william.chenevert\OneDrive - KnowledgeLake\Documents\Summer Internship\Star-Scientist\bin\Release\net8.0\publish\appsettings.json
+C:\Users\william.chenevert\OneDrive - KnowledgeLake\Documents\Summer Internship\Star-Scientist\bin\Release\net8.0\publish\data\image_urls.json
 C:\Users\william.chenevert\OneDrive - KnowledgeLake\Documents\Summer Internship\Star-Scientist\bin\Release\net8.0\publish\data\star_constants.json
 C:\Users\william.chenevert\OneDrive - KnowledgeLake\Documents\Summer Internship\Star-Scientist\bin\Release\net8.0\publish\data\templates.json
 C:\Users\william.chenevert\OneDrive - KnowledgeLake\Documents\Summer Internship\Star-Scientist\bin\Release\net8.0\publish\package-lock.json

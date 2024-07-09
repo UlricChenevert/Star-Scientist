@@ -26,7 +26,7 @@ window.onload = (e) => {
             const width = getComputedStyle(element).width; 
             const height = getComputedStyle(element).height;
 
-            const children = element.children;
+            const children = <HTMLCanvasElement[]><unknown>element.children;
 
             // Check if resize is necessary
             if (width != children[0].getAttribute('width')) {
@@ -41,7 +41,8 @@ window.onload = (e) => {
             }
 
             // get children and pass it to the renderer
-            CanvasHandler.render(local_view_model.star(), <HTMLCanvasElement>children[0], <HTMLCanvasElement>children[1], <HTMLCanvasElement>children[2])
+            CanvasHandler.render(local_view_model.star(), children[0], children[1], children[2])
+
             //console.log("Updated")
         }
     }

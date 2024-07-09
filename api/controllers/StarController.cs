@@ -9,23 +9,25 @@ namespace Star_Scientist.api.controllers;
 [Route("Star")]
 public class StarController : ControllerBase
 {
-    [Route("templates")]
+    [Route("getTemplates")]
     [HttpGet]
-    public ActionResult<List<StarTemplateContract>> Get()
+    public ActionResult< Dictionary<string, StarTemplateContract> > Get()
     {
-        List<StarTemplateContract> template = [
-            new ("Sun", 1, 1),
-            new ("BI 253", 97.6, 13.9 ),
-            new ("Phi Orionis", 15.5, 6.3),
-            new ("Epsilon Eridani", 0.82, 0.735),
-            new ("Alpha Coronae Borealis", 2.58, 2.89),
-            new ("Eta Arietis", 1.21, 0.98),
-            new ("70 Ophiuchi", 0.90, 0.91),
-            new ("Lacaille 8760", 0.60, 0.51),
-            new ("VB 10", 0.0881, 0.1183)
-        ];
+        Dictionary<string, StarTemplateContract> templates = new()
+        {
+            { "Sun", new(1, 1) },
+            { "BI 253", new(97.6, 13.9) },
+            { "Phi Orionis", new(15.5, 6.3) },
+            { "Epsilon Eridani", new(0.82, 0.735) },
+            { "Alpha Coronae Borealis", new(2.58, 2.89) },
+            { "Eta Arietis", new(1.21, 0.98) },
+            { "70 Ophiuchi", new(0.90, 0.91) },
+            { "Lacaille 8760", new(0.60, 0.51) },
+            { "VB 10", new(0.0881, 0.1183) },
+            
+        };
 
-        return template;
+        return templates;
     }
 
     [Route("CalculateMetrics")]
