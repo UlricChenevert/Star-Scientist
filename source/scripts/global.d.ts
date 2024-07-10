@@ -26,6 +26,8 @@ interface valid_canvas_option {
     chromosphere: Function;
     corona: Function;
     background: Function;
+    animate_corona_fade_in: Function,
+    animate_corona_fade_out: Function,
 }
 
 // Math.ts takes mass and radius and outputs star information

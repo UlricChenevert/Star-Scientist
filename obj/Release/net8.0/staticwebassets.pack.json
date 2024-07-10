@@ -133,6 +133,10 @@
       "PackagePath": "staticwebassets\\scripts\\stars.js"
     },
     {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\testing.js",
+      "PackagePath": "staticwebassets\\scripts\\testing.js"
+    },
+    {
       "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\utility.js",
       "PackagePath": "staticwebassets\\scripts\\utility.js"
     },
@@ -153,16 +157,12 @@
       "PackagePath": "staticwebassets\\views\\game-page.html"
     },
     {
-      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\views\\html-testing.html",
-      "PackagePath": "staticwebassets\\views\\html-testing.html"
-    },
-    {
-      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\views\\js-testing.html",
-      "PackagePath": "staticwebassets\\views\\js-testing.html"
-    },
-    {
       "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\views\\main-page.html",
       "PackagePath": "staticwebassets\\views\\main-page.html"
+    },
+    {
+      "Id": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\views\\testing.html",
+      "PackagePath": "staticwebassets\\views\\testing.html"
     },
     {
       "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.Star-Scientist.Microsoft.AspNetCore.StaticWebAssets.props",

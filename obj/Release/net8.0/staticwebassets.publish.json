@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ESgJ1nQePTkDrlU5kVPaVWtzp2Jksp5uuaqKpxRY1NE=",
+  "Hash": "GCISE+WDGjBOIbdInSVFSZ5xJOW/qkwJ+MFru8twFTw=",
   "Source": "Star-Scientist",
   "BasePath": "_content/Star-Scientist",
   "Mode": "Default",
@@ -644,6 +644,25 @@
       "OriginalItemSpec": "wwwroot\\scripts\\stars.js"
     },
     {
+      "Identity": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\testing.js",
+      "SourceId": "Star-Scientist",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\",
+      "BasePath": "_content/Star-Scientist",
+      "RelativePath": "scripts/testing.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\scripts\\testing.js"
+    },
+    {
       "Identity": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\scripts\\utility.js",
       "SourceId": "Star-Scientist",
       "SourceType": "Discovered",
@@ -739,44 +758,6 @@
       "OriginalItemSpec": "wwwroot\\views\\game-page.html"
     },
     {
-      "Identity": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\views\\html-testing.html",
-      "SourceId": "Star-Scientist",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\",
-      "BasePath": "_content/Star-Scientist",
-      "RelativePath": "views/html-testing.html",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\views\\html-testing.html"
-    },
-    {
-      "Identity": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\views\\js-testing.html",
-      "SourceId": "Star-Scientist",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\",
-      "BasePath": "_content/Star-Scientist",
-      "RelativePath": "views/js-testing.html",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\views\\js-testing.html"
-    },
-    {
       "Identity": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\views\\main-page.html",
       "SourceId": "Star-Scientist",
       "SourceType": "Discovered",
@@ -794,6 +775,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\views\\main-page.html"
+    },
+    {
+      "Identity": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\views\\testing.html",
+      "SourceId": "Star-Scientist",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\william.chenevert\\OneDrive - KnowledgeLake\\Documents\\Summer Internship\\Star-Scientist\\wwwroot\\",
+      "BasePath": "_content/Star-Scientist",
+      "RelativePath": "views/testing.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\views\\testing.html"
     }
   ]
 }
