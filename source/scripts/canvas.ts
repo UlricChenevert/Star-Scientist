@@ -6,8 +6,6 @@ export async function render(star: Stars.Star, body : HTMLCanvasElement, atmosph
     const amount = 5000;
     const color_palette = Utility.create_color_palette(star.color);
 
-
-
     update_canvas(body).clear();
     update_canvas(atmosphere).clear();
     update_canvas(background).clear();
@@ -19,7 +17,7 @@ export async function render(star: Stars.Star, body : HTMLCanvasElement, atmosph
     update_canvas(atmosphere).corona(radius * 2, color_palette.darker);
     update_canvas(background).background(amount);
 
-    //update_canvas(atmosphere).animate_corona_fade_in(radius * 2, color_palette.darker);
+    update_canvas(atmosphere).animate_corona_fade_in(radius * 2, color_palette.darker);
 }
 
 export function update_canvas(element: HTMLCanvasElement) : valid_canvas_option {

@@ -20,7 +20,7 @@ export function render(star, body, atmosphere, background) {
         update_canvas(body).chromosphere(radius, color_palette.base);
         update_canvas(atmosphere).corona(radius * 2, color_palette.darker);
         update_canvas(background).background(amount);
-        //update_canvas(atmosphere).animate_corona_fade_in(radius * 2, color_palette.darker);
+        update_canvas(atmosphere).animate_corona_fade_in(radius * 2, color_palette.darker);
     });
 }
 export function update_canvas(element) {
