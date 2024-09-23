@@ -1,0 +1,281 @@
+@font-color: white;
+@error-color: rgb(128, 35, 35);
+@font-size: 1.5em;
+@main-font: "Barlow Condensed";
+@flourish-font: "Great Vibes";
+@backup-font: 'sans-serif';
+    
+@primary-color: #4662b0;
+@darker-primary-color: darken(@primary-color, 5%);
+@lighter-primary-color: lighten(@primary-color, 5%);
+@background-color: black;
+
+@standard-spacing: 0.5em;
+@tiny-spacing: (@standard-spacing/2);
+
+@screen-size: 500px;
+
+@title-font-size: 7em;
+
+@galaxy-image: '../images/Galaxy.jpg';
+
+@nav-height: 2em;
+@title-card-height: (100vh - @nav-height);
+@info-size: 20vw;
+@metrics-width: 10em;
+
+@font-face {
+    font-family: "Barlow Condensed";
+    src:url("../fonts/BarlowCondensed-Regular.ttf");
+}
+@font-face {
+    font-family: "Great Vibes";
+    src: url("../fonts/GreatVibes-Regular.ttf");
+}
+
+
+body {
+    background-color: @background-color;
+    color: @font-color;
+    font-size: @font-size;
+    font-family: @main-font, @backup-font;
+
+    margin: 0;
+    padding: 0;
+
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: @font-color;
+    background-color: @primary-color;
+
+    padding: @standard-spacing;
+
+    &:hover {
+        background-color: @darker-primary-color;
+    }
+}
+
+img {
+    max-width: 50vw;
+}
+
+nav {
+    display: flex;
+    @media screen and (max-width: @screen-size) {flex-direction: column;}
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 1em;
+
+    background-color: @primary-color;
+
+    #logo {
+        #logo-text {
+            position: relative;
+            left: @standard-spacing;
+            
+            bottom: ((@nav-height/2) - @standard-spacing);
+
+            font-weight: bolder;
+        }
+            
+
+        img {
+            height: @nav-height;
+            @media screen and (max-width: @screen-size) {margin-top: @standard-spacing;}
+        }
+    }
+}
+
+#game-link-section {
+    background-image: url(@galaxy-image);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    min-height: (100vh-@nav-height);
+    
+    h1 {
+        margin: 0 10vh;
+        font-size: @title-font-size;
+    }
+
+    strong {
+        font-family: @flourish-font, cursive;
+    }
+    
+    a {
+        border-radius: 1.5em;
+    }
+}
+
+.info-section {
+    margin: 2vw 15vw;
+    display: flex;
+    
+    @image-size: 20vw;
+
+    img {
+        width: @image-size;    
+    }
+
+    h3 {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+section {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: (100vh-@nav-height);
+}
+
+.contact-card {
+    margin: 4em 0;
+
+    @card-width: 20vw;
+
+    max-width: @card-width;
+    background-color: @lighter-primary-color;
+    border-radius: 2em;
+    padding: @standard-spacing + 2em;
+
+    img {
+        width: @card-width;
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    div {
+        text-align: center;
+    }
+}
+
+footer {
+    top:0;
+    
+    background-color: @primary-color;
+    padding: @standard-spacing;
+
+    font-size: smaller;
+}
+
+#info-bar {
+    
+    z-index: 4;
+    @media screen and (min-width: (@screen-size + 1)) {
+        position: absolute;
+
+        max-width: @info-size;
+    }
+    @media screen and (max-width: @screen-size) {
+        position:static;
+
+        max-width: 100%;
+    }
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    padding: @standard-spacing;
+
+    background-color: @primary-color;
+    
+    margin: @standard-spacing;
+    max-width: @info-size;
+    height: fit-content;
+    border-radius: @standard-spacing;
+
+    #options {
+        padding: @standard-spacing;
+        border-radius: 0.5em;
+
+        background-color: @lighter-primary-color;
+        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+
+        h4 {
+            margin: @tiny-spacing;
+            text-align: center;
+        }
+
+        label {
+            font-size: smaller;
+        }
+
+        input, select {
+            border: 0;
+            padding: @tiny-spacing;
+            border-radius: 0.75em;
+            
+            width: 100%;
+            text-align: center;
+        }
+
+    }
+
+    .styled-metrics {
+        padding: @standard-spacing;
+        border-radius: 0.5em;
+    
+        background-color: @lighter-primary-color;
+        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+
+        h4 {
+            margin: 0.25em;
+            text-align: center;
+        }
+
+        div {
+            width: @metrics-width;
+            font-size: 0.9em;
+            margin: 0.3em 0;
+        }
+    }
+}
+
+#star-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    height: 100vh;
+
+    #chromosphere-layer {
+        position: absolute;
+        z-index: 3;
+    }
+    
+    #atmosphere-layer {
+        position: absolute;
+        z-index: 2;
+    }
+    
+    #background-layer {
+        position: absolute;
+        z-index: 1;
+    }
+}
+
+#error-message {
+    margin-top: @tiny-spacing;
+    font-size: smaller;
+    color: @error-color;
+}
+

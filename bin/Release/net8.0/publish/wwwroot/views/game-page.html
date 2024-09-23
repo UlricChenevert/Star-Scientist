@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    
+<head>
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self'; 
+    script-src 'self' 'sha256-vvt4KWwuNr51XfE5m+hzeNEGhiOfZzG97ccfqGsPwvE=' 'unsafe-eval'; 
+    style-src 'self'; 
+    font-src 'self';
+    img-src 'self' data:;
+    connect-src 'self';
+    object-src 'none';
+    base-uri 'self';">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    
+
+    <title> Star Scientist</title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <link rel="stylesheet" type='text/css' href="../styles/formatting.css">
+
+    <script src="../libraries/knockout.js" ></script>
+
+    <script type="module" src="../scripts/core.js"></script>
+</head>
+
+<body> 
+    <nav id="navigation">
+        <!-- Logo -->
+        <span id="logo">
+            <img src="../images/sun.png" alt="Logo">
+            <span id="logo-text">Star Scientist</span>
+        </span>
+
+        <ul id="links">
+            <!-- Contact Link -->
+            <a href="contact-page.html">Contact</a>
+
+            <!-- Game Link -->
+            <a href="game-page.html">Game</a>
+
+             <!-- Home Link -->
+            <a href="main-page.html">Home</a>
+        </span>
+    </nav>
+
+    <div id="info-bar"> 
+        <div id="options">
+            <h4><b>Options</b></h4>
+            <form id="options-form">
+            <div class="input-container">
+                <div><label for="templates-input"> Templates: </label></div>
+                <select id="templates-input" data-bind="options: Object.keys($root.templates()), value:template" class="styled-input"></select>
+            </div>
+
+            <div class="input-container">
+                <div><label for="mass-input"> Mass: </label></div>
+                <input type="text" data-bind="textInput: mass, disable: isTemplated" id="mass-input" max="99">
+            </div>
+
+            <div class="input-container">
+                <div><label for="radius-input"> Radius: </label></div>
+                <input type="text" data-bind="textInput: radius, disable: isTemplated" id="radius-input" max="99">
+            </div>
+
+            <div id="error-message"><span data-bind="text: message, visible: showInputError()"></span></div>
+            
+        </form></div>
+        <br>
+        <div class="styled-metrics">
+            <h4 ><div><b>Metrics</b></h4>
+            <div id="metrics">
+                <div>Mass: <span data-bind="text: mass"></span> M<sub>&#9737</sub></div>
+                <div>Radius: <span data-bind="text: radius"></span> R<sub>&#9737</sub></div>
+                <div>Luminosity: <span data-bind="text: luminosity"></span> L<sub>&#9737</sub></div>
+                <div>Lifetime: <span data-bind="text: lifetime"></span><sub></sub> yr</div>
+                <div>Temperature: <span data-bind="text: temperature"></span> K</div>
+                <div>Spectral Classification: <span data-bind="text: spectral_classification"></span></div>
+            </div>
+        </div>
+        <br>
+        <div class="styled-metrics">
+            <h4 ><div><b>Estimated Timeline</b></h4>
+            <div data-bind="foreach: timeline">
+                <div><span data-bind="text: type"></span>: <span data-bind="text: desc"></span></div>
+            </div>
+        </div>
+    </div>
+    
+    </div>
+
+    <div id="star-visual" data-bind="drawStar: display"></div>
+
+</body>
+</html>

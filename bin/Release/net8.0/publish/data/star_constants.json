@@ -1,0 +1,100 @@
+{
+    "Stars": {
+        "O": {
+            "Color" : "rgb(155, 176, 255)", 
+            "Temperature": {"High": -1, "Low": 3.3e4}, 
+            "Timeline": [
+                {"Type": "Formation", "Desc": "A few million years"},
+                {"Type": "Main Sequence", "Desc": "3-6 million years"},
+                {"Type": "Post-Main Sequence", "Desc": "A few hundred thousand years"},
+                {"Type": "Late Stages", "Desc": "A few tens of thousands to hundreds of thousands of years"},
+                {"Type": "Supernova", "Desc": "A few seconds to months"},
+                {"Type": "Remnant Phase", "Desc": "Can last indefinitely (Neutron Star or Black Hole)"}
+              ]}, 
+        "B" : {
+            "Color" : "rgb(170, 191, 255)", 
+            "Temperature": {"High": 3.3e4, "Low": 9.7e3},
+            "Timeline": [
+                {"Type": "Formation", "Desc": "A few million years"},
+                {"Type": "Main Sequence", "Desc": "10-100 million years"},
+                {"Type": "Post-Main Sequence", "Desc": "A few million years"},
+                {"Type": "Late Stages", "Desc": "A few hundred thousand to a million years"},
+                {"Type": "Supernova or Planetary Nebula", "Desc": "A few seconds to months (if Massive enough for supernova)"},
+                {"Type": "Remnant Phase", "Desc": "Can last indefinitely (White Dwarf, Neutron Star, or Black Hole)"}
+              ]},
+        "A" : {
+            "Color" : "rgb(202, 215, 255)", 
+            "Temperature": {"High": 9.7e3, "Low": 7.2e3}, 
+            "Timeline" : [
+                {"Type": "Formation", "Desc": "A few million years"},
+                {"Type": "Main Sequence", "Desc": "500 million to 1 billion years"},
+                {"Type": "Post-Main Sequence", "Desc": "Tens to hundreds of millions of years"},
+                {"Type": "Late Stages", "Desc": "A few hundred thousand to a million years"},
+                {"Type": "Planetary Nebula", "Desc": "A few tens of thousands of years"},
+                {"Type": "Remnant Phase", "Desc": "Can last indefinitely (White Dwarf)"}
+            ]
+        },
+        "F" : {
+            "Color" : "rgb(248, 247, 255)", 
+            "Temperature": {"High": 7.2e3, "Low": 5.7e3},
+            "Timeline": [
+                {"Type": "Formation", "Desc": "A few million years"},
+                {"Type": "Main Sequence", "Desc": "2-4 billion years"},
+                {"Type": "Post-Main Sequence", "Desc": "Hundreds of millions of years"},
+                {"Type": "Late Stages", "Desc": "A few hundred thousand to a million years"},
+                {"Type": "Planetary Nebula", "Desc": "A few tens of thousands of years"},
+                {"Type": "Remnant Phase", "Desc": "Can last indefinitely (White Dwarf)"}
+        ]},
+        "G" : {
+            "Color" : "rgb(255, 244, 234)", 
+            "Temperature": {"High": 5.7e3, "Low": 4.9e3},
+            "Timeline": [
+                {"Type": "Formation", "Desc": "A few million years"},
+                {"Type": "Main Sequence", "Desc": "8-10 billion years"},
+                {"Type": "Post-Main Sequence", "Desc": "Hundreds of millions of years"},
+                {"Type": "Late Stages", "Desc": "A few hundred thousand to a million years"},
+                {"Type": "Planetary Nebula", "Desc": "A few tens of thousands of years"},
+                {"Type": "Remnant Phase", "Desc": "Can last indefinitely (White Dwarf)"}
+        ]},
+        "K" : {
+            "Color" : "rgb(255, 210, 161)", 
+            "Temperature": {"High": 4.9e3, "Low": 3.4e3},
+            "Timeline": [
+                {"Type": "Formation", "Desc": "A few million years"},
+                {"Type": "Main Sequence", "Desc": "15-30 billion years"},
+                {"Type": "Post-Main Sequence", "Desc": "Hundreds of millions of years"},
+                {"Type": "Late Stages", "Desc": "A few hundred thousand to a million years"},
+                {"Type": "Planetary Nebula", "Desc": "A few tens of thousands of years"},
+                {"Type": "Remnant Phase", "Desc": "Can last indefinitely (White Dwarf)"}
+        ]},
+        "M" : {
+            "Color" : "rgb(255, 204, 111)", 
+            "Temperature": {"High": 3.4e3, "Low": -1},
+            "Timeline": [
+                {"Type": "Formation", "Desc": "Tens to hundreds of millions of years"},
+                {"Type": "Main Sequence", "Desc": "Tens of billions to trillions of years"},
+                {"Type": "Post-Main Sequence", "Desc": "Unknown"},
+                {"Type": "Late Stages", "Desc": "Unknown"},
+                {"Type": "Remnant Phase", "Desc": "Potentially indefinite (White Dwarf,)"}
+        ]}
+    },
+    "Sun" : {"Lifespan" : {"Value": 1e10, "Unit": "years"}, 
+             "Temperature" : {"Value": 5.772e3, "Unit": "kevin"},
+             "Radius" : {"Value": 6.96e5, "Unit": "km"},
+             "Mass" : {"Value": 1.989e30, "Unit": "kg"}
+
+    }, 
+    
+    "Templates" : [
+        {"Name": "Custom", "Mass" : 1, "Radius" : 1},
+        {"Name": "Sun", "Mass" : 1, "Radius" : 1},
+        {"Name": "BI 253", "Mass" : 97.6, "Radius" : 13.9},
+        {"Name": "Phi Orionis", "Mass" : 15.5, "Radius" : 6.3},
+        {"Name": "Epsilon Eridani", "Mass" : 0.82, "Radius" : 0.735},
+        {"Name": "Alpha Coronae Borealis", "Mass" : 2.58, "Radius" : 2.89},
+        {"Name": "Eta Arietis", "Mass" : 1.21, "Radius" : 0.98},
+        {"Name": "70 Ophiuchi", "Mass" : 0.90, "Radius" : 0.91},
+        {"Name": "Lacaille 8760", "Mass" : 0.60, "Radius" : 0.51},
+        {"Name": "VB 10", "Mass" : 0.0881, "Radius" : 0.1183}
+    ]
+}

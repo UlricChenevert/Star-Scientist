@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Star-Scientist.props" />
+</Project>
